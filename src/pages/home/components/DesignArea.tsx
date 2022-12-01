@@ -15,37 +15,6 @@ export interface ContainerState {
 }
 
 const Container: FC = () => {
-  // const [cards, setCards] = useState(ITEMS);
-  // const ITEMS = [
-  //   {
-  //     id: uuid(),
-  //     name: "Write a cool JS library"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "Make it generic enough"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "Write README"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "Create some examples"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "Spam in Twitter and IRC to promote it"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "???"
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: "PROFIT"
-  //   }
-  // ];
   const [schema, setSchema] = useState<any[]>([]);
   const [schemaId, setSchemaId] = useState<Array<string>>([]);
 
@@ -58,6 +27,12 @@ const Container: FC = () => {
       /* 用于检测是否已经存在当前布局 */
       setSchemaId(update(schemaId, { $push: [$uuid] }));
       setSchema(update(schema, { $push: [{ ...val, id: $uuid }] }));
+    }
+
+    if (val?.change) {
+      // children
+      const { data, id } = val.change;
+      // id 需要数据需要放入的 id
     }
   };
 
@@ -93,8 +68,8 @@ const Container: FC = () => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: [ItemTypes.DIV],
     drop: onDrop,
-    hover({ id: draggedId }: any) {
-      // console.log(draggedId);
+    hover(item: any, i) {
+      // console.log(item, i.getHandlerId());
       // if (draggedId !== id && draggedId !== undefined) {
       //   console.log(draggedId, id);
       //   const { index: overIndex } = findCard(id);
@@ -162,6 +137,9 @@ const Container: FC = () => {
                   )}
                 </Draggable>
               ))}
+              {isOver && canDrop ? (
+                <div className="border-indigo-600 border" />
+              ) : null}
 
               {provided.placeholder}
             </div>
