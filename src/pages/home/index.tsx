@@ -4,7 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { Container } from "./components/Container";
 import Control from "./components/Control";
 import DesignArea from "./components/DesignArea";
-
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const test = ["DIV"];
 function App() {
   // const [{ opacity }, drag, preview] = useDrag(
@@ -29,8 +29,14 @@ function App() {
           </div>
 
           {/* 拖拽区 */}
-          <div>
-            <DesignArea accept={test} />
+          <div className="w-full">
+            <DragDropContext
+              onDragEnd={val => {
+                console.log(val);
+              }}
+            >
+              <DesignArea />
+            </DragDropContext>
           </div>
         </section>
       </DndProvider>

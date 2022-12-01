@@ -1,80 +1,190 @@
-import type { CSSProperties, FC } from "react";
-import { memo, useState } from "react";
-import { useDrop } from "react-dnd";
 import update from "immutability-helper";
+import type { FC } from "react";
+import { memo, useCallback, useState, Fragment } from "react";
+import { useDrop } from "react-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
+import { ItemTypes } from "./ItemTypes";
 import NestedDraggable from "./NestedDraggable";
 import { v4 as uuid } from "uuid";
 
-const style: CSSProperties = {
-  height: "12rem",
-  width: "12rem",
-  marginRight: "1.5rem",
-  marginBottom: "1.5rem",
-  color: "white",
-  padding: "1rem",
-  textAlign: "center",
-  fontSize: "1rem",
-  lineHeight: "normal",
-  float: "left"
-};
+const style = {};
 
-export interface DustbinProps {
-  accept: string[];
-  lastDroppedItem?: any;
+export interface ContainerState {
+  cards: any[];
 }
 
-const DesignArea: FC<DustbinProps> = ({ accept, lastDroppedItem }) => {
-  const [schema, setSchema] = useState<any>([]);
+const Container: FC = () => {
+  // const [cards, setCards] = useState(ITEMS);
+  // const ITEMS = [
+  //   {
+  //     id: uuid(),
+  //     name: "Write a cool JS library"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "Make it generic enough"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "Write README"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "Create some examples"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "Spam in Twitter and IRC to promote it"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "???"
+  //   },
+  //   {
+  //     id: uuid(),
+  //     name: "PROFIT"
+  //   }
+  // ];
+  const [schema, setSchema] = useState<any[]>([]);
   const [schemaId, setSchemaId] = useState<Array<string>>([]);
+
   const onDrop = (val: any, monitor: any) => {
     console.log(val);
-    console.log(monitor.getDropResult());
+    console.log(monitor.getDropResult(), !schemaId.includes(val.id));
     if (!monitor.getDropResult() && !schemaId.includes(val.id)) {
       const $uuid = uuid();
+
       /* 用于检测是否已经存在当前布局 */
-      setSchemaId(update(schema, { $push: [$uuid] }));
+      setSchemaId(update(schemaId, { $push: [$uuid] }));
       setSchema(update(schema, { $push: [{ ...val, id: $uuid }] }));
     }
   };
 
+  const findCard = useCallback(
+    (id: string) => {
+      const card = schema.filter(c => `${c.id}` === id)[0] as {
+        id: number;
+        name: string;
+      };
+      return {
+        card,
+        index: schema.indexOf(card)
+      };
+    },
+    [schema]
+  );
+
+  const moveCard = useCallback(
+    (id: string, atIndex: number) => {
+      const { card, index } = findCard(id);
+      setSchema(
+        update(schema, {
+          $splice: [
+            [index, 1],
+            [atIndex, 0, card]
+          ]
+        })
+      );
+    },
+    [findCard, schema, setSchema]
+  );
+
   const [{ isOver, canDrop }, drop] = useDrop({
-    accept,
+    accept: [ItemTypes.DIV],
     drop: onDrop,
+    hover({ id: draggedId }: any) {
+      // console.log(draggedId);
+      // if (draggedId !== id && draggedId !== undefined) {
+      //   console.log(draggedId, id);
+      //   const { index: overIndex } = findCard(id);
+      //   moveCard(draggedId, overIndex);
+      // }
+      // if (draggedId === undefined) {
+      // }
+    },
     collect: monitor => ({
-      isOver: monitor.isOver(),
+      isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop()
     })
   });
 
-  const isActive = isOver && canDrop;
-  let backgroundColor = "#222";
-  if (isActive) {
-    backgroundColor = "darkgreen";
-  } else if (canDrop) {
-    backgroundColor = "darkkhaki";
-  }
+  const grid = 8;
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: "none",
+    // change background colour if dragging
+    background: isDragging ? "lightgreen" : "lightblue",
+
+    // styles we need to apply on draggables
+    ...draggableStyle
+  });
 
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
-      {/* {isActive
-        ? "Release to drop"
-        : `This dustbin accepts: ${accept.join(", ")}`}
+    <DragDropContext
+      onDragEnd={val => {
+        console.log(val);
+      }}
+    >
+      <div
+        className="border border-solid border-red-900 w-full h-full"
+        ref={drop}
+        style={style}
+      >
+        {/*
+      {schema.map(card => (
+        <NestedDraggable
+          key={card.id}
+          id={`${card.id}`}
+          text={card.name}
+          moveCard={moveCard}
+          findCard={findCard}
+        />
+      ))}
+      {isOver && canDrop ? <div className="border-indigo-600 border" /> : null}
+      */}
 
-      {lastDroppedItem && (
-        <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
-      )} */}
-      {schema.map((item: any, index: number) => {
-        console.log("kkk");
-        return (
-          <NestedDraggable
-            type="DIV"
-            name={item.name}
-            data={item}
-          ></NestedDraggable>
-        );
-      })}
-    </div>
+        <Droppable droppableId="DesignArea" isCombineEnabled={false}>
+          {(provided, snapshot) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {schema.map((card, index) => (
+                <Draggable draggableId={card.id} index={index} key={card.id}>
+                  {(provided, snapshot) => (
+                    <div
+                      className="relative"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <div
+                        className="h-6 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
+                        {...provided.dragHandleProps}
+                      >
+                        <p className="text-xs  text-gray-100">拖动排序</p>
+                      </div>
+                      <div className=""></div>
+                      <NestedDraggable
+                        key={card.id}
+                        id={`${card.id}`}
+                        text={card.name}
+                        moveCard={moveCard}
+                        findCard={findCard}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
+    </DragDropContext>
   );
 };
 
-export default memo(DesignArea);
+export default memo(Container);
