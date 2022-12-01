@@ -111,20 +111,16 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
       // When dragging downwards, only move when the cursor is below 50%
       // When dragging upwards, only move when the cursor is above 50%
       // Dragging downwards
-      console.log(
-        hoverClientY,
-        hoverMiddleY < hoverClientY && hoverClientY >= hoverMiddleY * 2
-      );
+
       if (0 <= hoverClientY && hoverClientY < hoverMiddleY) {
         setPosition(tagsPosition.upOutside);
       }
 
-      // NOTE: 这部分有问题
-      if (hoverMiddleY < hoverClientY && hoverClientY >= hoverMiddleY * 2) {
+      if (hoverMiddleY <= hoverClientY && hoverClientY < hoverMiddleY * 2) {
         setPosition(tagsPosition.inside);
       }
 
-      if (hoverMiddleY * 2 < hoverClientY) {
+      if (hoverMiddleY * 2 <= hoverClientY) {
         setPosition(tagsPosition.downOutside);
       }
 
