@@ -109,17 +109,6 @@ const Container: FC = () => {
     })
   });
 
-  const grid = 8;
-  const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: "none",
-    // change background colour if dragging
-    background: isDragging ? "lightgreen" : "lightblue",
-
-    // styles we need to apply on draggables
-    ...draggableStyle
-  });
-
   return (
     <DragDropContext
       onDragEnd={val => {
@@ -154,10 +143,6 @@ const Container: FC = () => {
                       className="relative"
                       ref={provided.innerRef}
                       {...provided.draggableProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
                     >
                       <div
                         className="h-6 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
