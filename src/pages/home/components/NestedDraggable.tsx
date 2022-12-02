@@ -3,7 +3,7 @@ import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 import { v4 as uuid } from "uuid";
 
-import { ItemTypes } from "./ItemTypes";
+import { ItemTypes, tagsPosition } from "./ItemTypes";
 
 const style: CSSProperties = {
   border: "1px dashed gray",
@@ -13,16 +13,17 @@ const style: CSSProperties = {
 };
 
 export interface CardProps {
-  data: DragData;
+  data: DragDataProps;
   // moveCard: (id: string, to: number) => void;
   // findCard: (id: string) => { index: number };
 }
 
-interface DragData {
+interface DragDataProps {
   id: string;
   name: string;
-  position?: string[];
-  children?: Array<DragData>;
+  children?: Array<DragDataProps>;
+  __positions__?: string[];
+  __positionType__?: string;
 }
 
 const NestedDraggable: FC<CardProps> = ({ data }) => {
@@ -50,16 +51,8 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
   //   block: Symbol("block").toString(),
   //   inline: Symbol("inline").toString()
   // };
-  const tagsPosition = {
-    upOutside: Symbol("upOutside").toString(),
-    downOutside: Symbol("downOutside").toString(),
-    inside: Symbol("inside").toString()
-  };
 
-  const inlineTags = (
-    dragRef: React.MutableRefObject<HTMLDivElement>,
-    monitor: DropTargetMonitor
-  ) => {
+  const inlineTags = (dragRef: React.MutableRefObject<HTMLDivElement>, monitor: DropTargetMonitor) => {
     // Determine rectangle on screen
     const hoverBoundingRect = dragRef.current.getBoundingClientRect();
     console.log(hoverBoundingRect);
@@ -88,10 +81,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
       }
     }
   };
-  const blockTags = (
-    dragRef: React.MutableRefObject<HTMLDivElement | null>,
-    monitor: DropTargetMonitor
-  ) => {
+  const blockTags = (dragRef: React.MutableRefObject<HTMLDivElement | null>, monitor: DropTargetMonitor) => {
     const hoverBoundingRect = dragRef.current?.getBoundingClientRect();
 
     if (!hoverBoundingRect) return;
@@ -127,7 +117,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     isOver: boolean;
   }
 
-  const [{ isOver, canDrop }, drop] = useDrop<DragData, {}, CollectedProps>({
+  const [{ isOver, canDrop }, drop] = useDrop<DragDataProps, {}, CollectedProps>({
     accept: [ItemTypes.DIV],
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
@@ -136,28 +126,38 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
       let $data: AnyProps = {};
       let removeId = "";
 
-      if (position === tagsPosition.inside) {
-        console.log(tagsPosition.inside);
+      const $uuid = item.id ? item.id : uuid();
 
-        const $uuid = item.id ? item.id : uuid();
-        const position = data?.position
-          ? [...data.position, data.id]
-          : [data.id];
-        // ? `${data.position}||${data.id}`
-        // : data.id;
+      /* 放置块级标签内部 */
+      if (position === tagsPosition.inside) {
+        const __positions__ = data?.__positions__ ? [...data.__positions__, data.id] : [data.id];
 
         $data = {
-          ...data,
-          children: [
-            {
-              ...item,
-              position,
-              id: $uuid
-            }
-          ]
+          target: {
+            ...data,
+            children: [
+              ...(data?.children || []),
+              {
+                ...item,
+                id: $uuid,
+                __positions__
+              }
+            ]
+          },
+          __positionType__: tagsPosition.inside
         };
 
         removeId = item?.id || "";
+      }
+
+      if (position === tagsPosition.upOutside) {
+        $data = {
+          hover: data,
+          target: { ...item, id: $uuid },
+
+          __haveMoved__: !!item.id,
+          __positionType__: tagsPosition.upOutside
+        };
       }
 
       return { data: $data, removeId };
@@ -188,9 +188,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
 
   return (
     <Fragment>
-      {isOver && canDrop && position === tagsPosition.upOutside ? (
-        <div className="bg-sky-100 rounded border h-2" />
-      ) : null}
+      {isOver && canDrop && position === tagsPosition.upOutside ? <div className="bg-sky-100 rounded border h-2" /> : null}
 
       <div ref={dragRef} style={{ ...style, opacity }}>
         <div className="h-20">
@@ -202,14 +200,10 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
           <NestedDraggable data={item} key={item.id} />
         ))}
 
-        {isOver && canDrop && position === tagsPosition.inside ? (
-          <div className="border-indigo-600 border" />
-        ) : null}
+        {isOver && canDrop && position === tagsPosition.inside ? <div className="border-indigo-600 border" /> : null}
       </div>
 
-      {isOver && canDrop && position === tagsPosition.downOutside ? (
-        <div className="bg-sky-100 rounded border h-2" />
-      ) : null}
+      {isOver && canDrop && position === tagsPosition.downOutside ? <div className="bg-sky-100 rounded border h-2" /> : null}
     </Fragment>
 
     // <div ref={drag} style={{ ...style, opacity }}>
