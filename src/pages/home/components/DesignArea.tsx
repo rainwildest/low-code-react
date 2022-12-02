@@ -18,66 +18,94 @@ const Container: FC = () => {
   const [schema, setSchema] = useState<any[]>([]);
   const [schemaId, setSchemaId] = useState<Array<string>>([]);
 
-  const onDrop = (val: any, monitor: any) => {
-    console.log(val);
-    console.log(monitor.getDropResult(), !schemaId.includes(val.id));
-    if (!monitor.getDropResult() && !schemaId.includes(val.id)) {
+  const onDrop = (item: any, monitor: any) => {
+    console.log(monitor.getDropResult(), !schemaId.includes(item.id));
+
+    const dropResult = monitor.getDropResult();
+    if (!dropResult && !schemaId.includes(item.id)) {
       const $uuid = uuid();
 
       /* 用于检测是否已经存在当前布局 */
       setSchemaId(update(schemaId, { $push: [$uuid] }));
-      setSchema(update(schema, { $push: [{ ...val, id: $uuid }] }));
-    }
+      setSchema(update(schema, { $push: [{ ...item, id: $uuid }] }));
+    } else {
+      if (!dropResult.removeId) {
+        /* 没有 position 就说明只是父级的一级 */
+        if (!dropResult.data.position) {
+          const index = schema.findIndex(
+            item => item.id === dropResult.data.id
+          );
+          if (~index) {
+            setSchema(
+              update(schema, { $splice: [[index, 1, dropResult.data]] })
+            );
+          }
+        } else {
+          // const $position = dropResult.data.position.split("||");
+          const { data, index } = modifyData(
+            dropResult.data,
+            schema,
+            dropResult.data.position
+          );
 
-    if (val?.change) {
-      // children
-      const { data, id } = val.change;
-      // id 需要数据需要放入的 id
+          console.log(data, index);
+          if (!!data && index !== null && index !== undefined) {
+            setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
+          }
+        }
+      }
     }
   };
 
-  const findCard = useCallback(
-    (id: string) => {
-      const card = schema.filter(c => `${c.id}` === id)[0] as {
-        id: number;
-        name: string;
-      };
-      return {
-        card,
-        index: schema.indexOf(card)
-      };
-    },
-    [schema]
-  );
+  const modifyData = (
+    data: AnyProps,
+    original: Array<AnyProps>,
+    position: Array<string>
+  ) => {
+    const $original = [...original];
+    let $index: number | null = null;
 
-  const moveCard = useCallback(
-    (id: string, atIndex: number) => {
-      const { card, index } = findCard(id);
-      setSchema(
-        update(schema, {
-          $splice: [
-            [index, 1],
-            [atIndex, 0, card]
-          ]
-        })
+    /* 适用于块级标签的内嵌 */
+    if (position.length) {
+      const index = $original.findIndex(item => item.id === position[0]);
+
+      if (!~index) return { data: null, index: null };
+
+      $index = index;
+
+      const subIndex = $original[index].children.findIndex(
+        (item: AnyProps) => item.id === data.id
       );
-    },
-    [findCard, schema, setSchema]
-  );
+
+      const childrenId = $original[index].children[subIndex]?.id;
+
+      /* 对比子集 id 与 新增数据的 id 是否一致 不一致则继续查找 */
+      if (childrenId !== data.id) {
+        const { data: $data } = modifyData(
+          data,
+          $original[index].children,
+          update(position, { $splice: [[0, 1]] })
+        );
+
+        $original[index] = { ...$original[index], children: $data };
+      }
+
+      /* 查找子集中与新增数据的 id 相同的数据  */
+      const sub = $original[index].children.map((item: AnyProps) => {
+        if (item.id !== data.id) return item;
+
+        return data;
+      });
+
+      $original[index] = { ...$original[index], children: sub };
+    }
+
+    return { data: $original, index: $index };
+  };
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: [ItemTypes.DIV],
     drop: onDrop,
-    hover(item: any, i) {
-      // console.log(item, i.getHandlerId());
-      // if (draggedId !== id && draggedId !== undefined) {
-      //   console.log(draggedId, id);
-      //   const { index: overIndex } = findCard(id);
-      //   moveCard(draggedId, overIndex);
-      // }
-      // if (draggedId === undefined) {
-      // }
-    },
     collect: monitor => ({
       isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop()
@@ -91,7 +119,7 @@ const Container: FC = () => {
       }}
     >
       <div
-        className="border border-solid border-red-900 w-full h-full"
+        className="border border-solid border-red-900 w-full h-full overflow-auto"
         ref={drop}
         style={style}
       >
@@ -126,13 +154,7 @@ const Container: FC = () => {
                         <p className="text-xs  text-gray-100">拖动排序</p>
                       </div>
                       <div className=""></div>
-                      <NestedDraggable
-                        key={card.id}
-                        id={`${card.id}`}
-                        text={card.name}
-                        moveCard={moveCard}
-                        findCard={findCard}
-                      />
+                      <NestedDraggable key={card.id} data={card} />
                     </div>
                   )}
                 </Draggable>

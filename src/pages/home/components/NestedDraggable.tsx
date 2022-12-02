@@ -1,48 +1,48 @@
 import type { CSSProperties, FC } from "react";
 import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
+import { v4 as uuid } from "uuid";
 
 import { ItemTypes } from "./ItemTypes";
 
 const style: CSSProperties = {
   border: "1px dashed gray",
-  padding: "0.5rem 1rem",
+  padding: "0.5rem 0.5rem",
   backgroundColor: "white",
   cursor: "move"
 };
 
 export interface CardProps {
-  id: string;
-  text: string;
-  moveCard: (id: string, to: number) => void;
-  findCard: (id: string) => { index: number };
+  data: DragData;
+  // moveCard: (id: string, to: number) => void;
+  // findCard: (id: string) => { index: number };
 }
 
-interface Item {
+interface DragData {
   id: string;
-  originalIndex: number;
+  name: string;
+  position?: string[];
+  children?: Array<DragData>;
 }
 
-const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
+const NestedDraggable: FC<CardProps> = ({ data }) => {
   const dragRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState("");
-  const [positionDown, setPositionDown] = useState(true);
 
-  const originalIndex = findCard(id).index;
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.DIV,
-    item: { id, originalIndex, name: text },
+    item: { ...data },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     }),
     end: (item, monitor) => {
-      const { id: droppedId, originalIndex } = item;
-      const didDrop = monitor.didDrop();
-      console.log(droppedId, id);
-      console.log(didDrop);
-      if (!didDrop) {
-        moveCard(droppedId, originalIndex);
-      }
+      // const { id: droppedId, originalIndex } = item;
+      // const didDrop = monitor.didDrop();
+      // console.log(droppedId, data.id);
+      // console.log(didDrop);
+      // if (!didDrop) {
+      //   moveCard(droppedId, originalIndex);
+      // }
     }
   });
 
@@ -80,11 +80,11 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
 
       console.log(hoverClientY, hoverMiddleY);
       if (hoverClientY <= hoverMiddleY) {
-        setPosition(false);
+        setPosition(tagsPosition.upOutside);
       }
       // Dragging upwards
       if (hoverClientY > hoverMiddleY) {
-        setPosition(true);
+        setPosition(tagsPosition.downOutside);
       }
     }
   };
@@ -107,10 +107,6 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
     if (clientOffset) {
       // Get pixels to the top
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      // Only perform the move when the mouse has crossed half of the items height
-      // When dragging downwards, only move when the cursor is below 50%
-      // When dragging upwards, only move when the cursor is above 50%
-      // Dragging downwards
 
       if (0 <= hoverClientY && hoverClientY < hoverMiddleY) {
         setPosition(tagsPosition.upOutside);
@@ -123,26 +119,53 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
       if (hoverMiddleY * 2 <= hoverClientY) {
         setPosition(tagsPosition.downOutside);
       }
-
-      // console.log(hoverClientY, hoverMiddleY);
-      // if (hoverClientY <= hoverMiddleY) {
-      //   setPosition(false);
-      // }
-      // // Dragging upwards
-      // if (hoverClientY > hoverMiddleY) {
-      //   setPosition(true);
-      // }
     }
   };
 
-  const [{ isOver, canDrop }, drop] = useDrop({
+  interface CollectedProps {
+    canDrop: boolean;
+    isOver: boolean;
+  }
+
+  const [{ isOver, canDrop }, drop] = useDrop<DragData, {}, CollectedProps>({
     accept: [ItemTypes.DIV],
-    drop: (val: any, monitor: any) => {
-      // console.log(val, id);
-      return { change: { data: { ...val }, id } };
+    drop: (item, monitor) => {
+      if (monitor.didDrop()) return;
+
+      console.log(item, data);
+      let $data: AnyProps = {};
+      let removeId = "";
+
+      if (position === tagsPosition.inside) {
+        console.log(tagsPosition.inside);
+
+        const $uuid = item.id ? item.id : uuid();
+        const position = data?.position
+          ? [...data.position, data.id]
+          : [data.id];
+        // ? `${data.position}||${data.id}`
+        // : data.id;
+
+        $data = {
+          ...data,
+          children: [
+            {
+              ...item,
+              position,
+              id: $uuid
+            }
+          ]
+        };
+
+        removeId = item?.id || "";
+      }
+
+      return { data: $data, removeId };
     },
-    hover({ id: draggedId }: Item, monitor) {
-      blockTags(dragRef, monitor);
+    hover(item, monitor) {
+      const didHover = monitor.isOver({ shallow: true });
+
+      didHover && blockTags(dragRef, monitor);
 
       // console.log(draggedId, id, findCard(id));
       // if (draggedId !== id && draggedId !== undefined) {
@@ -150,14 +173,9 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
       //   const { index: overIndex } = findCard(id);
       //   moveCard(draggedId, overIndex);
       // }
-
-      if (draggedId === undefined) {
-      }
-
-      return { test: "ooo" };
     },
     collect: monitor => ({
-      isOver: monitor.isOver(),
+      isOver: monitor.isOver({ shallow: true }),
       canDrop: monitor.canDrop()
     })
   });
@@ -171,20 +189,26 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
   return (
     <Fragment>
       {isOver && canDrop && position === tagsPosition.upOutside ? (
-        <div className="border-indigo-600 border" />
+        <div className="bg-sky-100 rounded border h-2" />
       ) : null}
 
       <div ref={dragRef} style={{ ...style, opacity }}>
         <div className="h-20">
-          {text} - {position}
+          {data.name} - {position} - {data.id}
         </div>
+
+        {/* {data?.children?.map((item)=> )} */}
+        {data?.children?.map(item => (
+          <NestedDraggable data={item} key={item.id} />
+        ))}
+
         {isOver && canDrop && position === tagsPosition.inside ? (
           <div className="border-indigo-600 border" />
         ) : null}
       </div>
 
       {isOver && canDrop && position === tagsPosition.downOutside ? (
-        <div className="border-indigo-600 border" />
+        <div className="bg-sky-100 rounded border h-2" />
       ) : null}
     </Fragment>
 
@@ -199,4 +223,4 @@ const Card: FC<CardProps> = ({ id, text, moveCard, findCard }) => {
   );
 };
 
-export default memo(Card);
+export default memo(NestedDraggable);
