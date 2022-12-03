@@ -23,19 +23,11 @@ class DragData {
         {
           this.hover = data?.hover || {};
 
-          $data = this.#upOutside(
-            data.target,
-            data.schema,
-            data?.hover?.__positions__ || []
-          );
+          $data = this.#upOutside(data.target, data.schema, data?.hover?.__positions__ || []);
         }
         break;
       case tagsPosition.inside:
-        $data = this.#inside(
-          data.target,
-          data.schema,
-          data.target?.__positions__ || []
-        );
+        $data = this.#inside(data.target, data.schema, data.target?.__positions__ || []);
         break;
       case tagsPosition.downOutside:
         this.#downOutside();
@@ -45,11 +37,7 @@ class DragData {
     return $data;
   }
 
-  #upOutside(
-    target: AnyProps,
-    original: Array<AnyProps>,
-    positions: Array<string>
-  ) {
+  #upOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -60,19 +48,13 @@ class DragData {
 
       if (!~index) return { data: null, index: null };
 
-      const subIndex = $original[index].children.findIndex(
-        (item: AnyProps) => item.id === this.hover.id
-      );
+      const subIndex = $original[index].children.findIndex((item: AnyProps) => item.id === this.hover.id);
 
       const childrenId = $original[index].children[subIndex]?.id;
 
       // NOTE: 这里逻辑还有问题
       if (childrenId !== this.hover.id) {
-        const { data } = this.#upOutside(
-          target,
-          $original[index].children,
-          update(positions, { $splice: [[0, 1]] })
-        );
+        const { data } = this.#upOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
 
         $original[index] = { ...$original[index], children: data };
       }
@@ -80,13 +62,7 @@ class DragData {
       if (~subIndex) {
         const $children = $original[index].children;
         $original[index].children = update($children, {
-          $splice: [
-            [
-              subIndex,
-              0,
-              { ...target, __positions__: this.hover?.__positions__ }
-            ]
-          ]
+          $splice: [[subIndex, 0, { ...target, __positions__: this.hover?.__positions__ }]]
         });
       }
     } else {
@@ -113,9 +89,7 @@ class DragData {
 
       $index = index;
 
-      const subIndex = $original[index].children.findIndex(
-        (item: AnyProps) => item.id === data.id
-      );
+      const subIndex = $original[index].children.findIndex((item: AnyProps) => item.id === data.id);
 
       const childrenId = $original[index].children[subIndex]?.id;
 
