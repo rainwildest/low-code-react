@@ -59,7 +59,8 @@ const Container: FC = () => {
 
           if (dropResult.data.__positionType__ === tagsPosition.upOutside) {
             if (index !== null && index !== undefined) {
-              console.log("有索引");
+              console.log("有索引", index, data);
+              setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
             } else {
               console.log("没有索引", data);
               setSchema(data);
