@@ -108,7 +108,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
         setPosition(tagsPosition.inside);
       }
 
-      if (hoverMiddleY * 2 <= hoverClientY) {
+      if (hoverMiddleY * 2 <= hoverClientY - 6) {
         setPosition(tagsPosition.downOutside);
       }
     }
@@ -196,7 +196,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
           <div className="bg-sky-100 rounded h-2" />
         ) : null}
 
-        <div style={{ ...style, opacity }}>
+        <div className="relative" style={{ ...style, opacity }}>
           <div className="h-20">
             {data.name} - {position} - {data.id}
           </div>
@@ -207,7 +207,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
           ))}
 
           {isOver && canDrop && position === tagsPosition.inside ? (
-            <div className="border-indigo-600 border" />
+            <div className="bg-indigo-300 h-1/2 w-full absolute top-0 left-0" />
           ) : null}
         </div>
 
