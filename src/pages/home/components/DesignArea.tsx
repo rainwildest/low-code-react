@@ -22,7 +22,7 @@ const Container: FC = () => {
   // const [schemaId, setSchemaId] = useState<Array<string>>([]);
 
   const onDrop = (item: any, monitor: any) => {
-    console.log("onDrop: ", monitor.getDropResult());
+    console.log("onDrop: ", monitor.getDropResult(), item);
 
     const dropResult = monitor.getDropResult();
 
@@ -87,7 +87,7 @@ const Container: FC = () => {
                   {(provided, snapshot) => (
                     <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
                       <div
-                        className="h-6 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
+                        className="h-6 opacity-0 pointer-events-none flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
                         {...provided.dragHandleProps}
                       >
                         <p className="text-xs  text-gray-100">拖动排序</p>

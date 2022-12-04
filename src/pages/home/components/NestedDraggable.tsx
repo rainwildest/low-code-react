@@ -100,7 +100,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
       // Get pixels to the top
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-      if (0 <= hoverClientY && hoverClientY < hoverMiddleY) {
+      if (0 < hoverClientY && hoverClientY < hoverMiddleY) {
         setPosition(tagsPosition.upOutside);
       }
 
@@ -191,28 +191,30 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
 
   return (
     <Fragment>
-      {isOver && canDrop && position === tagsPosition.upOutside ? (
-        <div className="bg-sky-100 rounded border h-2" />
-      ) : null}
+      <div ref={dragRef}>
+        {isOver && canDrop && position === tagsPosition.upOutside ? (
+          <div className="bg-sky-100 rounded h-2" />
+        ) : null}
 
-      <div ref={dragRef} style={{ ...style, opacity }}>
-        <div className="h-20">
-          {data.name} - {position} - {data.id}
+        <div style={{ ...style, opacity }}>
+          <div className="h-20">
+            {data.name} - {position} - {data.id}
+          </div>
+
+          {/* {data?.children?.map((item)=> )} */}
+          {data?.children?.map(item => (
+            <NestedDraggable data={item} key={item.id} />
+          ))}
+
+          {isOver && canDrop && position === tagsPosition.inside ? (
+            <div className="border-indigo-600 border" />
+          ) : null}
         </div>
 
-        {/* {data?.children?.map((item)=> )} */}
-        {data?.children?.map(item => (
-          <NestedDraggable data={item} key={item.id} />
-        ))}
-
-        {isOver && canDrop && position === tagsPosition.inside ? (
-          <div className="border-indigo-600 border" />
+        {isOver && canDrop && position === tagsPosition.downOutside ? (
+          <div className="bg-sky-100 h-2" />
         ) : null}
       </div>
-
-      {isOver && canDrop && position === tagsPosition.downOutside ? (
-        <div className="bg-sky-100 rounded border h-2" />
-      ) : null}
     </Fragment>
 
     // <div ref={drag} style={{ ...style, opacity }}>
