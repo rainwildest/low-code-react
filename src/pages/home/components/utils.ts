@@ -13,7 +13,7 @@ type DragDataHandleProps = {
 };
 
 class DragData {
-  hover: AnyProps = {};
+  private hover: AnyProps = {};
 
   handle(data: DragDataHandleProps) {
     let $data: AnyProps = { data: null, index: null };
@@ -21,21 +21,21 @@ class DragData {
 
     switch (data.__positionType__) {
       case tagsPosition.upOutside:
-        $data = this.#upOutside(data.target, data.schema, data?.hover?.__positions__ || []);
+        $data = this.upOutside(data.target, data.schema, data?.hover?.__positions__ || []);
 
         break;
       case tagsPosition.inside:
-        $data = this.#inside(data.target, data.schema, data.target?.__positions__ || []);
+        $data = this.inside(data.target, data.schema, data.target?.__positions__ || []);
         break;
       case tagsPosition.downOutside:
-        $data = this.#downOutside(data.target, data.schema, data?.hover?.__positions__ || []);
+        $data = this.downOutside(data.target, data.schema, data?.hover?.__positions__ || []);
         break;
     }
 
     return $data;
   }
 
-  #upOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private upOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -51,7 +51,7 @@ class DragData {
       const childrenId = $original[index].children[subIndex]?.id;
 
       if (childrenId !== this.hover.id) {
-        const { data } = this.#upOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
+        const { data } = this.upOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
 
         $original[index] = { ...$original[index], children: data };
       }
@@ -74,7 +74,7 @@ class DragData {
     return { data: $original, index: $index };
   }
 
-  #inside(data: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private inside(data: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     const $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -92,7 +92,7 @@ class DragData {
 
       /* 对比子集 id 与 新增数据的 id 是否一致 不一致则继续查找 */
       if (childrenId !== data.id) {
-        const { data: $data } = this.#inside(
+        const { data: $data } = this.inside(
           data,
           $original[index].children,
           update(positions, {
@@ -116,7 +116,7 @@ class DragData {
     return { data: $original, index: $index };
   }
 
-  #downOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private downOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     console.log("downOutside");
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
@@ -134,7 +134,7 @@ class DragData {
 
       // NOTE: 这里逻辑还有问题
       if (childrenId !== this.hover.id) {
-        const { data } = this.#downOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
+        const { data } = this.downOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
 
         $original[index] = { ...$original[index], children: data };
       }
