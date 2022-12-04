@@ -7,8 +7,8 @@ type DragDataHandleProps = {
   target: AnyProps;
   schema: Array<AnyProps>;
 
-  __haveMoved__?: boolean;
   __positionType__: string;
+  __haveMoved__?: boolean;
   __positions__?: Array<string>;
 };
 
@@ -16,35 +16,22 @@ class DragData {
   private hover: AnyProps = {};
   private schema: Array<AnyProps> = [];
   private __haveMoved__ = false;
+  private displacement = 0;
 
   handle(data: DragDataHandleProps) {
     let $data: AnyProps = { data: null, index: null };
     this.hover = data?.hover || {};
     this.schema = data.schema;
 
+    this.displacement = data.__positionType__ === tagsPosition.downOutside ? 1 : 0;
+
     this.__haveMoved__ = data?.__haveMoved__ || false;
 
     switch (data.__positionType__) {
-      case tagsPosition.upOutside:
-        {
-          if (data.hover?.id === data.target.id) return ($data = { data: data.schema, index: null });
-
-          if (data?.__haveMoved__) {
-            this.schema = this.removeOriginal(data.target, this.schema);
-          }
-
-          $data = this.upOutside(data.target, this.schema, data?.hover?.__positions__);
-
-          if ($data.index !== null && $data.index !== undefined) {
-            $data.data = update(this.schema, { $splice: [[$data.index, 1, $data.data[$data.index]]] });
-          } else {
-            $data.data;
-          }
-        }
-        break;
       case tagsPosition.inside:
         $data = this.inside(data.target, data.schema, data.target?.__positions__ || []);
         break;
+      case tagsPosition.upOutside:
       case tagsPosition.downOutside:
         {
           if (data.hover?.id === data.target.id) return ($data = { data: data.schema, index: null });
@@ -53,7 +40,8 @@ class DragData {
             this.schema = this.removeOriginal(data.target, this.schema);
           }
 
-          $data = this.downOutside(data.target, this.schema, data?.hover?.__positions__);
+          // this.downOutside
+          $data = this.outside(data.target, this.schema, data?.hover?.__positions__);
 
           if ($data.index !== null && $data.index !== undefined) {
             $data.data = update(this.schema, { $splice: [[$data.index, 1, $data.data[$data.index]]] });
@@ -62,12 +50,30 @@ class DragData {
           }
         }
         break;
+
+      // case tagsPosition.downOutside:
+      //   {
+      //     if (data.hover?.id === data.target.id) return ($data = { data: data.schema, index: null });
+
+      //     if (data?.__haveMoved__) {
+      //       this.schema = this.removeOriginal(data.target, this.schema);
+      //     }
+
+      //     $data = this.downOutside(data.target, this.schema, data?.hover?.__positions__);
+
+      //     if ($data.index !== null && $data.index !== undefined) {
+      //       $data.data = update(this.schema, { $splice: [[$data.index, 1, $data.data[$data.index]]] });
+      //     } else {
+      //       $data.data;
+      //     }
+      //   }
+      //   break;
     }
 
     return $data;
   }
 
-  private upOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private outside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -84,7 +90,7 @@ class DragData {
       const childrenId = $children[subIndex]?.id;
 
       if (childrenId !== this.hover.id) {
-        const { data } = this.upOutside(target, $children, update(positions, { $splice: [[0, 1]] }));
+        const { data } = this.outside(target, $children, update(positions, { $splice: [[0, 1]] }));
 
         $original[index] = { ...$original[index], children: data };
 
@@ -92,16 +98,17 @@ class DragData {
       }
 
       $original[index].children = update($children, {
-        $splice: [[subIndex, 0, { ...target, __positions__: this.hover?.__positions__ }]]
+        $splice: [[subIndex + this.displacement, 0, { ...target, __positions__: this.hover?.__positions__ }]]
       });
     } else if (this.__haveMoved__) {
       if (!this.hover?.__positions__) {
         /* 说明是在父级 */
-        /* 当前 hover 的对象已经是顶层 */
         const index = $original.findIndex(item => item.id === this.hover.id);
 
         if (~index) {
-          $original = update($original, { $splice: [[index, 0, { ...target, __positions__: null }]] });
+          $original = update($original, {
+            $splice: [[index + this.displacement, 0, this.modifyTargetPosition(_.cloneDeep(target), null)]]
+          });
         }
 
         return { data: $original, index: $index };
@@ -110,19 +117,18 @@ class DragData {
       /* 当前 hover 的对象是有父级 */
       const index = $original.findIndex(item => item.id === positions[0]);
       $index = index;
-      console.log(index);
 
       if (!~index) return { data: null, index: null };
 
       const $children = $original[index].children;
       const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
 
-      const childrenId = $children[subIndex]?.id;
-
-      console.log(childrenId, this.hover.id);
-      if (childrenId !== this.hover.id) {
-        console.log("没有找到");
-        const { data } = this.upOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
+      if ($children[subIndex]?.id !== this.hover.id) {
+        const { data } = this.outside(
+          target,
+          $original[index].children,
+          update(positions, { $splice: [[0, 1]] })
+        );
 
         $original[index] = { ...$original[index], children: data };
 
@@ -131,14 +137,22 @@ class DragData {
 
       // 将需要移动的数据插入到指定的位置
       $original[index].children = update($children, {
-        $splice: [[subIndex, 0, this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)]]
+        $splice: [
+          [
+            subIndex + this.displacement,
+            0,
+            this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)
+          ]
+        ]
       });
     } else {
       /* 当前 hover 的对象已经是顶层 */
       const index = $original.findIndex(item => item.id === this.hover.id);
 
       if (~index) {
-        $original = update($original, { $splice: [[index, 0, { ...target, __positions__: null }]] });
+        $original = update($original, {
+          $splice: [[index + this.displacement, 0, { ...target, __positions__: null }]]
+        });
       }
     }
 
@@ -237,85 +251,6 @@ class DragData {
       });
 
       $original[index] = { ...$original[index], children: sub };
-    }
-
-    return { data: $original, index: $index };
-  }
-
-  private downOutside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
-    console.log("downOutside");
-    let $original = _.cloneDeep(original);
-    let $index: number | null = null;
-
-    if (this.hover?.__positions__ && !this.__haveMoved__) {
-      /* 当前 hover 的对象是有父级 */
-      const index = $original.findIndex(item => item.id === positions[0]);
-      $index = index;
-
-      if (!~index) return { data: null, index: null };
-
-      const $children = $original[index].children;
-      const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
-
-      const childrenId = $children[subIndex]?.id;
-
-      if (childrenId !== this.hover.id) {
-        const { data } = this.downOutside(target, $children, update(positions, { $splice: [[0, 1]] }));
-
-        $original[index] = { ...$original[index], children: data };
-
-        return { data: $original, index };
-      }
-
-      $original[index].children = update($children, {
-        $splice: [[subIndex + 1, 0, { ...target, __positions__: this.hover?.__positions__ }]]
-      });
-    } else if (this.__haveMoved__) {
-      if (!this.hover?.__positions__) {
-        /* 说明是在父级 */
-        /* 当前 hover 的对象已经是顶层 */
-        const index = $original.findIndex(item => item.id === this.hover.id);
-
-        if (~index) {
-          $original = update($original, { $splice: [[index + 1, 0, { ...target, __positions__: null }]] });
-        }
-
-        return { data: $original, index: $index };
-      }
-
-      /* 当前 hover 的对象是有父级 */
-      const index = $original.findIndex(item => item.id === positions[0]);
-      $index = index;
-      console.log(index);
-
-      if (!~index) return { data: null, index: null };
-
-      const $children = $original[index].children;
-      const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
-
-      const childrenId = $children[subIndex]?.id;
-
-      console.log(childrenId, this.hover.id);
-      if (childrenId !== this.hover.id) {
-        console.log("没有找到");
-        const { data } = this.downOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
-
-        $original[index] = { ...$original[index], children: data };
-
-        return { data: $original, index };
-      }
-
-      // 将需要移动的数据插入到指定的位置
-      $original[index].children = update($children, {
-        $splice: [[subIndex + 1, 0, this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)]]
-      });
-    } else {
-      /* 当前 hover 的对象已经是顶层 */
-      const index = $original.findIndex(item => item.id === this.hover.id);
-
-      if (~index) {
-        $original = update($original, { $splice: [[index + 1, 0, { ...target, __positions__: null }]] });
-      }
     }
 
     return { data: $original, index: $index };

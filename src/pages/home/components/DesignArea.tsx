@@ -49,7 +49,7 @@ const Container: FC = () => {
             schema
           });
 
-          if (dropResult.data.__positionType__ === tagsPosition.upOutside) {
+          if ([tagsPosition.upOutside, tagsPosition.downOutside].includes(dropResult.data.__positionType__)) {
             console.log(data);
             setSchema(data);
           }
@@ -58,11 +58,6 @@ const Container: FC = () => {
             if (!!data && index !== null && index !== undefined) {
               setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
             }
-          }
-
-          if (dropResult.data.__positionType__ === tagsPosition.downOutside) {
-            console.log(data);
-            setSchema(data);
           }
         }
       }
