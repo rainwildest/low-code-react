@@ -1,9 +1,11 @@
 import type { CSSProperties, FC } from "react";
 import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
-import { v4 as uuid } from "uuid";
-
+// import { v4 as uuid } from "uuid";
+import { UUID } from "./utils";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
+
+const uuid = UUID(1);
 
 const style: CSSProperties = {
   border: "1px dashed gray",
@@ -122,7 +124,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
 
-      console.log(item, data);
+      // console.log(item, data);
       let $data: AnyProps = {};
       let removeId = "";
 
@@ -133,6 +135,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
         const __positions__ = data?.__positions__ ? [...data.__positions__, data.id] : [data.id];
 
         $data = {
+          hover: data,
           target: {
             ...data,
             children: [
@@ -144,19 +147,21 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
               }
             ]
           },
+
+          __haveMoved__: !!item.id,
           __positionType__: tagsPosition.inside
         };
 
         removeId = item?.id || "";
       }
 
-      if (position === tagsPosition.upOutside) {
+      if ([tagsPosition.upOutside, tagsPosition.downOutside].includes(position)) {
         $data = {
           hover: data,
           target: { ...item, id: $uuid },
 
           __haveMoved__: !!item.id,
-          __positionType__: tagsPosition.upOutside
+          __positionType__: position
         };
       }
 
@@ -188,7 +193,9 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
 
   return (
     <Fragment>
-      {isOver && canDrop && position === tagsPosition.upOutside ? <div className="bg-sky-100 rounded border h-2" /> : null}
+      {isOver && canDrop && position === tagsPosition.upOutside ? (
+        <div className="bg-sky-100 rounded border h-2" />
+      ) : null}
 
       <div ref={dragRef} style={{ ...style, opacity }}>
         <div className="h-20">
@@ -203,7 +210,9 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
         {isOver && canDrop && position === tagsPosition.inside ? <div className="border-indigo-600 border" /> : null}
       </div>
 
-      {isOver && canDrop && position === tagsPosition.downOutside ? <div className="bg-sky-100 rounded border h-2" /> : null}
+      {isOver && canDrop && position === tagsPosition.downOutside ? (
+        <div className="bg-sky-100 rounded border h-2" />
+      ) : null}
     </Fragment>
 
     // <div ref={drag} style={{ ...style, opacity }}>

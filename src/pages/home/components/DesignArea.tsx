@@ -6,8 +6,9 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { ItemTypes, tagsPosition } from "./ItemTypes";
 import NestedDraggable from "./NestedDraggable";
-import { v4 as uuid } from "uuid";
-import DragData from "./utils";
+// import { v4 as uuid } from "uuid";
+import DragData, { UUID } from "./utils";
+const uuid = UUID();
 
 const style = {};
 
@@ -21,7 +22,7 @@ const Container: FC = () => {
   // const [schemaId, setSchemaId] = useState<Array<string>>([]);
 
   const onDrop = (item: any, monitor: any) => {
-    console.log(monitor.getDropResult());
+    console.log("onDrop: ", monitor.getDropResult());
 
     const dropResult = monitor.getDropResult();
 
@@ -48,19 +49,30 @@ const Container: FC = () => {
             schema
           });
 
-          if (dropResult.data.__positionType__ === tagsPosition.upOutside) {
+          // if (dropResult.data.__positionType__ === tagsPosition.upOutside) {
+          //   if (index !== null && index !== undefined) {
+          //     console.log("有索引", index, data);
+          //     setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
+          //   } else {
+          //     console.log("没有索引", data);
+          //     setSchema(data);
+          //   }
+          // }
+
+          if (dropResult.data.__positionType__ === tagsPosition.inside) {
+            if (!!data && index !== null && index !== undefined) {
+              setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
+            }
+          }
+
+          if (dropResult.data.__positionType__ === tagsPosition.downOutside) {
+            console.log(tagsPosition.downOutside);
             if (index !== null && index !== undefined) {
               console.log("有索引", index, data);
               setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
             } else {
               console.log("没有索引", data);
               setSchema(data);
-            }
-          }
-
-          if (dropResult.data.__positionType__ === tagsPosition.inside) {
-            if (!!data && index !== null && index !== undefined) {
-              setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
             }
           }
 
@@ -146,7 +158,10 @@ const Container: FC = () => {
                 <Draggable draggableId={card.id} index={index} key={card.id}>
                   {(provided, snapshot) => (
                     <div className="relative" ref={provided.innerRef} {...provided.draggableProps}>
-                      <div className="h-6 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md" {...provided.dragHandleProps}>
+                      <div
+                        className="h-6 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
+                        {...provided.dragHandleProps}
+                      >
                         <p className="text-xs  text-gray-100">拖动排序</p>
                       </div>
                       <div className=""></div>
