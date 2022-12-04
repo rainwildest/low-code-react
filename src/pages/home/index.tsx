@@ -28,7 +28,7 @@ function App() {
           </div>
 
           {/* 拖拽区 */}
-          <div className="w-full">
+          <div className="w-full bg-container">
             <DesignArea />
           </div>
         </section>

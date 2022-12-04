@@ -61,11 +61,7 @@ const Container: FC = () => {
         console.log(val);
       }}
     >
-      <div
-        className="border border-solid border-red-900 w-full h-full overflow-auto"
-        ref={drop}
-        style={style}
-      >
+      <div className="b w-full h-full overflow-auto" ref={drop} style={style}>
         {/*
       {schema.map(card => (
         <NestedDraggable
