@@ -46,7 +46,21 @@ class DragData {
         $data = this.inside(data.target, data.schema, data.target?.__positions__ || []);
         break;
       case tagsPosition.downOutside:
-        $data = this.downOutside(data.target, data.schema, data?.hover?.__positions__ || []);
+        {
+          if (data.hover?.id === data.target.id) return ($data = { data: data.schema, index: null });
+
+          if (data?.__haveMoved__) {
+            this.schema = this.removeOriginal(data.target, this.schema);
+          }
+
+          $data = this.downOutside(data.target, this.schema, data?.hover?.__positions__);
+
+          if ($data.index !== null && $data.index !== undefined) {
+            $data.data = update(this.schema, { $splice: [[$data.index, 1, $data.data[$data.index]]] });
+          } else {
+            $data.data;
+          }
+        }
         break;
     }
 
@@ -233,7 +247,7 @@ class DragData {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
-    if (this.hover?.__positions__) {
+    if (this.hover?.__positions__ && !this.__haveMoved__) {
       /* 当前 hover 的对象是有父级 */
       const index = $original.findIndex(item => item.id === positions[0]);
       $index = index;
@@ -255,6 +269,45 @@ class DragData {
 
       $original[index].children = update($children, {
         $splice: [[subIndex + 1, 0, { ...target, __positions__: this.hover?.__positions__ }]]
+      });
+    } else if (this.__haveMoved__) {
+      if (!this.hover?.__positions__) {
+        /* 说明是在父级 */
+        /* 当前 hover 的对象已经是顶层 */
+        const index = $original.findIndex(item => item.id === this.hover.id);
+
+        if (~index) {
+          $original = update($original, { $splice: [[index + 1, 0, { ...target, __positions__: null }]] });
+        }
+
+        return { data: $original, index: $index };
+      }
+
+      /* 当前 hover 的对象是有父级 */
+      const index = $original.findIndex(item => item.id === positions[0]);
+      $index = index;
+      console.log(index);
+
+      if (!~index) return { data: null, index: null };
+
+      const $children = $original[index].children;
+      const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
+
+      const childrenId = $children[subIndex]?.id;
+
+      console.log(childrenId, this.hover.id);
+      if (childrenId !== this.hover.id) {
+        console.log("没有找到");
+        const { data } = this.downOutside(target, $original[index].children, update(positions, { $splice: [[0, 1]] }));
+
+        $original[index] = { ...$original[index], children: data };
+
+        return { data: $original, index };
+      }
+
+      // 将需要移动的数据插入到指定的位置
+      $original[index].children = update($children, {
+        $splice: [[subIndex + 1, 0, this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)]]
       });
     } else {
       /* 当前 hover 的对象已经是顶层 */

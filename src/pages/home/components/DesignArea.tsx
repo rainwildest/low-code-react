@@ -61,61 +61,13 @@ const Container: FC = () => {
           }
 
           if (dropResult.data.__positionType__ === tagsPosition.downOutside) {
-            console.log(tagsPosition.downOutside);
-            if (index !== null && index !== undefined) {
-              console.log("有索引", index, data);
-              setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
-            } else {
-              console.log("没有索引", data);
-              setSchema(data);
-            }
+            console.log(data);
+            setSchema(data);
           }
-
-          // const { data, index } = modifyData(dropResult.data, schema, dropResult.data.__positions__);
-          // console.log(data, index);
-          // if (!!data && index !== null && index !== undefined) {
-          //   setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
-          // }
         }
       }
     }
   };
-
-  // const modifyData = (data: AnyProps, original: Array<AnyProps>, position: Array<string>) => {
-  //   const $original = [...original];
-  //   let $index: number | null = null;
-
-  //   /* 适用于块级标签的内嵌 */
-  //   if (position.length) {
-  //     const index = $original.findIndex(item => item.id === position[0]);
-
-  //     if (!~index) return { data: null, index: null };
-
-  //     $index = index;
-
-  //     const subIndex = $original[index].children.findIndex((item: AnyProps) => item.id === data.id);
-
-  //     const childrenId = $original[index].children[subIndex]?.id;
-
-  //     /* 对比子集 id 与 新增数据的 id 是否一致 不一致则继续查找 */
-  //     if (childrenId !== data.id) {
-  //       const { data: $data } = modifyData(data, $original[index].children, update(position, { $splice: [[0, 1]] }));
-
-  //       $original[index] = { ...$original[index], children: $data };
-  //     }
-
-  //     /* 查找子集中与新增数据的 id 相同的数据  */
-  //     const sub = $original[index].children.map((item: AnyProps) => {
-  //       if (item.id !== data.id) return item;
-
-  //       return data;
-  //     });
-
-  //     $original[index] = { ...$original[index], children: sub };
-  //   }
-
-  //   return { data: $original, index: $index };
-  // };
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: [ItemTypes.DIV],
