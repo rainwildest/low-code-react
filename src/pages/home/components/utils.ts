@@ -42,7 +42,7 @@ class DragData {
 
           const { data: target, index } = this.inside(
             data.target,
-            data.schema,
+            this.schema,
             data.target?.__positions__ || []
           );
 
