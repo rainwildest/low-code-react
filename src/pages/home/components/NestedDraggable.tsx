@@ -126,7 +126,6 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
 
       // console.log(item, data);
       let $data: AnyProps = {};
-      let removeId = "";
 
       const $uuid = item.id ? item.id : uuid();
 
@@ -147,12 +146,11 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
               }
             ]
           },
+          original: item.id ? { ...item } : null,
 
           __haveMoved__: !!item.id,
           __positionType__: tagsPosition.inside
         };
-
-        removeId = item?.id || "";
       }
 
       if ([tagsPosition.upOutside, tagsPosition.downOutside].includes(position)) {
@@ -165,7 +163,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
         };
       }
 
-      return { data: $data, removeId };
+      return { data: $data };
     },
     hover(item, monitor) {
       const didHover = monitor.isOver({ shallow: true });
@@ -207,7 +205,9 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
           <NestedDraggable data={item} key={item.id} />
         ))}
 
-        {isOver && canDrop && position === tagsPosition.inside ? <div className="border-indigo-600 border" /> : null}
+        {isOver && canDrop && position === tagsPosition.inside ? (
+          <div className="border-indigo-600 border" />
+        ) : null}
       </div>
 
       {isOver && canDrop && position === tagsPosition.downOutside ? (

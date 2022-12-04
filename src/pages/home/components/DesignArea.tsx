@@ -36,30 +36,12 @@ const Container: FC = () => {
       setSchema(update(schema, { $push: [{ ...item, id: $uuid, __positions__: null }] }));
     } else {
       if (!dropResult?.removeId) {
-        const { data } = dropResult;
-        /* 没有 __positions__ 就说明只是父级的一级 */
-        if (!data.target?.__positions__ && tagsPosition.inside === data.__positionType__) {
-          const index = schema.findIndex(item => item.id === dropResult.data.target.id);
-          if (~index) {
-            setSchema(update(schema, { $splice: [[index, 1, dropResult.data.target]] }));
-          }
-        } else {
-          const { data, index } = dragData.handle({
-            ...dropResult.data,
-            schema
-          });
+        const data = dragData.handle({
+          ...dropResult.data,
+          schema
+        });
 
-          if ([tagsPosition.upOutside, tagsPosition.downOutside].includes(dropResult.data.__positionType__)) {
-            console.log(data);
-            setSchema(data);
-          }
-
-          if (dropResult.data.__positionType__ === tagsPosition.inside) {
-            if (!!data && index !== null && index !== undefined) {
-              setSchema(update(schema, { $splice: [[index, 1, data[index]]] }));
-            }
-          }
-        }
+        setSchema(data || []);
       }
     }
   };
@@ -79,7 +61,11 @@ const Container: FC = () => {
         console.log(val);
       }}
     >
-      <div className="border border-solid border-red-900 w-full h-full overflow-auto" ref={drop} style={style}>
+      <div
+        className="border border-solid border-red-900 w-full h-full overflow-auto"
+        ref={drop}
+        style={style}
+      >
         {/*
       {schema.map(card => (
         <NestedDraggable
