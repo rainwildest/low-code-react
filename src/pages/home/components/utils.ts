@@ -1,6 +1,10 @@
 import update from "immutability-helper";
 import { tagsPosition } from "./ItemTypes";
 import _ from "lodash";
+import { UUID } from "../../../utils";
+// import { v4 as uuid } from "uuid";
+
+const uuid = UUID();
 
 type DragDataHandleProps = {
   hover?: AnyProps;
@@ -162,13 +166,29 @@ class DragData {
     return { data: $original, index: $index };
   }
 
+  addingData(item: AnyProps, schema: Array<AnyProps>) {
+    const $uuid = uuid();
+    let $schema = schema;
+
+    if (item.__positions__ === null) return schema;
+    if (item.__positions__) $schema = this.removeOriginal(item, schema);
+
+    const $item = { ...item, id: item?.id ? item.id : $uuid, __positions__: null };
+
+    const data = update($schema, {
+      $push: [$item.id ? this.modifyTargetPosition($item, null) : $item]
+    });
+
+    return data;
+  }
+
   /**
    * 将需要移动的数据从原数组删除
    * @param {AnyProps} target 需要删除的对象
    * @param {Array<AnyProps>} original 原始数组
    * @returns Array
    */
-  removeOriginal(target: AnyProps, original: Array<AnyProps>) {
+  private removeOriginal(target: AnyProps, original: Array<AnyProps>) {
     const positions = target.__positions__;
 
     if (positions) {
@@ -199,7 +219,7 @@ class DragData {
    * @param target
    * @returns
    */
-  modifyTargetPosition(target: AnyProps, positions: Array<string> | null) {
+  private modifyTargetPosition(target: AnyProps, positions: Array<string> | null) {
     target = { ...target, __positions__: positions };
 
     if (target?.children) {
@@ -279,12 +299,3 @@ class DragData {
 }
 
 export default DragData;
-
-export const UUID =
-  (prefix = 0, i = 0) =>
-  (): string => {
-    const $prefix = `${prefix}`.padEnd(8, "0");
-    const suffix = `${++i}`.padStart(12, "0");
-
-    return `${$prefix}-0000-0000-0000-${suffix}`;
-  };

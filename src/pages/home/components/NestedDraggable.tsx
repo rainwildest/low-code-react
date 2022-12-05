@@ -2,8 +2,8 @@ import type { CSSProperties, FC } from "react";
 import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
-import { UUID } from "./utils";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
+import { UUID } from "../../../utils";
 
 const uuid = UUID(1);
 
@@ -37,16 +37,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     item: { ...data },
     collect: monitor => ({
       isDragging: monitor.isDragging()
-    }),
-    end: (item, monitor) => {
-      // const { id: droppedId, originalIndex } = item;
-      // const didDrop = monitor.didDrop();
-      // console.log(droppedId, data.id);
-      // console.log(didDrop);
-      // if (!didDrop) {
-      //   moveCard(droppedId, originalIndex);
-      // }
-    }
+    })
   });
 
   // const tagsType = {
@@ -124,7 +115,6 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
 
-      // console.log(item, data);
       let $data: AnyProps = {};
 
       const $uuid = item.id ? item.id : uuid();

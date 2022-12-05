@@ -1,49 +1,37 @@
 import update from "immutability-helper";
 import type { FC } from "react";
 import { memo, useCallback, useState, Fragment } from "react";
-import { useDrop } from "react-dnd";
+import { useDrop, DropTargetMonitor } from "react-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { ItemTypes, tagsPosition } from "./ItemTypes";
 import NestedDraggable from "./NestedDraggable";
 // import { v4 as uuid } from "uuid";
-import DragData, { UUID } from "./utils";
-const uuid = UUID();
+import DragData from "./utils";
+import { UUID } from "../../../utils";
 
 const style = {};
 
 export interface ContainerState {
-  cards: any[];
+  cards: AnyProps[];
 }
 
 const Container: FC = () => {
   const [schema, setSchema] = useState<any[]>([]);
   const dragData = new DragData();
-  // const [schemaId, setSchemaId] = useState<Array<string>>([]);
 
-  const onDrop = (item: any, monitor: any) => {
+  const onDrop = (item: AnyProps, monitor: AnyProps) => {
     console.log("onDrop: ", monitor.getDropResult(), item);
-
+    let $data = [];
     const dropResult = monitor.getDropResult();
 
-    if (!dropResult && item.id) return;
-
     if (!dropResult) {
-      const $uuid = uuid();
-
-      /* 用于检测是否已经存在当前布局 */
-      // setSchemaId(update(schemaId, { $push: [$uuid] }));
-      setSchema(update(schema, { $push: [{ ...item, id: $uuid, __positions__: null }] }));
+      $data = dragData.addingData(item, schema);
     } else {
-      if (!dropResult?.removeId) {
-        const data = dragData.handle({
-          ...dropResult.data,
-          schema
-        });
-
-        setSchema(data || []);
-      }
+      $data = dragData.handle({ ...dropResult.data, schema }) || [];
     }
+
+    setSchema($data);
   };
 
   const [{ isOver, canDrop }, drop] = useDrop({
