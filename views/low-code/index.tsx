@@ -5,18 +5,8 @@ import { Container } from "./components/Container";
 import Control from "./components/Control";
 import DesignArea from "./components/DesignArea";
 const test = ["DIV"];
-function App() {
-  // const [{ opacity }, drag, preview] = useDrag(
-  //   () => ({
-  //     type,
-  //     item: { name },
-  //     collect: monitor => ({
-  //       opacity: monitor.isDragging() ? 0.4 : 1
-  //     })
-  //   }),
-  //   [name, type]
-  // );
 
+function LowCode() {
   return (
     <div className="w-full h-screen overflow-hidden">
       <DndProvider backend={HTML5Backend}>
@@ -37,4 +27,4 @@ function App() {
   );
 }
 
-export default memo(App);
+export default memo(LowCode);

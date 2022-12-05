@@ -3,7 +3,7 @@ import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
-import { UUID } from "../../../utils";
+import { UUID } from "lib/utils";
 import DragData from "./utils";
 
 const uuid = UUID(1);
@@ -47,7 +47,10 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
   //   inline: Symbol("inline").toString()
   // };
 
-  const inlineTags = (dragRef: React.MutableRefObject<HTMLDivElement>, monitor: DropTargetMonitor) => {
+  const inlineTags = (
+    dragRef: React.MutableRefObject<HTMLDivElement>,
+    monitor: DropTargetMonitor
+  ) => {
     // Determine rectangle on screen
     const hoverBoundingRect = dragRef.current.getBoundingClientRect();
     console.log(hoverBoundingRect);
@@ -76,7 +79,10 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
       }
     }
   };
-  const blockTags = (dragRef: React.MutableRefObject<HTMLDivElement | null>, monitor: DropTargetMonitor) => {
+  const blockTags = (
+    dragRef: React.MutableRefObject<HTMLDivElement | null>,
+    monitor: DropTargetMonitor
+  ) => {
     const hoverBoundingRect = dragRef.current?.getBoundingClientRect();
 
     if (!hoverBoundingRect) return;
@@ -112,7 +118,11 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     isOver: boolean;
   }
 
-  const [{ isOver, canDrop }, drop] = useDrop<DragDataProps, {}, CollectedProps>({
+  const [{ isOver, canDrop }, drop] = useDrop<
+    DragDataProps,
+    {},
+    CollectedProps
+  >({
     accept: [ItemTypes.DIV],
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;

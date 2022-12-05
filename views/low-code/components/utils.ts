@@ -1,7 +1,7 @@
 import update from "immutability-helper";
 import { tagsPosition } from "./ItemTypes";
 import _ from "lodash";
-import { UUID } from "../../../utils";
+import { UUID } from "lib/utils";
 // import { v4 as uuid } from "uuid";
 
 const uuid = UUID();
@@ -28,7 +28,8 @@ class DragData {
     this.hover = data?.hover || {};
     this.schema = data.schema;
 
-    this.displacement = data.__positionType__ === tagsPosition.downOutside ? 1 : 0;
+    this.displacement =
+      data.__positionType__ === tagsPosition.downOutside ? 1 : 0;
 
     this.__haveMoved__ = data?.__haveMoved__ || false;
 
@@ -38,10 +39,14 @@ class DragData {
     switch (data.__positionType__) {
       case tagsPosition.inside:
         {
-          if (data.original?.id === data.hover?.id) return ($data = data.schema);
+          if (data.original?.id === data.hover?.id)
+            return ($data = data.schema);
 
           if (data?.__haveMoved__) {
-            this.schema = this.removeOriginal(data?.original || {}, this.schema);
+            this.schema = this.removeOriginal(
+              data?.original || {},
+              this.schema
+            );
           }
 
           const { data: target, index } = this.inside(
@@ -63,7 +68,11 @@ class DragData {
             this.schema = this.removeOriginal(data.target, this.schema);
           }
 
-          const { data: target, index } = this.outside(data.target, this.schema, data?.hover?.__positions__);
+          const { data: target, index } = this.outside(
+            data.target,
+            this.schema,
+            data?.hover?.__positions__
+          );
 
           $index = index;
           $target = target;
@@ -87,7 +96,11 @@ class DragData {
     if (item.__positions__ === null) return schema;
     if (item.__positions__) $schema = this.removeOriginal(item, schema);
 
-    const $item = { ...item, id: item?.id ? item.id : $uuid, __positions__: null };
+    const $item = {
+      ...item,
+      id: item?.id ? item.id : $uuid,
+      __positions__: null
+    };
 
     const data = update($schema, {
       $push: [$item.id ? this.modifyTargetPosition($item, null) : $item]
@@ -104,7 +117,9 @@ class DragData {
     switch (position) {
       case tagsPosition.inside:
         {
-          const __positions__ = target?.__positions__ ? [...target.__positions__, target.id] : [target.id];
+          const __positions__ = target?.__positions__
+            ? [...target.__positions__, target.id]
+            : [target.id];
 
           $data = {
             hover: target,
@@ -143,7 +158,11 @@ class DragData {
     return $data;
   }
 
-  private outside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private outside(
+    target: AnyProps,
+    original: Array<AnyProps>,
+    positions: Array<string>
+  ) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -155,12 +174,18 @@ class DragData {
       if (!~index) return { data: null, index: null };
 
       const $children = $original[index].children;
-      const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
+      const subIndex = $children.findIndex(
+        (item: AnyProps) => item.id === this.hover.id
+      );
 
       const childrenId = $children[subIndex]?.id;
 
       if (childrenId !== this.hover.id) {
-        const { data } = this.outside(target, $children, update(positions, { $splice: [[0, 1]] }));
+        const { data } = this.outside(
+          target,
+          $children,
+          update(positions, { $splice: [[0, 1]] })
+        );
 
         $original[index] = { ...$original[index], children: data };
 
@@ -168,7 +193,13 @@ class DragData {
       }
 
       $original[index].children = update($children, {
-        $splice: [[subIndex + this.displacement, 0, { ...target, __positions__: this.hover?.__positions__ }]]
+        $splice: [
+          [
+            subIndex + this.displacement,
+            0,
+            { ...target, __positions__: this.hover?.__positions__ }
+          ]
+        ]
       });
     } else if (this.__haveMoved__) {
       if (!this.hover?.__positions__) {
@@ -177,7 +208,13 @@ class DragData {
 
         if (~index) {
           $original = update($original, {
-            $splice: [[index + this.displacement, 0, this.modifyTargetPosition(_.cloneDeep(target), null)]]
+            $splice: [
+              [
+                index + this.displacement,
+                0,
+                this.modifyTargetPosition(_.cloneDeep(target), null)
+              ]
+            ]
           });
         }
 
@@ -191,7 +228,9 @@ class DragData {
       if (!~index) return { data: null, index: null };
 
       const $children = $original[index].children;
-      const subIndex = $children.findIndex((item: AnyProps) => item.id === this.hover.id);
+      const subIndex = $children.findIndex(
+        (item: AnyProps) => item.id === this.hover.id
+      );
 
       if ($children[subIndex]?.id !== this.hover.id) {
         const { data } = this.outside(
@@ -211,7 +250,10 @@ class DragData {
           [
             subIndex + this.displacement,
             0,
-            this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)
+            this.modifyTargetPosition(
+              _.cloneDeep(target),
+              this.hover?.__positions__
+            )
           ]
         ]
       });
@@ -221,7 +263,9 @@ class DragData {
 
       if (~index) {
         $original = update($original, {
-          $splice: [[index + this.displacement, 0, { ...target, __positions__: null }]]
+          $splice: [
+            [index + this.displacement, 0, { ...target, __positions__: null }]
+          ]
         });
       }
     }
@@ -242,15 +286,22 @@ class DragData {
       const index = original.findIndex(item => item.id === positions[0]);
       const $children = original[index].children;
 
-      const subIndex = $children.findIndex((item: AnyProps) => item.id === target.id);
+      const subIndex = $children.findIndex(
+        (item: AnyProps) => item.id === target.id
+      );
 
       if (!~subIndex) {
         original[index].children = this.removeOriginal(
-          { ...target, __positions__: update(target.__positions__, { $splice: [[0, 1]] }) },
+          {
+            ...target,
+            __positions__: update(target.__positions__, { $splice: [[0, 1]] })
+          },
           $children
         );
       } else {
-        original[index].children = update($children, { $splice: [[subIndex, 1]] });
+        original[index].children = update($children, {
+          $splice: [[subIndex, 1]]
+        });
       }
     } else {
       /* 没有 position 则表示已经是顶层元素*/
@@ -266,13 +317,19 @@ class DragData {
    * @param target
    * @returns
    */
-  private modifyTargetPosition(target: AnyProps, positions: Array<string> | null) {
+  private modifyTargetPosition(
+    target: AnyProps,
+    positions: Array<string> | null
+  ) {
     target = { ...target, __positions__: positions };
 
     if (target?.children) {
       target.children = target.children.map((item: AnyProps) => {
         if (item.children) {
-          item = this.modifyTargetPosition(item, [...(positions || []), target.id]);
+          item = this.modifyTargetPosition(item, [
+            ...(positions || []),
+            target.id
+          ]);
         }
 
         return {
@@ -285,7 +342,11 @@ class DragData {
     return target;
   }
 
-  private inside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
+  private inside(
+    target: AnyProps,
+    original: Array<AnyProps>,
+    positions: Array<string>
+  ) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
 
@@ -297,7 +358,9 @@ class DragData {
 
       $index = index;
 
-      const subIndex = $original[index].children.findIndex((item: AnyProps) => item.id === target.id);
+      const subIndex = $original[index].children.findIndex(
+        (item: AnyProps) => item.id === target.id
+      );
 
       const childrenId = $original[index].children[subIndex]?.id;
 
@@ -321,7 +384,10 @@ class DragData {
         if (item.id !== target.id) return item;
 
         const $item = this.__haveMoved__
-          ? this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)
+          ? this.modifyTargetPosition(
+              _.cloneDeep(target),
+              this.hover?.__positions__
+            )
           : target;
 
         return $item;
@@ -334,7 +400,10 @@ class DragData {
 
       if (~index) {
         const $target = this.__haveMoved__
-          ? this.modifyTargetPosition(_.cloneDeep(target), this.hover?.__positions__)
+          ? this.modifyTargetPosition(
+              _.cloneDeep(target),
+              this.hover?.__positions__
+            )
           : target;
 
         $original = update($original, { $splice: [[index, 1, $target]] });

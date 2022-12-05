@@ -1,6 +1,7 @@
 import type { CSSProperties, FC } from "react";
 import { memo } from "react";
 import { useDrag, DragPreviewImage } from "react-dnd";
+import Link from "next/link";
 
 const style: CSSProperties = {
   border: "1px dashed gray",
@@ -31,8 +32,11 @@ const Control: FC<BoxProps> = ({ name, type, isDropped }) => {
   );
 
   return (
-    <div ref={drag} style={{ ...style, opacity }} data-testid="box">
-      {isDropped ? <s>{name}</s> : name}
+    <div>
+      <div ref={drag} style={{ ...style, opacity }} data-testid="box">
+        {name}
+      </div>
+      <Link href="/signup">About Us</Link>
     </div>
   );
 };

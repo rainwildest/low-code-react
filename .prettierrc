@@ -1,5 +1,4 @@
 {
-  "printWidth": 110,
   "jsxSingleQuote": false,
   "semi": true,
   "arrowParens": "avoid",

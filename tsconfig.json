@@ -1,26 +1,42 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    /*
+      Note that the "module" setting will be overriden by nextjs automatically
+      (cf. https://github.com/zeit/next.js/discussions/10780).
+      If you need to change it, you should use the --compiler-options or provide a separate
+      tsconfig.json entirely.
+    */
+    "baseUrl": ".",
+    "module": "esnext",
+    "target": "ES2019",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "noEmit": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "types": ["node"],
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["src", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
