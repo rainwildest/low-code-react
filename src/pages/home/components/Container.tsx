@@ -76,7 +76,12 @@ export const Container: FC = memo(function Container() {
     <div>
       <div style={{ overflow: "hidden", clear: "both" }}>
         {dustbins.map(({ accepts, lastDroppedItem }, index) => (
-          <Dustbin accept={accepts} lastDroppedItem={lastDroppedItem} onDrop={item => handleDrop(index, item)} key={index} />
+          <Dustbin
+            accept={accepts}
+            lastDroppedItem={lastDroppedItem}
+            onDrop={item => handleDrop(index, item)}
+            key={index}
+          />
         ))}
       </div>
 
