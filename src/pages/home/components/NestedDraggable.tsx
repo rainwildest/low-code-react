@@ -4,6 +4,7 @@ import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
 import { UUID } from "../../../utils";
+import DragData from "./utils";
 
 const uuid = UUID(1);
 
@@ -31,6 +32,7 @@ interface DragDataProps {
 const NestedDraggable: FC<CardProps> = ({ data }) => {
   const dragRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState("");
+  const dragData = new DragData();
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.DIV,
@@ -115,45 +117,7 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
 
-      let $data: AnyProps = {};
-
-      const $uuid = item.id ? item.id : uuid();
-
-      /* 放置块级标签内部 */
-      if (position === tagsPosition.inside) {
-        const __positions__ = data?.__positions__ ? [...data.__positions__, data.id] : [data.id];
-
-        $data = {
-          hover: data,
-          target: {
-            ...data,
-            children: [
-              ...(data?.children || []),
-              {
-                ...item,
-                id: $uuid,
-                __positions__
-              }
-            ]
-          },
-          original: item.id ? { ...item } : null,
-
-          __haveMoved__: !!item.id,
-          __positionType__: tagsPosition.inside
-        };
-      }
-
-      if ([tagsPosition.upOutside, tagsPosition.downOutside].includes(position)) {
-        $data = {
-          hover: data,
-          target: { ...item, id: $uuid },
-
-          __haveMoved__: !!item.id,
-          __positionType__: position
-        };
-      }
-
-      return { data: $data };
+      return { data: dragData.handleSource(position, item, data) };
     },
     hover(item, monitor) {
       const didHover = monitor.isOver({ shallow: true });

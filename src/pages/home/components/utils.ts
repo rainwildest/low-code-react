@@ -96,6 +96,53 @@ class DragData {
     return data;
   }
 
+  handleSource(position: string, item: AnyProps, target: AnyProps) {
+    let $data: AnyProps = {};
+
+    const $uuid = item.id ? item.id : uuid();
+
+    switch (position) {
+      case tagsPosition.inside:
+        {
+          const __positions__ = target?.__positions__ ? [...target.__positions__, target.id] : [target.id];
+
+          $data = {
+            hover: target,
+            target: {
+              ...target,
+              children: [
+                ...(target?.children || []),
+                {
+                  ...item,
+                  id: $uuid,
+                  __positions__
+                }
+              ]
+            },
+            original: item.id ? { ...item } : null,
+
+            __haveMoved__: !!item.id,
+            __positionType__: tagsPosition.inside
+          };
+        }
+        break;
+      case tagsPosition.upOutside:
+      case tagsPosition.downOutside:
+        {
+          $data = {
+            hover: target,
+            target: { ...item, id: $uuid },
+
+            __haveMoved__: !!item.id,
+            __positionType__: position
+          };
+        }
+        break;
+    }
+
+    return $data;
+  }
+
   private outside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
