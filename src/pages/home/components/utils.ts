@@ -80,6 +80,22 @@ class DragData {
     return $data;
   }
 
+  addingData(item: AnyProps, schema: Array<AnyProps>) {
+    const $uuid = uuid();
+    let $schema = schema;
+
+    if (item.__positions__ === null) return schema;
+    if (item.__positions__) $schema = this.removeOriginal(item, schema);
+
+    const $item = { ...item, id: item?.id ? item.id : $uuid, __positions__: null };
+
+    const data = update($schema, {
+      $push: [$item.id ? this.modifyTargetPosition($item, null) : $item]
+    });
+
+    return data;
+  }
+
   private outside(target: AnyProps, original: Array<AnyProps>, positions: Array<string>) {
     let $original = _.cloneDeep(original);
     let $index: number | null = null;
@@ -164,22 +180,6 @@ class DragData {
     }
 
     return { data: $original, index: $index };
-  }
-
-  addingData(item: AnyProps, schema: Array<AnyProps>) {
-    const $uuid = uuid();
-    let $schema = schema;
-
-    if (item.__positions__ === null) return schema;
-    if (item.__positions__) $schema = this.removeOriginal(item, schema);
-
-    const $item = { ...item, id: item?.id ? item.id : $uuid, __positions__: null };
-
-    const data = update($schema, {
-      $push: [$item.id ? this.modifyTargetPosition($item, null) : $item]
-    });
-
-    return data;
   }
 
   /**
