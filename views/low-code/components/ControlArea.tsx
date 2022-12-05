@@ -1,42 +1,50 @@
-import type { CSSProperties, FC } from "react";
+import type { FC } from "react";
 import { memo } from "react";
-import { useDrag, DragPreviewImage } from "react-dnd";
-// import Link from "next/link";
-
-const style: CSSProperties = {
-  border: "1px dashed gray",
-  backgroundColor: "white",
-  padding: "0.5rem 1rem",
-  marginRight: "1.5rem",
-  marginBottom: "1.5rem",
-  cursor: "move",
-  float: "left"
-};
+import Control from "./Control";
 
 export interface BoxProps {
   name: string;
   type: string;
-  isDropped: boolean;
 }
 
-const ControlArea: FC<BoxProps> = ({ name, type, isDropped }) => {
-  const [{ opacity }, drag, preview] = useDrag(
-    () => ({
-      type,
-      item: { name },
-      collect: monitor => ({
-        opacity: monitor.isDragging() ? 0.4 : 1
-      })
-    }),
-    [name, type]
-  );
+const ControlArea: FC = () => {
+  const tags = [
+    {
+      title: "布局",
+      children: [
+        { name: "容器", type: "DIV", description: "" },
+        { name: "导航", type: "NAV", description: "" },
+        { name: "主体", type: "MAIN", description: "" },
+        { name: "页头", type: "HEADER", description: "" },
+        { name: "页尾", type: "FOOTER", description: "" },
+        { name: "区段", type: "SECTION", description: "" }
+      ]
+    },
+    {
+      title: "基础",
+      children: [
+        { name: "文本", type: "SPAN", description: "" },
+        { name: "图片", type: "IMG", description: "" },
+        { name: "链接", type: "A", description: "" },
+        { name: "列表", type: "UL", description: "" },
+        { name: "音频", type: "AUDIO", description: "" },
+        { name: "视频", type: "VIDEO", description: "" }
+      ]
+    }
+  ];
 
   return (
     <div>
-      <div ref={drag} style={{ ...style, opacity }} data-testid="box">
-        {name}
-      </div>
-      {/* <Link href="/signup">About Us</Link> */}
+      {tags.map(item => (
+        <section>
+          <div>{item.title}</div>
+          <div className="grid grid-cols-2">
+            {item.children?.map(element => (
+              <Control {...element} key={element.type} />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 };
