@@ -23,7 +23,7 @@ const Control: FC<BoxProps> = ({ name, type, description, ...props }) => {
       options: {
         dropEffect: "copy"
       },
-      item: { name, type },
+      item: { name, type, ...props },
       collect: monitor => ({
         opacity: monitor.isDragging() ? 0.4 : 1
       })

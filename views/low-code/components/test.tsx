@@ -1,4 +1,5 @@
 import { tagsName } from "./ItemTypes";
+import { typeOf } from "lib/utils";
 
 const tags = {
   [tagsName.DIV]: (props: AnyProps) => <div {...props} />,
@@ -8,23 +9,25 @@ const tags = {
   [tagsName.FOOTER]: (props: AnyProps) => <footer {...props} />,
   [tagsName.SECTION]: (props: AnyProps) => <section {...props} />,
 
-  [tagsName.A]: (props: AnyProps) => <a {...props} />,
-  [tagsName.SPAN]: (props: AnyProps) => <span {...props} />,
+  [tagsName.A]: ({ content = "链接内容", ...props }) => (
+    <a {...props}>{content}</a>
+  ),
+  [tagsName.SPAN]: ({ content = "文本内容", ...props }) => (
+    <span {...props}>{content}</span>
+  ),
   [tagsName.AUDIO]: (props: AnyProps) => <audio {...props} />,
   [tagsName.VIDEO]: (props: AnyProps) => <video {...props} />,
   [tagsName.IMG]: (props: any) => <img {...props} alt=""></img>,
 
-  [tagsName.UL]: ({ children, ...props }: { children: AnyProps[] }) => (
-    <ul {...props}>
-      {children.map(option =>
-        option?.value && option?.label ? (
-          <li value={option.value} key={option.value}>
-            {option.label}
-          </li>
-        ) : null
-      )}
-    </ul>
-  ),
+  [tagsName.UL]: ({ children, ...props }) => {
+    return (
+      <ul {...props}>
+        {/* {children.map(option =>
+        option?.name ? <li key={option.name}>{option.name}</li> : null
+      )} */}
+      </ul>
+    );
+  },
 
   select: ({ children, ...props }: { children: AnyProps[] }) => (
     <select {...props}>

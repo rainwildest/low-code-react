@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import { tagsPosition } from "./ItemTypes";
+import { tagsPosition, tagsName } from "./ItemTypes";
 import _ from "lodash";
 import { UUID } from "lib/utils";
 // import { v4 as uuid } from "uuid";
@@ -415,3 +415,12 @@ class DragData {
 }
 
 export default DragData;
+
+/**
+ * 判断是否为内联元素
+ * @param {string} type
+ * @returns boolean
+ */
+export const isInlineTags = (type: string) => {
+  return [tagsName.A, tagsName.IMG, tagsName.SPAN].includes(type);
+};

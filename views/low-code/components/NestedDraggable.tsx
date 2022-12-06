@@ -3,12 +3,12 @@ import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
+import { isInlineTags } from "./utils";
 import DragData from "./utils";
 import testTags from "./test";
 
 const style: CSSProperties = {
   border: "1px dashed gray",
-  padding: "0.5rem 0.5rem",
   backgroundColor: "white"
 };
 
@@ -17,6 +17,7 @@ interface DragDataProps {
   name: string;
   type: string;
   children?: Array<DragDataProps>;
+  props?: AnyProps;
   __positions__?: string[];
   __positionType__?: string;
 }
@@ -152,23 +153,30 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
 
   return (
     <Fragment>
-      <div ref={dragRef}>
+      <div
+        ref={dragRef}
+        className={`${isInlineTags(type) ? "inline-block" : ""}`}
+      >
         {isOver && canDrop && position === tagsPosition.upOutside ? (
           <div className="bg-sky-100 rounded h-2" />
         ) : null}
-        {name} - {position} - {props.id}
+        {/* {name} - {position} - {props.id} */}
         <CurrentTag
-          className="cursor-grab relative"
+          className={`cursor-grab relative px-2.5 py-2.5 ${
+            isOver && canDrop && position === tagsPosition.inside
+              ? "!bg-indigo-100"
+              : ""
+          }`}
           style={{ ...style, opacity }}
-          {...props}
+          {...(props.props || {})}
+          id={props.id}
         >
+          {/* {props?.children} */}
           {props?.children?.map(item => (
             <NestedDraggable {...item} key={item.id} />
           ))}
-          {/* {isOver && canDrop && position === tagsPosition.inside ? (
-            <div className="bg-indigo-300 h-1/2 w-full absolute top-0 left-0" />
-          ) : null} */}
         </CurrentTag>
+
         {isOver && canDrop && position === tagsPosition.downOutside ? (
           <div className="bg-sky-100 h-2" />
         ) : null}

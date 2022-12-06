@@ -24,12 +24,38 @@ const ControlArea: FC = () => {
     {
       title: "基础",
       children: [
-        { name: "文本", type: tagsName.SPAN, description: "文本标签" },
-        { name: "图片", type: tagsName.IMG, description: "" },
-        { name: "链接", type: tagsName.A, description: "" },
-        { name: "列表", type: tagsName.UL, description: "列表标签" },
+        {
+          name: "文本",
+          type: tagsName.SPAN,
+          description: "文本标签",
+          props: {
+            content: "文本内容"
+          }
+        },
+        {
+          name: "图片",
+          type: tagsName.IMG,
+          description: "",
+          props: { src: "/assets/react.svg" }
+        },
+        {
+          name: "链接",
+          type: tagsName.A,
+          description: "",
+          props: { content: "链接内容1" }
+        },
+        {
+          name: "列表",
+          type: tagsName.UL,
+          description: "列表标签",
+          children: [{ id: "999", name: "ssdfsdfs" }]
+        },
         { name: "音频", type: tagsName.AUDIO, description: "" },
-        { name: "视频", type: tagsName.VIDEO, description: "" }
+        {
+          name: "视频",
+          type: tagsName.VIDEO,
+          description: ""
+        }
       ]
     }
   ];
