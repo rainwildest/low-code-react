@@ -87,10 +87,10 @@ const Container: FC = () => {
                 <NestedDraggable key={card.id} {...card} />
               ))}
               {isOver && canDrop ? (
-                <div className="border-indigo-600 border" />
+                <div className="border-indigo-600 border border-solid"></div>
               ) : null}
 
-              {provided.placeholder}
+              {/* {provided.placeholder} */}
             </div>
           )}
         </Droppable>

@@ -16,8 +16,9 @@ interface DragDataProps {
   id: string;
   name: string;
   type: string;
+  attribute?: AnyProps;
   children?: Array<DragDataProps>;
-  props?: AnyProps;
+
   __positions__?: string[];
   __positionType__?: string;
 }
@@ -168,7 +169,7 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
               : ""
           }`}
           style={{ ...style, opacity }}
-          {...(props.props || {})}
+          {...(props?.attribute || {})}
           id={props.id}
         >
           {/* {props?.children} */}

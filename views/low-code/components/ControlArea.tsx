@@ -28,7 +28,7 @@ const ControlArea: FC = () => {
           name: "文本",
           type: tagsName.SPAN,
           description: "文本标签",
-          props: {
+          attribute: {
             content: "文本内容"
           }
         },
@@ -36,13 +36,13 @@ const ControlArea: FC = () => {
           name: "图片",
           type: tagsName.IMG,
           description: "",
-          props: { src: "/assets/react.svg" }
+          attribute: { src: "/assets/react.svg" }
         },
         {
           name: "链接",
           type: tagsName.A,
           description: "",
-          props: { content: "链接内容1" }
+          attribute: { content: "链接内容1" }
         },
         {
           name: "列表",
