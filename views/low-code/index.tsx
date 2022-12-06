@@ -1,11 +1,8 @@
 import { useState, useEffect, memo } from "react";
-import { DndProvider, useDrag } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { Container } from "./components/Container";
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
-const test = ["DIV"];
-import { createStyleElement } from "lib/utils";
 
 function LowCode() {
   return (
