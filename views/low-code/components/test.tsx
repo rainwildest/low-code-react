@@ -12,10 +12,12 @@ const tags = {
   [tagsName.SPAN]: (props: AnyProps) => <span {...props} />,
   [tagsName.AUDIO]: (props: AnyProps) => <audio {...props} />,
   [tagsName.VIDEO]: (props: AnyProps) => <video {...props} />,
+  [tagsName.IMG]: (props: any) => <img {...props} alt=""></img>,
+
   [tagsName.UL]: ({ children, ...props }: { children: AnyProps[] }) => (
     <ul {...props}>
       {children.map(option =>
-        option.value && option.label ? (
+        option?.value && option?.label ? (
           <li value={option.value} key={option.value}>
             {option.label}
           </li>
@@ -27,7 +29,7 @@ const tags = {
   select: ({ children, ...props }: { children: AnyProps[] }) => (
     <select {...props}>
       {children.map(option =>
-        option.value && option.label ? (
+        option?.value && option?.label ? (
           <option value={option.value} key={option.value}>
             {option.label}
           </option>

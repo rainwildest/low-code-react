@@ -156,21 +156,19 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
         {isOver && canDrop && position === tagsPosition.upOutside ? (
           <div className="bg-sky-100 rounded h-2" />
         ) : null}
-
+        {name} - {position} - {props.id}
         <CurrentTag
           className="cursor-grab relative"
           style={{ ...style, opacity }}
           {...props}
         >
-          {name} - {position} - {props.id}
           {props?.children?.map(item => (
-            <NestedDraggable {...item} name={name} type={type} key={item.id} />
+            <NestedDraggable {...item} key={item.id} />
           ))}
-          {isOver && canDrop && position === tagsPosition.inside ? (
+          {/* {isOver && canDrop && position === tagsPosition.inside ? (
             <div className="bg-indigo-300 h-1/2 w-full absolute top-0 left-0" />
-          ) : null}
+          ) : null} */}
         </CurrentTag>
-
         {isOver && canDrop && position === tagsPosition.downOutside ? (
           <div className="bg-sky-100 h-2" />
         ) : null}

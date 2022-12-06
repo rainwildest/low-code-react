@@ -111,7 +111,7 @@ class DragData {
 
   handleSource(position: string, item: AnyProps, target: AnyProps) {
     let $data: AnyProps = {};
-
+    console.log(target, item);
     const $uuid = item.id ? item.id : uuid();
 
     switch (position) {
