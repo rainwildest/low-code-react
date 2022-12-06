@@ -21,7 +21,11 @@ export interface DustbinProps {
   onDrop: (item: any) => void;
 }
 
-export const Dustbin: FC<DustbinProps> = memo(function Dustbin({ accept, lastDroppedItem, onDrop }) {
+export const Dustbin: FC<DustbinProps> = memo(function Dustbin({
+  accept,
+  lastDroppedItem,
+  onDrop
+}) {
   console.log(accept);
 
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -43,9 +47,13 @@ export const Dustbin: FC<DustbinProps> = memo(function Dustbin({ accept, lastDro
 
   return (
     <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
-      {isActive ? "Release to drop" : `This dustbin accepts: ${accept.join(", ")}`}
+      {isActive
+        ? "Release to drop"
+        : `This dustbin accepts: ${accept.join(", ")}`}
 
-      {lastDroppedItem && <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>}
+      {lastDroppedItem && (
+        <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
+      )}
     </div>
   );
 });

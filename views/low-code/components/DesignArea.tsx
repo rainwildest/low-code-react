@@ -80,7 +80,7 @@ const Container: FC = () => {
                         <p className="text-xs  text-gray-100">拖动排序</p>
                       </div>
                       <div className=""></div>
-                      <NestedDraggable key={card.id} data={card} />
+                      <NestedDraggable key={card.id} {...card} />
                     </div>
                   )}
                 </Draggable>

@@ -58,7 +58,9 @@ export const Container: FC = memo(function Container() {
     (index: number, item: { name: string }) => {
       console.log(item);
       const { name } = item;
-      setDroppedBoxNames(update(droppedBoxNames, name ? { $push: [name] } : { $push: [] }));
+      setDroppedBoxNames(
+        update(droppedBoxNames, name ? { $push: [name] } : { $push: [] })
+      );
       setDustbins(
         update(dustbins, {
           [index]: {
@@ -87,7 +89,12 @@ export const Container: FC = memo(function Container() {
 
       <div style={{ overflow: "hidden", clear: "both" }}>
         {boxes.map(({ name, type }, index) => (
-          <Box name={name} type={type} isDropped={isDropped(name)} key={index} />
+          <Box
+            name={name}
+            type={type}
+            isDropped={isDropped(name)}
+            key={index}
+          />
         ))}
       </div>
     </div>

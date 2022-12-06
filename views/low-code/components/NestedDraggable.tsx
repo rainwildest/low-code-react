@@ -3,40 +3,33 @@ import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
-import { UUID } from "lib/utils";
 import DragData from "./utils";
-
-const uuid = UUID(1);
+import testTags from "./test";
 
 const style: CSSProperties = {
   border: "1px dashed gray",
   padding: "0.5rem 0.5rem",
-  backgroundColor: "white",
-  cursor: "move"
+  backgroundColor: "white"
 };
-
-export interface CardProps {
-  data: DragDataProps;
-  // moveCard: (id: string, to: number) => void;
-  // findCard: (id: string) => { index: number };
-}
 
 interface DragDataProps {
   id: string;
   name: string;
+  type: string;
   children?: Array<DragDataProps>;
   __positions__?: string[];
   __positionType__?: string;
 }
 
-const NestedDraggable: FC<CardProps> = ({ data }) => {
+const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
+  console.log("dd", props, name, type);
   const dragRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState("");
   const dragData = new DragData();
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.DIV,
-    item: { ...data },
+    item: { ...props, name, type },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
@@ -127,7 +120,9 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
 
-      return { data: dragData.handleSource(position, item, data) };
+      return {
+        data: dragData.handleSource(position, item, { ...props, name, type })
+      };
     },
     hover(item, monitor) {
       const didHover = monitor.isOver({ shallow: true });
@@ -153,6 +148,8 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
     drag(drop(dragRef));
   });
 
+  const CurrentTag = testTags[type] as any;
+
   return (
     <Fragment>
       <div ref={dragRef}>
@@ -160,20 +157,19 @@ const NestedDraggable: FC<CardProps> = ({ data }) => {
           <div className="bg-sky-100 rounded h-2" />
         ) : null}
 
-        <div className="relative" style={{ ...style, opacity }}>
-          <div className="h-20">
-            {data.name} - {position} - {data.id}
-          </div>
-
-          {/* {data?.children?.map((item)=> )} */}
-          {data?.children?.map(item => (
-            <NestedDraggable data={item} key={item.id} />
+        <CurrentTag
+          className="cursor-grab relative"
+          style={{ ...style, opacity }}
+          {...props}
+        >
+          {name} - {position} - {props.id}
+          {props?.children?.map(item => (
+            <NestedDraggable {...item} name={name} type={type} key={item.id} />
           ))}
-
           {isOver && canDrop && position === tagsPosition.inside ? (
             <div className="bg-indigo-300 h-1/2 w-full absolute top-0 left-0" />
           ) : null}
-        </div>
+        </CurrentTag>
 
         {isOver && canDrop && position === tagsPosition.downOutside ? (
           <div className="bg-sky-100 h-2" />

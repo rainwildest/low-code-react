@@ -13,13 +13,16 @@ const style: CSSProperties = {
 export interface BoxProps {
   name: string;
   type: string;
+  description?: string;
 }
 
-const Control: FC<BoxProps> = ({ name, type }) => {
+const Control: FC<BoxProps> = ({ name, type, description, ...props }) => {
   const [{ opacity }, drag, preview] = useDrag(
     () => ({
       type: ItemTypes.DIV,
-
+      options: {
+        dropEffect: "copy"
+      },
       item: { name, type },
       collect: monitor => ({
         opacity: monitor.isDragging() ? 0.4 : 1
@@ -33,7 +36,7 @@ const Control: FC<BoxProps> = ({ name, type }) => {
       ref={drag}
       className="cursor-grab"
       style={{ ...style, opacity }}
-      title={`${type.toLocaleLowerCase()} 标签`}
+      title={` ${description || `${type.toLocaleLowerCase()} 标签`}`}
     >
       {name}
     </div>
