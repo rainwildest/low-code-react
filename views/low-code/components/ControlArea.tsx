@@ -59,9 +59,10 @@ const ControlArea: FC = () => {
       ]
     }
   ];
+  console.log("kkk");
 
   return (
-    <div>
+    <div className="w-64 h-full absolute left-0 top-0 bg-white shadow-lg">
       {tags.map(item => (
         <section key={item.title}>
           <div>{item.title}</div>
