@@ -59,7 +59,6 @@ const ControlArea: FC = () => {
       ]
     }
   ];
-  console.log("kkk");
 
   return (
     <div className="w-64 h-full absolute left-0 top-0 bg-white shadow-lg">

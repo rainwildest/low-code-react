@@ -9,9 +9,9 @@ import { Button } from "antd";
 import { observer } from "mobx-react";
 import { useMobxStores } from "store";
 
-const LowCode = observer(() => {
+const LowCode = observer(props => {
   const { themeStore } = useMobxStores();
-
+  console.log(props);
   return (
     <div className="w-full h-screen overflow-hidden">
       <DndProvider backend={HTML5Backend}>
