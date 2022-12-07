@@ -50,6 +50,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.3",
+    "react-svg": "^15.1.14",
     "socket.io": "^4.5.3",
     "socket.io-client": "^4.5.3",
     "uuid": "^9.0.0"

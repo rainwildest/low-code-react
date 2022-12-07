@@ -28,6 +28,25 @@ export const typeOf = (value: unknown): string => {
 };
 
 /**
+ * 合并 className
+ * @param {string} defaultClassName
+ * @param {string} className
+ * @returns string
+ */
+export const mergeClassName = (
+  className: string,
+  defaultClassName = ""
+): string => {
+  const classNameSplit = className.split(" ");
+  const defaultClassNameSplit = defaultClassName.split(" ");
+
+  /* 去重 */
+  const classNameArray = new Set([...defaultClassNameSplit, ...classNameSplit]);
+
+  return [...classNameArray].join(" ").replace(/^\s+|\s+$/g, "");
+};
+
+/**
  * 插入一段 style 样式
  * @param {string} innerText 样式
  * @param {string} attribute 传入 id (#id) 或 class (.class) 属性

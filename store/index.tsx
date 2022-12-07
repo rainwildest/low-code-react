@@ -9,11 +9,11 @@ enableStaticRendering(isServer);
 
 export function initializeStore(initialData = {}) {
   if (isServer) {
-    return { themeStore };
+    return { useThemeStore: themeStore };
   }
 
   if (!store) {
-    store = { themeStore };
+    store = { useThemeStore: themeStore };
   }
 
   return store;
@@ -30,7 +30,7 @@ export function StoreProvider(props: AnyProps) {
 }
 
 type StoresProps = {
-  themeStore: typeof themeStore;
+  useThemeStore: typeof themeStore;
 };
 
 export function useMobxStores() {
