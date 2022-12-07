@@ -3,12 +3,11 @@ import { memo } from "react";
 import Control from "./Control";
 import { tagsName } from "./ItemTypes";
 
-export interface BoxProps {
-  name: string;
-  type: string;
-}
+type ControlProps = {
+  className?: string;
+};
 
-const ControlArea: FC = () => {
+const ControlArea: FC<ControlProps> = ({ className }) => {
   const tags = [
     {
       title: "布局",
@@ -61,7 +60,7 @@ const ControlArea: FC = () => {
   ];
 
   return (
-    <div className="w-64 h-full absolute left-0 top-0 bg-white shadow-lg">
+    <div className={`w-64 h-full absolute left-0 top-0 ${className}`}>
       {tags.map(item => (
         <section key={item.title}>
           <div>{item.title}</div>

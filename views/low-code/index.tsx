@@ -13,25 +13,39 @@ const LowCode = observer(props => {
   const { themeStore } = useMobxStores();
   console.log(props);
   return (
-    <div className="w-full h-screen overflow-hidden">
-      <DndProvider backend={HTML5Backend}>
-        {/* <Container /> */}
-        <div className="h-20 relative z-10 shadow-md">
-          {themeStore.count}
-          <Button onClick={() => themeStore.addCount()}>Default Button</Button>
-        </div>
-        <section className="h-full relative flex test-name">
-          {/* 控件区 */}
-          {/* <div className="h-full w-72 bg-gray-300"> */}
-          <ControlArea />
-          {/* </div> */}
+    <div className="w-full h-screen overflow-hidden bg-gray-1000">
+      {/* 头部 */}
+      <header className="h-16 bg-gray-700"></header>
+      <section className="flex h-full w-full">
+        {/* 导航栏 */}
+        <aside className="h-ful w-16 bg-red-500"></aside>
 
-          {/* 拖拽区 */}
-          <div className="w-full bg-container">{/* <DesignArea /> */}</div>
+        <main className="h-full w-full">
+          <DndProvider backend={HTML5Backend}>
+            {/* <Container /> */}
+            <div className="h-20 relative z-10">
+              {themeStore.count}
+              <Button className="" onClick={() => themeStore.addCount()}>
+                Default Button
+              </Button>
+            </div>
 
-          <AttributeArea />
-        </section>
-      </DndProvider>
+            <section className="h-full relative flex test-name">
+              {/* 控件区 */}
+              {/* <div className="h-full w-72 bg-gray-300"> */}
+              <ControlArea className="bg-gray-1000" />
+              {/* </div> */}
+
+              {/* 拖拽区 */}
+              <div className="w-full bg-container">
+                <DesignArea />
+              </div>
+
+              <AttributeArea className="bg-gray-1000" />
+            </section>
+          </DndProvider>
+        </main>
+      </section>
     </div>
   );
 });
