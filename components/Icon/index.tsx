@@ -22,14 +22,23 @@ const Icon: React.FC<IconProps> = ({
   const base = "/icons/";
   const url = `${base}${name || "default-internal"}.svg`;
 
+  const ws = (className || "").match(/(w-[\S]+)/g);
+  const hs = (className || "").match(/(h-[\S]+)/g);
+
+  const width = ws?.join(" ");
+  const height = hs?.join(" ");
+
   const svgParams = {
     style,
     onClick,
     src: url,
-    className: "inline-block w-4 h-4",
+    className: `inline-block ${width ?? "w-4"} ${height ?? "h-4"}`,
     beforeInjection: (svg: AnyProps) => {
       let iconClass = !name ? "text-gray-300" : "";
-      iconClass = mergeClassName(className, `${iconClass} w-full h-full`);
+      iconClass = mergeClassName(
+        (className || "").replace(/(w-[\S]+\s?)|(h-[\S]+\s?)/g, ""),
+        `${iconClass} w-full h-full`
+      );
 
       iconClass.split(" ").forEach(item => {
         svg.classList.add(item);

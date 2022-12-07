@@ -2,6 +2,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --bg-line: url(/assets/bg-line-01.svg);
+}
+
+html.dark {
+  --bg-line: url(/assets/bg-line-02.svg);
+}
+
 .bg-container {
-  background-image: url(/assets/bg-line.svg);
+  background-image: var(--bg-line);
 }

@@ -152,36 +152,34 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
   const CurrentTag = testTags[type] as any;
 
   return (
-    <Fragment>
-      <div
-        ref={dragRef}
-        className={`${isInlineTags(type) ? "inline-block" : ""}`}
+    <div
+      ref={dragRef}
+      className={`${isInlineTags(type) ? "inline-block" : ""}`}
+    >
+      {isOver && canDrop && position === tagsPosition.upOutside ? (
+        <div className="bg-sky-100 rounded h-2" />
+      ) : null}
+      {/* {name} - {position} - {props.id} */}
+      <CurrentTag
+        className={`cursor-grab relative px-2.5 py-2.5 ${
+          isOver && canDrop && position === tagsPosition.inside
+            ? "!bg-indigo-100"
+            : ""
+        }`}
+        style={{ ...style, opacity }}
+        {...(props?.attribute || {})}
+        id={props.id}
       >
-        {isOver && canDrop && position === tagsPosition.upOutside ? (
-          <div className="bg-sky-100 rounded h-2" />
-        ) : null}
-        {/* {name} - {position} - {props.id} */}
-        <CurrentTag
-          className={`cursor-grab relative px-2.5 py-2.5 ${
-            isOver && canDrop && position === tagsPosition.inside
-              ? "!bg-indigo-100"
-              : ""
-          }`}
-          style={{ ...style, opacity }}
-          {...(props?.attribute || {})}
-          id={props.id}
-        >
-          {/* {props?.children} */}
-          {props?.children?.map(item => (
-            <NestedDraggable {...item} key={item.id} />
-          ))}
-        </CurrentTag>
+        {/* {props?.children} */}
+        {props?.children?.map(item => (
+          <NestedDraggable {...item} key={item.id} />
+        ))}
+      </CurrentTag>
 
-        {isOver && canDrop && position === tagsPosition.downOutside ? (
-          <div className="bg-sky-100 h-2" />
-        ) : null}
-      </div>
-    </Fragment>
+      {isOver && canDrop && position === tagsPosition.downOutside ? (
+        <div className="bg-sky-100 h-2" />
+      ) : null}
+    </div>
 
     // <div ref={drag} style={{ ...style, opacity }}>
     //   {text} {id}

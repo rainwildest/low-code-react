@@ -1,4 +1,5 @@
 import type { CSSProperties, FC } from "react";
+import storage from "./storage";
 
 export const UUID =
   (prefix = 0, i = 0) =>
@@ -63,4 +64,22 @@ export const createStyleElement = (innerText: string, attribute?: string) => {
 
   const head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
+};
+
+export const isNull = (value: any) => {
+  return value === "" || value === undefined || value === null;
+};
+
+export const setTheme = () => {
+  if (
+    storage.get("theme") === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.remove("light");
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
+  }
 };

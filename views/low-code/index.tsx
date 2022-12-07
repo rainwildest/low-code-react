@@ -8,11 +8,8 @@ import { Layout } from "components";
 
 import { Button } from "antd";
 import { observer } from "mobx-react";
-import { useMobxStores } from "store";
 
 const LowCode = observer(() => {
-  const { themeStore } = useMobxStores();
-
   return (
     <Layout>
       <DndProvider backend={HTML5Backend}>
@@ -27,7 +24,7 @@ const LowCode = observer(() => {
         <section className="h-full relative flex test-name">
           {/* 控件区 */}
           {/* <div className="h-full w-72 bg-gray-300"> */}
-          <ControlArea className="bg-gray-1000 shadow-lg" />
+          <ControlArea className="bg-gray-1000 dark:bg-purple-1000 shadow-lg" />
           {/* </div> */}
 
           {/* 拖拽区 */}
@@ -35,7 +32,7 @@ const LowCode = observer(() => {
             <DesignArea />
           </div>
 
-          <AttributeArea className="bg-gray-1000 shadow-lg" />
+          <AttributeArea className="bg-gray-1000 dark:bg-purple-1000 shadow-lg" />
         </section>
       </DndProvider>
     </Layout>
