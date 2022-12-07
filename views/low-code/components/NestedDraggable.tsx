@@ -8,8 +8,7 @@ import DragData from "./utils";
 import testTags from "./test";
 
 const style: CSSProperties = {
-  border: "1px dashed gray",
-  backgroundColor: "white"
+  border: "1px dashed gray"
 };
 
 interface DragDataProps {
