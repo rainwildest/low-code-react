@@ -12,7 +12,7 @@ const Layout = observer(({ children }) => {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-gray-1000 dark:bg-purple-1000">
+    <div className="w-full h-screen flex flex-col overflow-hidden bg-gray-1000 dark:bg-purple-1000">
       {/* 头部 */}
       <header className="h-16 bg-gray-1000 dark:bg-purple-1000">
         {JSON.stringify(useThemeStore.isDark)}

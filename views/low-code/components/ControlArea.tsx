@@ -60,11 +60,40 @@ const ControlArea: FC<ControlProps> = ({ className }) => {
   ];
 
   return (
-    <div className={`w-64 h-full absolute left-0 top-0 ${className}`}>
-      {tags.map(item => (
-        <section key={item.title}>
-          <div>{item.title}</div>
-          <div className="grid grid-cols-2">
+    <div
+      className={`w-64 h-full overflow-auto absolute left-0 top-0 z-20 ${className}`}
+    >
+      {tags.map((item, index) => (
+        <section
+          className={`bg-gray-1100 dark:bg-purple-1100 px-4 rounded-lg py-4 ${
+            index ? "mt-8" : ""
+          }`}
+          key={item.title}
+        >
+          <div className="pb-3 text-gray-1200 dark:text-purple-1200 text-base font-semibold">
+            {item.title}
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {item.children?.map(element => (
+              <Control {...element} key={element.type} />
+            ))}
+          </div>
+        </section>
+      ))}
+
+      {tags.map((item, index) => (
+        <section
+          className={`bg-gray-1100 dark:bg-purple-1100 px-4 rounded-lg py-4 ${
+            index ? "mt-8" : ""
+          }`}
+          key={item.title}
+        >
+          <div className="pb-3 text-gray-1200 dark:text-purple-1200 text-base font-semibold">
+            {item.title}
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
             {item.children?.map(element => (
               <Control {...element} key={element.type} />
             ))}
