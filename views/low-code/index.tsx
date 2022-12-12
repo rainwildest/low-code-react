@@ -9,36 +9,29 @@ import { Layout } from "components";
 import { Button } from "antd";
 import { observer } from "mobx-react";
 
-const LowCode = observer(() => {
-  const onWheel = (event: WheelEvent) => {
-    console.log(event.ctrlKey);
+interface DisabledWheelEvent extends Event {
+  ctrlKey: boolean;
+}
 
+const LowCode = observer(() => {
+  const onWheel = (event: WheelEvent<HTMLDivElement>) => {
     if (event.ctrlKey) {
-      document.addEventListener("mousewheel", onDisabledWheel, {
-        passive: false
-      });
+      console.log("kk");
     }
   };
 
-  const onKeyUp = event => {
-    console.log(event);
-  };
+  const onDisabledWheel = (e: DisabledWheelEvent) => {
+    const event = e || (window.event as DisabledWheelEvent);
 
-  const onDisabledWheel = (e: Event) => {
-    const event = e || window.event;
-
-    event.preventDefault();
+    event.ctrlKey && event.preventDefault();
   };
 
   useEffect(() => {
     /**
      * 禁止 ctr + wheel 事件放大缩小页面
      */
-    // document.addEventListener("mousewheel", onDisabledWheel, {
-    //   passive: false
-    // });
-    document.addEventListener("keyup", e => {
-      console.log(e);
+    document.addEventListener("mousewheel", onDisabledWheel, {
+      passive: false
     });
 
     return () => {
@@ -63,16 +56,7 @@ const LowCode = observer(() => {
           {/* </div> */}
 
           {/* 拖拽区 */}
-          <div
-            className="w-full relative bg-container"
-            onWheel={onWheel}
-            onMouseEnter={e => {
-              console.log("onMouseEnter");
-            }}
-            onMouseLeave={() => {
-              console.log("onMouseLeave");
-            }}
-          >
+          <div className="w-full relative bg-container" onWheel={onWheel}>
             <div
               style={{ width: "1920px", height: "960px" }}
               className="bg-red-500 inset-0 m-auto absolute"
