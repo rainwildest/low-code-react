@@ -3,8 +3,8 @@ import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
-import { isInlineTags } from "./utils";
-import DragData from "./utils";
+import DragData, { isInlineTags } from "./utils";
+import { mergeClassName } from "lib/utils";
 import testTags from "./test";
 
 const style: CSSProperties = {
@@ -151,6 +151,18 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
 
   const CurrentTag = testTags[type] as any;
 
+  const $attr = {
+    ...props?.attribute,
+    className: `${mergeClassName(
+      props?.attribute?.className || "",
+      `cursor-grab relative px-2.5 py-2.5 min-h-[50px] ${
+        isOver && canDrop && position === tagsPosition.inside
+          ? "!bg-indigo-400"
+          : ""
+      }`
+    )}`
+  };
+
   return (
     <div
       ref={dragRef}
@@ -160,16 +172,7 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
         <div className="bg-sky-100 rounded h-2" />
       ) : null}
       {/* {name} - {position} - {props.id} */}
-      <CurrentTag
-        className={`cursor-grab relative px-2.5 py-2.5 ${
-          isOver && canDrop && position === tagsPosition.inside
-            ? "!bg-indigo-100"
-            : ""
-        }`}
-        style={{ ...style, opacity }}
-        {...(props?.attribute || {})}
-        id={props.id}
-      >
+      <CurrentTag {...$attr} style={{ ...style, opacity }} id={props.id}>
         {/* {props?.children} */}
         {props?.children?.map(item => (
           <NestedDraggable {...item} key={item.id} />

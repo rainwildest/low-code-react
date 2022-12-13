@@ -1,5 +1,5 @@
 import { tagsName } from "./ItemTypes";
-import { typeOf } from "lib/utils";
+import { typeOf, mergeClassName } from "lib/utils";
 
 const tags = {
   [tagsName.DIV]: (props: AnyProps) => <div {...props} />,

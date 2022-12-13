@@ -30,7 +30,8 @@ const ControlArea: FC<ControlProps> = forwardRef(
             type: tagsName.SPAN,
             description: "文本标签",
             attribute: {
-              content: "文本内容"
+              content: "文本内容",
+              className: "inline-block"
             }
           },
           {

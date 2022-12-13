@@ -9,26 +9,34 @@ import { Layout } from "components";
 import { Button } from "antd";
 import { observer } from "mobx-react";
 
-interface DisabledWheelEvent extends Event {
-  ctrlKey: boolean;
-}
-
 const LowCode = observer(() => {
   const controlRef = useRef<HTMLDivElement>(null);
   const attributeRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
 
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(0);
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
-    console.log("kk", event.detail, event.nativeEvent.wheelDelta);
     if (event.ctrlKey) {
-      // setZoom(zoom + 12);
+      let val = 0;
+      const rate = 0.01;
+
+      if (event.nativeEvent.deltaY < 0) {
+        val = zoom + rate;
+
+        val = val > 1 ? 1 : val;
+      }
+
+      if (event.nativeEvent.deltaY > 0 && zoom > 0.2) {
+        val = zoom - rate;
+      }
+
+      val && setZoom(val);
     }
   };
 
-  const onDisabledWheel = (e: DisabledWheelEvent) => {
-    const event = e || (window.event as DisabledWheelEvent);
+  const onDisabledWheel = (e: MouseEvent) => {
+    const event = e || (window.event as MouseEvent);
 
     event.ctrlKey && event.preventDefault();
   };
@@ -49,21 +57,21 @@ const LowCode = observer(() => {
         (draggableWidth - (controlWidth + attributeWidth) - 100) /
         width
       ).toFixed(2);
-    }
-
-    if (draggableHeight < height) {
+    } else if (draggableHeight < height) {
       value = (
         (controlHeight + attributeHeight - draggableHeight - 100) /
         height
       ).toFixed(2);
+    } else {
+      value = "1";
     }
 
-    value !== "0" && setZoom(parseFloat(value) * 100);
+    setZoom(parseFloat(value));
   };
 
   useEffect(() => {
-    onInitDraggableContainer(960, 1920);
-    console.log("kkk");
+    onInitDraggableContainer(960, 800);
+
     /**
      * 禁止 ctr + wheel 事件放大缩小页面
      */
@@ -103,10 +111,17 @@ const LowCode = observer(() => {
             onWheel={onWheel}
           >
             <div
-              style={{ width: "960px", height: "1920px", zoom: `${zoom}%` }}
-              className="bg-red-500 inset-0 m-auto absolute"
-            ></div>
-            {/* <DesignArea /> */}
+              style={{
+                width: "960px",
+                height: "800px",
+                transform: `scale(${zoom}) translate(-50%, -50%)`,
+                transformOrigin: "0 0"
+              }}
+              className="bg-red-100 left-1/2 top-1/2 absolute"
+            >
+              <DesignArea />
+            </div>
+            {/* <DesignArea style={{ width: "1920px", height: "960px" }} /> */}
           </div>
 
           <AttributeArea
