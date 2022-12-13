@@ -175,18 +175,23 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
       ref={dragRef}
       className={`relative ${isInlineTags(type) ? "inline-block" : ""}`}
     >
-      {isOver && canDrop && position === tagsPosition.upOutside ? (
-        <div className="bg-sky-100 rounded h-2 " />
-      ) : null}
+      <div
+        className={`bg-sky-100 rounded transition-all duration-200 ease-linear ${
+          isUpOutside ? "h-2" : "h-0"
+        }`}
+      />
+
       <CurrentTag {...$attr} style={{ ...style, opacity }} id={props.id}>
         {props?.children?.map(item => (
           <NestedDraggable {...item} key={item.id} />
         ))}
       </CurrentTag>
 
-      {isOver && canDrop && position === tagsPosition.downOutside ? (
-        <div className="bg-sky-50 h-2" />
-      ) : null}
+      <div
+        className={`bg-sky-100 rounded transition-all duration-200 ease-linear ${
+          isDownOutside ? "h-2" : "h-0"
+        }`}
+      />
     </div>
 
     // <div ref={drag} style={{ ...style, opacity }}>
