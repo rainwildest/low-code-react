@@ -14,10 +14,15 @@ const LowCode = observer(() => {
   const attributeRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
 
+  const [canvasLeft, setCanvasLeft] = useState(50);
+  const [canvasTop, setCanvasTop] = useState(50);
   const [zoom, setZoom] = useState(0);
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
-    if (event.ctrlKey) {
+    /**
+     * 控制放大缩小
+     */
+    if (event.ctrlKey && !event.altKey) {
       let val = 0;
       const rate = 0.01;
 
@@ -32,6 +37,39 @@ const LowCode = observer(() => {
       }
 
       val && setZoom(val);
+    }
+
+    /**
+     * 控制左右
+     */
+    if (!event.ctrlKey && event.altKey) {
+      let val = 50;
+
+      if (event.nativeEvent.deltaY < 0) {
+        val = canvasLeft - 1;
+      }
+
+      if (event.nativeEvent.deltaY > 0) {
+        val = canvasLeft + 1;
+      }
+      setCanvasLeft(val);
+    }
+
+    /**
+     * 控制上下
+     */
+    if (event.ctrlKey && event.altKey) {
+      let val = 50;
+
+      if (event.nativeEvent.deltaY < 0) {
+        val = canvasTop - 1;
+      }
+
+      if (event.nativeEvent.deltaY > 0) {
+        val = canvasTop + 1;
+      }
+
+      setCanvasTop(val);
     }
   };
 
@@ -49,7 +87,7 @@ const LowCode = observer(() => {
 
     const { offsetWidth: draggableWidth, offsetHeight: draggableHeight } =
       draggableRef.current;
-
+    console.log(draggableWidth, controlWidth);
     let value = "0";
 
     if (draggableWidth < width) {
@@ -57,11 +95,13 @@ const LowCode = observer(() => {
         (draggableWidth - (controlWidth + attributeWidth) - 100) /
         width
       ).toFixed(2);
+      console.log("width", value);
     } else if (draggableHeight < height) {
       value = (
         (controlHeight + attributeHeight - draggableHeight - 100) /
         height
       ).toFixed(2);
+      console.log("height", value);
     } else {
       value = "1";
     }
@@ -114,10 +154,12 @@ const LowCode = observer(() => {
               style={{
                 width: "960px",
                 height: "800px",
+                left: `${canvasLeft}%`,
+                top: `${canvasTop}%`,
                 transform: `scale(${zoom}) translate(-50%, -50%)`,
                 transformOrigin: "0 0"
               }}
-              className="bg-red-100 left-1/2 top-1/2 absolute"
+              className="bg-red-100 absolute transition-all duration-150 ease-linear"
             >
               <DesignArea />
             </div>

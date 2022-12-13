@@ -151,36 +151,41 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
 
   const CurrentTag = testTags[type] as any;
 
+  const isDrop = isOver && canDrop;
+  const isInside = isDrop && position === tagsPosition.inside;
+  const isUpOutside = isDrop && position === tagsPosition.upOutside;
+  const isDownOutside = isDrop && position === tagsPosition.downOutside;
+
+  const upOutSideClassName =
+    "before:content-[''] before:absolute before:w-full before:h-2 before:-top-2 before:left-0 before:bg-red-900 before:z-[500000000]";
+  const DownsideClassName =
+    "after:content-[''] after:absolute after:w-full after:h-2 after:bottom-0 after:left-0 after:bg-red-900 after:z-[500000000]";
+  const insideClassName = isInside ? "!bg-indigo-400" : "";
+
   const $attr = {
     ...props?.attribute,
     className: `${mergeClassName(
       props?.attribute?.className || "",
-      `cursor-grab relative px-2.5 py-2.5 min-h-[50px] ${
-        isOver && canDrop && position === tagsPosition.inside
-          ? "!bg-indigo-400"
-          : ""
-      }`
+      `cursor-grab relative px-2.5 py-2.5 min-h-[50px] ${insideClassName}`
     )}`
   };
 
   return (
     <div
       ref={dragRef}
-      className={`${isInlineTags(type) ? "inline-block" : ""}`}
+      className={`relative ${isInlineTags(type) ? "inline-block" : ""}`}
     >
       {isOver && canDrop && position === tagsPosition.upOutside ? (
-        <div className="bg-sky-100 rounded h-2" />
+        <div className="bg-sky-100 rounded h-2 " />
       ) : null}
-      {/* {name} - {position} - {props.id} */}
       <CurrentTag {...$attr} style={{ ...style, opacity }} id={props.id}>
-        {/* {props?.children} */}
         {props?.children?.map(item => (
           <NestedDraggable {...item} key={item.id} />
         ))}
       </CurrentTag>
 
       {isOver && canDrop && position === tagsPosition.downOutside ? (
-        <div className="bg-sky-100 h-2" />
+        <div className="bg-sky-50 h-2" />
       ) : null}
     </div>
 

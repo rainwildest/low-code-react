@@ -8,17 +8,16 @@ class Store {
 
   constructor() {
     if (typeof window !== "undefined") {
-      console.log(storage.get("theme"));
       const theme = storage.get("theme") || "light";
+
       this.setTheme(theme);
 
       // setTimeout(() => {
       // makeObservable(this);
       // }, 1000 * 500);
     }
-    makeObservable(this);
 
-    // makeObservable(this);
+    makeObservable(this);
   }
 
   @action setTheme(type: "light" | "dark" | "" = "dark") {
