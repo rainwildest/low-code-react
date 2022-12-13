@@ -13,10 +13,11 @@ export interface ContainerState {
   cards: AnyProps[];
 }
 type ContainerProps = {
+  className?: string;
   style?: CSSProperties;
 };
 
-const Container: FC<ContainerProps> = ({ style = {} }) => {
+const Container: FC<ContainerProps> = ({ className = "", style = {} }) => {
   const [schema, setSchema] = useState<any[]>([]);
   const dragData = new DragData();
 
@@ -49,7 +50,7 @@ const Container: FC<ContainerProps> = ({ style = {} }) => {
     //     console.log(val);
     //   }}
     // >
-    <div className="w-full h-full overflow-auto" ref={drop} style={style}>
+    <div ref={drop} style={style} className={`overflow-auto ${className}`}>
       {/* <Droppable droppableId="DesignArea" isCombineEnabled={false}>
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>*/}

@@ -16,6 +16,8 @@ const LowCode = observer(() => {
 
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
   const [zoom, setZoom] = useState(0);
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
@@ -87,7 +89,7 @@ const LowCode = observer(() => {
 
     const { offsetWidth: draggableWidth, offsetHeight: draggableHeight } =
       draggableRef.current;
-    console.log(draggableWidth, controlWidth);
+
     let value = "0";
 
     if (draggableWidth < width) {
@@ -95,18 +97,17 @@ const LowCode = observer(() => {
         (draggableWidth - (controlWidth + attributeWidth) - 100) /
         width
       ).toFixed(2);
-      console.log("width", value);
     } else if (draggableHeight < height) {
       value = (
         (controlHeight + attributeHeight - draggableHeight - 100) /
         height
       ).toFixed(2);
-      console.log("height", value);
     } else {
       value = "1";
     }
 
     setZoom(parseFloat(value));
+    setCanvasSize({ width, height });
   };
 
   useEffect(() => {
@@ -150,20 +151,17 @@ const LowCode = observer(() => {
             className="w-full relative bg-container"
             onWheel={onWheel}
           >
-            <div
+            <DesignArea
               style={{
-                width: "960px",
-                height: "800px",
+                width: `${canvasSize.width}px`,
+                height: `${canvasSize.height}px`,
                 left: `${canvasLeft}%`,
                 top: `${canvasTop}%`,
                 transform: `scale(${zoom}) translate(-50%, -50%)`,
                 transformOrigin: "0 0"
               }}
               className="bg-red-100 absolute transition-all duration-150 ease-linear"
-            >
-              <DesignArea />
-            </div>
-            {/* <DesignArea style={{ width: "1920px", height: "960px" }} /> */}
+            />
           </div>
 
           <AttributeArea
