@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import type { FC, CSSProperties } from "react";
+import type { FC, CSSProperties, MouseEvent } from "react";
 import { memo, useCallback, useState, Fragment } from "react";
 import { useDrop, DropTargetMonitor } from "react-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -12,12 +12,17 @@ import DragData from "./utils";
 export interface ContainerState {
   cards: AnyProps[];
 }
-type ContainerProps = {
+type DesignAreaProps = {
   className?: string;
   style?: CSSProperties;
+  onContextMenu?: (data: ContextMenuProps) => void;
 };
 
-const Container: FC<ContainerProps> = ({ className = "", style = {} }) => {
+const DesignArea: FC<DesignAreaProps> = ({
+  className = "",
+  style = {},
+  onContextMenu
+}) => {
   const [schema, setSchema] = useState<any[]>([]);
   const dragData = new DragData();
 
@@ -73,7 +78,11 @@ const Container: FC<ContainerProps> = ({ className = "", style = {} }) => {
         //     </div>
         //   )}
         // </Draggable>
-        <NestedDraggable key={card.id} {...card} />
+        <NestedDraggable
+          key={card.id}
+          {...card}
+          onContextMenu={onContextMenu ?? null}
+        />
       ))}
       {isOver && canDrop ? (
         <div className="border-indigo-600 border border-solid"></div>
@@ -88,4 +97,4 @@ const Container: FC<ContainerProps> = ({ className = "", style = {} }) => {
   );
 };
 
-export default memo(Container);
+export default memo(DesignArea);

@@ -6,19 +6,24 @@ import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
 import { Layout } from "components";
 
-import { Button } from "antd";
 import { observer } from "mobx-react";
+
+import type { MenuProps } from "antd";
+import { Button, Menu } from "antd";
 
 const LowCode = observer(() => {
   const controlRef = useRef<HTMLDivElement>(null);
   const attributeRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
+  const contextmenuRef = useRef<HTMLDivElement>(null);
 
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const [zoom, setZoom] = useState(0);
+
+  const [position, setPosition] = useState({ left: 0, top: 0 });
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
     /**
@@ -110,6 +115,17 @@ const LowCode = observer(() => {
     setCanvasSize({ width, height });
   };
 
+  const onDisabledContextmenu = (event: MouseEvent) => {
+    event.preventDefault();
+  };
+
+  const onContextMenu = (data: ContextMenuProps) => {
+    setPosition({
+      left: data.event.pageX + 10,
+      top: data.event.pageY - 10
+    });
+  };
+
   useEffect(() => {
     onInitDraggableContainer(960, 800);
 
@@ -120,8 +136,11 @@ const LowCode = observer(() => {
       passive: false
     });
 
+    document.addEventListener("contextmenu", onDisabledContextmenu);
+
     return () => {
       document.removeEventListener("mousewheel", onDisabledWheel); // 销毁
+      document.removeEventListener("contextmenu", onDisabledContextmenu);
     };
   }, []);
 
@@ -138,12 +157,10 @@ const LowCode = observer(() => {
 
         <section className="h-full relative flex overflow-hidden">
           {/* 控件区 */}
-          {/* <div className="h-full w-72 bg-gray-300"> */}
           <ControlArea
             ref={controlRef}
             className="bg-gray-1000 pr-5 dark:bg-purple-1000 shadow-lg"
           />
-          {/* </div> */}
 
           {/* 拖拽区 */}
           <div
@@ -160,8 +177,27 @@ const LowCode = observer(() => {
                 transform: `scale(${zoom}) translate(-50%, -50%)`,
                 transformOrigin: "0 0"
               }}
-              className="bg-red-100 absolute transition-all duration-150 ease-linear"
+              className="p-5 bg-white absolute transition-all duration-150 ease-linear"
+              onContextMenu={onContextMenu}
             />
+
+            <section
+              ref={contextmenuRef}
+              className="w-24 rounded-lg shadow-lg overflow-hidden fixed"
+              style={{ left: `${position.left}px`, top: `${position.top}px` }}
+            >
+              {/* <Menu className="w-32" selectable={false} items={items} /> */}
+              <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
+                <span className="text-red-600  text-sm font-semibold tracking-widest">
+                  删 除
+                </span>
+              </div>
+              {/* <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
+                <span className="text-red-600  text-sm font-semibold tracking-widest">
+                  删 除
+                </span>
+              </div> */}
+            </section>
           </div>
 
           <AttributeArea

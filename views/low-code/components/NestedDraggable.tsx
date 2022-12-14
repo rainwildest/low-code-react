@@ -1,14 +1,15 @@
-import type { CSSProperties, FC } from "react";
+import type { CSSProperties, FC, MouseEvent } from "react";
 import { memo, useEffect, useRef, useState, Fragment } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";
 import DragData, { isInlineTags } from "./utils";
 import { mergeClassName } from "lib/utils";
+import _ from "lodash";
 import testTags from "./test";
 
 const style: CSSProperties = {
-  border: "1px dashed gray"
+  border: "1px dashed rgba(209, 213, 219, 0.3)"
 };
 
 interface DragDataProps {
@@ -20,10 +21,16 @@ interface DragDataProps {
 
   __positions__?: string[];
   __positionType__?: string;
+
+  onContextMenu?: (data: ContextMenuProps) => void;
 }
 
-const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
-  console.log("dd", props, name, type);
+const NestedDraggable: FC<DragDataProps> = ({
+  name,
+  type,
+  onContextMenu,
+  ...props
+}) => {
   const dragRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState("");
   const dragData = new DragData();
@@ -147,7 +154,7 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
 
   useEffect(() => {
     drag(drop(dragRef));
-  });
+  }, []);
 
   const CurrentTag = testTags[type] as any;
 
@@ -156,39 +163,49 @@ const NestedDraggable: FC<DragDataProps> = ({ name, type, ...props }) => {
   const isUpOutside = isDrop && position === tagsPosition.upOutside;
   const isDownOutside = isDrop && position === tagsPosition.downOutside;
 
+  const insideClassName = isInside ? "!bg-indigo-100" : "";
   const upOutSideClassName =
-    "before:content-[''] before:absolute before:w-full before:h-2 before:-top-2 before:left-0 before:bg-red-900 before:z-[500000000]";
-  const DownsideClassName =
-    "after:content-[''] after:absolute after:w-full after:h-2 after:bottom-0 after:left-0 after:bg-red-900 after:z-[500000000]";
-  const insideClassName = isInside ? "!bg-indigo-400" : "";
+    "before:content-[''] before:absolute before:w-full before:h-full before:border before:left-0 before:top-0 before:border-dashed before:border-gray-300";
 
   const $attr = {
     ...props?.attribute,
     className: `${mergeClassName(
       props?.attribute?.className || "",
-      `cursor-grab relative px-2.5 py-2.5 min-h-[50px] ${insideClassName}`
-    )}`
+      `cursor-grab ${insideClassName}`
+    )}`,
+    style: _.assign(props?.attribute?.style || {}, { ...style, opacity })
   };
 
   return (
     <div
       ref={dragRef}
       className={`relative ${isInlineTags(type) ? "inline-block" : ""}`}
+      onContextMenu={e => {
+        e.preventDefault();
+
+        if (onContextMenu) {
+          onContextMenu({
+            event: e as any,
+            data: { ...props, name, type }
+          });
+        }
+      }}
     >
       <div
-        className={`bg-sky-100 rounded transition-all duration-200 ease-linear ${
+        className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
           isUpOutside ? "h-2" : "h-0"
         }`}
       />
 
-      <CurrentTag {...$attr} style={{ ...style, opacity }} id={props.id}>
+      {/* style={{ ...style, opacity }} */}
+      <CurrentTag id={props.id} {...$attr}>
         {props?.children?.map(item => (
           <NestedDraggable {...item} key={item.id} />
         ))}
       </CurrentTag>
 
       <div
-        className={`bg-sky-100 rounded transition-all duration-200 ease-linear ${
+        className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
           isDownOutside ? "h-2" : "h-0"
         }`}
       />

@@ -14,12 +14,54 @@ const ControlArea: FC<ControlProps> = forwardRef(
       {
         title: "布局",
         children: [
-          { name: "容器", type: tagsName.DIV, description: "" },
-          { name: "导航", type: tagsName.NAV, description: "" },
-          { name: "主体", type: tagsName.MAIN, description: "" },
-          { name: "页头", type: tagsName.HEADER, description: "" },
-          { name: "页尾", type: tagsName.FOOTER, description: "" },
-          { name: "区段", type: tagsName.SECTION, description: "" }
+          {
+            name: "容器",
+            type: tagsName.DIV,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          },
+          {
+            name: "导航",
+            type: tagsName.NAV,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          },
+          {
+            name: "主体",
+            type: tagsName.MAIN,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          },
+          {
+            name: "页头",
+            type: tagsName.HEADER,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          },
+          {
+            name: "页尾",
+            type: tagsName.FOOTER,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          },
+          {
+            name: "区段",
+            type: tagsName.SECTION,
+            description: "",
+            attribute: {
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            }
+          }
         ]
       },
       {
@@ -31,20 +73,26 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "文本标签",
             attribute: {
               content: "文本内容",
-              className: "inline-block"
+              className: "inline-block px-2.5 py-2.5"
             }
           },
           {
             name: "图片",
             type: tagsName.IMG,
             description: "",
-            attribute: { src: "/assets/react.svg" }
+            attribute: {
+              src: "/assets/react.svg",
+              className: "inline-block"
+            }
           },
           {
             name: "链接",
             type: tagsName.A,
             description: "",
-            attribute: { content: "链接内容1" }
+            attribute: {
+              content: "链接内容1",
+              className: "inline-block px-2.5 py-2.5"
+            }
           },
           {
             name: "列表",
