@@ -16,6 +16,7 @@ const LowCode = observer(() => {
   const attributeRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
   const contextmenuRef = useRef<HTMLDivElement>(null);
+  const selectorsRef = useRef({ current: null, prev: null });
 
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
@@ -24,8 +25,6 @@ const LowCode = observer(() => {
   const [zoom, setZoom] = useState(0);
 
   const [position, setPosition] = useState({ left: 0, top: 0 });
-
-  const selectorsRef = useRef({ current: null, prev: null });
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
     /**
@@ -143,7 +142,7 @@ const LowCode = observer(() => {
 
   const onDisabledContextmenu = (event: MouseEvent) => {
     event.preventDefault();
-    console.log("kskfsdfsdfd");
+
     onClassNameOperation(true);
   };
 
@@ -155,7 +154,6 @@ const LowCode = observer(() => {
   // };
 
   const onContextMenu = (value: ContextMenuProps) => {
-    console.log(value.data.id);
     selectorsRef.current.current = value.data.id;
 
     onClassNameOperation();
@@ -168,7 +166,7 @@ const LowCode = observer(() => {
 
   const onSelected = (data: AnyProps) => {
     selectorsRef.current.current = data.id;
-    console.log(data);
+
     onClassNameOperation();
   };
 

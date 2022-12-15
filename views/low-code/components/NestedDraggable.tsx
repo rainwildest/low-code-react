@@ -1,5 +1,5 @@
 import type { CSSProperties, FC, MouseEvent } from "react";
-import { memo, useEffect, useRef, useState, Fragment } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 // import { v4 as uuid } from "uuid";
 import { ItemTypes, tagsPosition } from "./ItemTypes";

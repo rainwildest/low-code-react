@@ -412,6 +412,23 @@ class DragData {
 
     return { data: $original, index: $index };
   }
+
+  remove(target: AnyProps, original: Array<AnyProps>) {
+    const positions = target.__positions__;
+    let $original = _.cloneDeep(original);
+
+    if (positions) {
+    } else {
+      /* 当前 hover 的对象已经是顶层 */
+      const index = $original.findIndex(item => item.id === target.id);
+
+      if (~index) {
+        $original = update($original, { $splice: [[index, 1]] });
+      }
+    }
+
+    return $original;
+  }
 }
 
 export default DragData;

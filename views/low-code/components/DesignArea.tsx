@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import type { FC, CSSProperties, MouseEvent } from "react";
+import { FC, CSSProperties, useRef, useEffect } from "react";
 import { memo, useCallback, useState, Fragment } from "react";
 import { useDrop, DropTargetMonitor } from "react-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -28,6 +28,7 @@ const DesignArea: FC<DesignAreaProps> = ({
 }) => {
   const [schema, setSchema] = useState<any[]>([]);
   const dragData = new DragData();
+  const selectorRef = useRef<AnyProps>(null);
 
   const onDrop = (item: AnyProps, monitor: AnyProps) => {
     console.log("onDrop: ", monitor.getDropResult(), item);
@@ -51,6 +52,37 @@ const DesignArea: FC<DesignAreaProps> = ({
       canDrop: monitor.canDrop()
     })
   });
+
+  const onItemContextMenu = (value: ContextMenuProps) => {
+    if (!onContextMenu) return;
+
+    selectorRef.current = value.data;
+    onContextMenu(value);
+  };
+
+  const onItemClick = (data: AnyProps) => {
+    selectorRef.current = data;
+
+    !!onSelected && onSelected(data);
+  };
+
+  const onKeyDown = (value: KeyboardEvent) => {
+    if (value.code === "Delete") {
+      console.log(selectorRef.current, schema);
+
+      setSchema(schema => {
+        return dragData.remove(selectorRef.current, schema);
+      });
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
 
   return (
     // <DragDropContext
@@ -84,8 +116,8 @@ const DesignArea: FC<DesignAreaProps> = ({
         <NestedDraggable
           key={card.id}
           {...card}
-          onContextMenu={onContextMenu ?? null}
-          onSelected={onSelected ?? null}
+          onContextMenu={onItemContextMenu}
+          onSelected={onItemClick}
         />
       ))}
       {isOver && canDrop ? (
