@@ -18,6 +18,7 @@ interface DragDataProps {
   __positions__?: string[];
   __positionType__?: string;
 
+  onSelected?: (data: AnyProps) => void;
   onContextMenu?: (data: ContextMenuProps) => void;
 }
 
@@ -25,6 +26,7 @@ const NestedDraggable: FC<DragDataProps> = ({
   name,
   type,
   onContextMenu,
+  onSelected,
   ...props
 }) => {
   const dragRef = useRef<HTMLDivElement | null>(null);
@@ -172,20 +174,30 @@ const NestedDraggable: FC<DragDataProps> = ({
     style: props?.attribute?.style || {}
   };
 
+  const onItemClick = (e: MouseEvent) => {
+    e.stopPropagation();
+
+    !!onSelected && onSelected({ ...props, name, type });
+  };
+
+  const onItemContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (onContextMenu) {
+      onContextMenu({
+        event: e as any,
+        data: { ...props, name, type }
+      });
+    }
+  };
+
   return (
     <div
       ref={dragRef}
       className={`relative ${isInlineTags(type) ? "inline-block" : ""}`}
-      onContextMenu={e => {
-        e.preventDefault();
-
-        if (onContextMenu) {
-          onContextMenu({
-            event: e as any,
-            data: { ...props, name, type }
-          });
-        }
-      }}
+      onClick={onItemClick}
+      onContextMenu={onItemContextMenu}
     >
       <div
         className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
@@ -200,7 +212,12 @@ const NestedDraggable: FC<DragDataProps> = ({
       >
         <CurrentTag id={props.id} {...$attr}>
           {props?.children?.map(item => (
-            <NestedDraggable {...item} key={item.id} />
+            <NestedDraggable
+              {...item}
+              key={item.id}
+              onContextMenu={onContextMenu ?? null}
+              onSelected={onSelected ?? null}
+            />
           ))}
         </CurrentTag>
       </div>

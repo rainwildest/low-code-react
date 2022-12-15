@@ -117,42 +117,59 @@ const LowCode = observer(() => {
     setCanvasSize({ width, height });
   };
 
+  const onClassNameOperation = (isClear?: boolean) => {
+    const selectors = selectorsRef.current;
+
+    if (selectors.prev) {
+      document
+        .querySelector(`.target-${selectors.prev}`)
+        .classList.remove("before:!border-purple-600");
+
+      if (isClear) {
+        selectors.current = selectors.prev = null;
+
+        return;
+      }
+    }
+
+    if (!selectors.current) return;
+
+    document
+      .querySelector(`.target-${selectors.current}`)
+      .classList.add("before:!border-purple-600");
+
+    selectors.prev = selectors.current;
+  };
+
   const onDisabledContextmenu = (event: MouseEvent) => {
     event.preventDefault();
-    console.log("kk", selectorsRef.current);
-
-    // if (selectorsRef.current.current === selectorsRef.current.prev) {
-    //   selectorsRef.current.prev = null;
-    // }
+    console.log("kskfsdfsdfd");
+    onClassNameOperation(true);
   };
 
-  const hasClass = (selector: string, target: string) => {
-    const node = document.querySelector(selector);
-    const classNames = node.getAttribute("class").split(" ");
+  // const hasClass = (selector: string, target: string) => {
+  //   const node = document.querySelector(selector);
+  //   const classNames = node.getAttribute("class").split(" ");
 
-    return classNames.includes(target);
-  };
+  //   return classNames.includes(target);
+  // };
 
   const onContextMenu = (value: ContextMenuProps) => {
     console.log(value.data.id);
-
     selectorsRef.current.current = value.data.id;
-    // document
-    //   .querySelector(`.target-${value.data.id}`)
-    //   .classList
 
-    console.log(
-      hasClass(`.target-${value.data.id}`, "before:!border-purple-600")
-    );
-    console.log("kkkk");
-    document
-      .querySelector(`.target-${value.data.id}`)
-      .classList.add("before:!border-purple-600");
+    onClassNameOperation();
 
     setPosition({
       left: value.event.pageX + 10,
       top: value.event.pageY - 10
     });
+  };
+
+  const onSelected = (data: AnyProps) => {
+    selectorsRef.current.current = data.id;
+    console.log(data);
+    onClassNameOperation();
   };
 
   useEffect(() => {
@@ -208,6 +225,7 @@ const LowCode = observer(() => {
               }}
               className="p-5 bg-white absolute transition-all duration-150 ease-linear"
               onContextMenu={onContextMenu}
+              onSelected={onSelected}
             />
 
             <section

@@ -15,13 +15,16 @@ export interface ContainerState {
 type DesignAreaProps = {
   className?: string;
   style?: CSSProperties;
+
+  onSelected?: (data: AnyProps) => void;
   onContextMenu?: (data: ContextMenuProps) => void;
 };
 
 const DesignArea: FC<DesignAreaProps> = ({
   className = "",
   style = {},
-  onContextMenu
+  onContextMenu,
+  onSelected
 }) => {
   const [schema, setSchema] = useState<any[]>([]);
   const dragData = new DragData();
@@ -82,6 +85,7 @@ const DesignArea: FC<DesignAreaProps> = ({
           key={card.id}
           {...card}
           onContextMenu={onContextMenu ?? null}
+          onSelected={onSelected ?? null}
         />
       ))}
       {isOver && canDrop ? (
