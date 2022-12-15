@@ -25,6 +25,8 @@ const LowCode = observer(() => {
 
   const [position, setPosition] = useState({ left: 0, top: 0 });
 
+  const selectorsRef = useRef({ current: null, prev: null });
+
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
     /**
      * 控制放大缩小
@@ -117,12 +119,39 @@ const LowCode = observer(() => {
 
   const onDisabledContextmenu = (event: MouseEvent) => {
     event.preventDefault();
+    console.log("kk", selectorsRef.current);
+
+    // if (selectorsRef.current.current === selectorsRef.current.prev) {
+    //   selectorsRef.current.prev = null;
+    // }
   };
 
-  const onContextMenu = (data: ContextMenuProps) => {
+  const hasClass = (selector: string, target: string) => {
+    const node = document.querySelector(selector);
+    const classNames = node.getAttribute("class").split(" ");
+
+    return classNames.includes(target);
+  };
+
+  const onContextMenu = (value: ContextMenuProps) => {
+    console.log(value.data.id);
+
+    selectorsRef.current.current = value.data.id;
+    // document
+    //   .querySelector(`.target-${value.data.id}`)
+    //   .classList
+
+    console.log(
+      hasClass(`.target-${value.data.id}`, "before:!border-purple-600")
+    );
+    console.log("kkkk");
+    document
+      .querySelector(`.target-${value.data.id}`)
+      .classList.add("before:!border-purple-600");
+
     setPosition({
-      left: data.event.pageX + 10,
-      top: data.event.pageY - 10
+      left: value.event.pageX + 10,
+      top: value.event.pageY - 10
     });
   };
 

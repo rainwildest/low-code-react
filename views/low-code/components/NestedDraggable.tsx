@@ -8,10 +8,6 @@ import { mergeClassName } from "lib/utils";
 import _ from "lodash";
 import testTags from "./test";
 
-const style: CSSProperties = {
-  border: "1px dashed rgba(209, 213, 219, 0.3)"
-};
-
 interface DragDataProps {
   id: string;
   name: string;
@@ -165,7 +161,7 @@ const NestedDraggable: FC<DragDataProps> = ({
 
   const insideClassName = isInside ? "!bg-indigo-100" : "";
   const upOutSideClassName =
-    "before:content-[''] before:absolute before:w-full before:h-full before:border before:left-0 before:top-0 before:border-dashed before:border-gray-300";
+    "before:content-[''] before:absolute before:w-full before:h-full before:border before:left-0 before:top-0 before:z-[-1] before:border-dashed before:border-gray-300";
 
   const $attr = {
     ...props?.attribute,
@@ -173,7 +169,7 @@ const NestedDraggable: FC<DragDataProps> = ({
       props?.attribute?.className || "",
       `cursor-grab ${insideClassName}`
     )}`,
-    style: _.assign(props?.attribute?.style || {}, { ...style, opacity })
+    style: props?.attribute?.style || {}
   };
 
   return (
@@ -198,11 +194,16 @@ const NestedDraggable: FC<DragDataProps> = ({
       />
 
       {/* style={{ ...style, opacity }} */}
-      <CurrentTag id={props.id} {...$attr}>
-        {props?.children?.map(item => (
-          <NestedDraggable {...item} key={item.id} />
-        ))}
-      </CurrentTag>
+      <div
+        className={`target-${props.id}
+        relative grid w-full h-full ${upOutSideClassName}`}
+      >
+        <CurrentTag id={props.id} {...$attr}>
+          {props?.children?.map(item => (
+            <NestedDraggable {...item} key={item.id} />
+          ))}
+        </CurrentTag>
+      </div>
 
       <div
         className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
