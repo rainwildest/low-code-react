@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, memo, WheelEvent } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { emitter } from "lib/utils";
+
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
@@ -21,6 +23,8 @@ const LowCode = observer(() => {
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
+  const [visible, setVisible] = useState(false);
 
   const [zoom, setZoom] = useState(0);
 
@@ -81,12 +85,6 @@ const LowCode = observer(() => {
     }
   };
 
-  const onDisabledWheel = (e: MouseEvent) => {
-    const event = e || (window.event as MouseEvent);
-
-    event.ctrlKey && event.preventDefault();
-  };
-
   const onInitDraggableContainer = (width: number, height: number) => {
     const { offsetWidth: controlWidth, offsetHeight: controlHeight } =
       controlRef.current;
@@ -116,6 +114,11 @@ const LowCode = observer(() => {
     setCanvasSize({ width, height });
   };
 
+  /**
+   * 添加选择边框或去除选择边框
+   * @param {boolean} isClear
+   * @returns void
+   */
   const onClassNameOperation = (isClear?: boolean) => {
     const selectors = selectorsRef.current;
 
@@ -140,51 +143,93 @@ const LowCode = observer(() => {
     selectors.prev = selectors.current;
   };
 
+  /**
+   *
+   */
+  const onDisabledWheel = (e: MouseEvent) => {
+    const event = e || (window.event as MouseEvent);
+
+    event.ctrlKey && event.preventDefault();
+  };
+
   const onDisabledContextmenu = (event: MouseEvent) => {
     event.preventDefault();
 
     onClassNameOperation(true);
   };
-
-  // const hasClass = (selector: string, target: string) => {
-  //   const node = document.querySelector(selector);
-  //   const classNames = node.getAttribute("class").split(" ");
-
-  //   return classNames.includes(target);
-  // };
+  /* ******************************* */
 
   const onContextMenu = (value: ContextMenuProps) => {
     selectorsRef.current.current = value.data.id;
 
     onClassNameOperation();
 
+    setVisible(true);
     setPosition({
       left: value.event.pageX + 10,
       top: value.event.pageY - 10
     });
   };
 
+  const onIsClear = () => {
+    const selectors = selectorsRef.current;
+
+    selectors.current = selectors.prev = null;
+  };
+
   const onSelected = (data: AnyProps) => {
     selectorsRef.current.current = data.id;
 
     onClassNameOperation();
+
+    setVisible(false);
   };
 
   useEffect(() => {
     onInitDraggableContainer(960, 800);
 
-    /**
-     * 禁止 ctr + wheel 事件放大缩小页面
-     */
-    document.addEventListener("mousewheel", onDisabledWheel, {
-      passive: false
+    const events = [
+      /**
+       * 禁止 ctr + wheel 事件放大缩小页面
+       */
+      {
+        name: "mousewheel",
+        function: onDisabledWheel,
+        options: { passive: false }
+      },
+      /**
+       * 禁止右键菜单
+       */
+      {
+        name: "contextmenu",
+        function: onDisabledContextmenu,
+        options: false
+      },
+      {
+        name: "click",
+        function: (e: MouseEvent) => {
+          e.stopPropagation();
+
+          setVisible(false);
+
+          onClassNameOperation(true);
+        },
+        options: false
+      }
+    ];
+
+    events.forEach(item => {
+      document.addEventListener(item.name, item.function, item.options);
     });
 
-    document.addEventListener("contextmenu", onDisabledContextmenu);
+    emitter.on("isClear", onIsClear);
 
     return () => {
-      document.removeEventListener("mousewheel", onDisabledWheel); // 销毁
-      document.removeEventListener("contextmenu", onDisabledContextmenu);
+      events.forEach(item => {
+        document.removeEventListener(item.name, item.function);
+      });
+
+      emitter.off("isClear", onIsClear);
     };
   }, []);
 
@@ -226,23 +271,30 @@ const LowCode = observer(() => {
               onSelected={onSelected}
             />
 
-            <section
-              ref={contextmenuRef}
-              className="w-24 rounded-lg shadow-lg overflow-hidden fixed"
-              style={{ left: `${position.left}px`, top: `${position.top}px` }}
-            >
-              {/* <Menu className="w-32" selectable={false} items={items} /> */}
-              <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
-                <span className="text-red-600  text-sm font-semibold tracking-widest">
-                  删 除
-                </span>
-              </div>
-              {/* <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
+            {visible && (
+              <section
+                ref={contextmenuRef}
+                className="w-32 rounded-md shadow-lg overflow-hidden fixed"
+                style={{ left: `${position.left}px`, top: `${position.top}px` }}
+              >
+                {/* <Menu className="w-32" selectable={false} items={items} /> */}
+                <div
+                  className="cursor-pointer flex items-center px-2 h-10 bg-gray-1000"
+                  onClick={() => {
+                    console.log("kk");
+                  }}
+                >
+                  <span className="text-red-600 inline-block rounded w-full text-sm font-semibold tracking-widest hover:bg-gray-200 px-2 py-1 transition ease-linear">
+                    删除
+                  </span>
+                </div>
+                {/* <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
                 <span className="text-red-600  text-sm font-semibold tracking-widest">
                   删 除
                 </span>
               </div> */}
-            </section>
+              </section>
+            )}
           </div>
 
           <AttributeArea

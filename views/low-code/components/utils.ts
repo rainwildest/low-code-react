@@ -358,20 +358,19 @@ class DragData {
 
       $index = index;
 
-      const subIndex = $original[index].children.findIndex(
+      const $children = $original[index].children;
+      const subIndex = $children.findIndex(
         (item: AnyProps) => item.id === target.id
       );
 
-      const childrenId = $original[index].children[subIndex]?.id;
+      const childrenId = $children[subIndex]?.id;
 
       /* 对比子集 id 与 新增数据的 id 是否一致 不一致则继续查找 */
       if (childrenId !== target.id) {
         const { data: $data } = this.inside(
           target,
-          $original[index].children,
-          update(positions, {
-            $splice: [[0, 1]]
-          })
+          $children,
+          update(positions, { $splice: [[0, 1]] })
         );
 
         $original[index] = { ...$original[index], children: $data };
@@ -413,11 +412,40 @@ class DragData {
     return { data: $original, index: $index };
   }
 
-  remove(target: AnyProps, original: Array<AnyProps>) {
-    const positions = target.__positions__;
+  remove(
+    target: AnyProps,
+    original: Array<AnyProps>,
+    positions?: Array<string> | null
+  ) {
+    const $positions = positions || target.__positions__;
     let $original = _.cloneDeep(original);
 
-    if (positions) {
+    if ($positions) {
+      const index = $original.findIndex(item => item.id === $positions[0]);
+
+      if (!~index) return [];
+
+      const $children = $original[index].children;
+      const subIndex = $children.findIndex(
+        (item: AnyProps) => item.id === target.id
+      );
+
+      const childrenId = $children[subIndex]?.id;
+
+      if (childrenId !== target.id) {
+        const $data = this.remove(
+          target,
+          $children,
+          update($positions, { $splice: [[0, 1]] })
+        );
+        $original[index].children = $data;
+
+        return $original;
+      }
+
+      $original[index].children = update($children, {
+        $splice: [[subIndex, 1]]
+      });
     } else {
       /* 当前 hover 的对象已经是顶层 */
       const index = $original.findIndex(item => item.id === target.id);

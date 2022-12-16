@@ -8,6 +8,7 @@ import { ItemTypes, tagsPosition } from "./ItemTypes";
 import NestedDraggable from "./NestedDraggable";
 // import { v4 as uuid } from "uuid";
 import DragData from "./utils";
+import { emitter } from "lib/utils";
 
 export interface ContainerState {
   cards: AnyProps[];
@@ -68,11 +69,11 @@ const DesignArea: FC<DesignAreaProps> = ({
 
   const onKeyDown = (value: KeyboardEvent) => {
     if (value.code === "Delete") {
-      console.log(selectorRef.current, schema);
-
       setSchema(schema => {
         return dragData.remove(selectorRef.current, schema);
       });
+
+      emitter.emit("isClear");
     }
   };
 
@@ -85,34 +86,8 @@ const DesignArea: FC<DesignAreaProps> = ({
   }, []);
 
   return (
-    // <DragDropContext
-    //   onDragEnd={val => {
-    //     console.log(val);
-    //   }}
-    // >
     <div ref={drop} style={style} className={`overflow-auto ${className}`}>
-      {/* <Droppable droppableId="DesignArea" isCombineEnabled={false}>
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>*/}
       {schema.map((card, index) => (
-        // <Draggable draggableId={card.id} index={index} key={card.id}>
-        //   {(provided, snapshot) => (
-        //     <div
-        //       className="relative"
-        //       ref={provided.innerRef}
-        //       {...provided.draggableProps}
-        //     >
-        //       <div
-        //         className="h-6 z-50 flex items-center justify-center bg-sky-400 px-2.5  absolute -top-0 -translate-y-full rounded-t-md"
-        //         {...provided.dragHandleProps}
-        //       >
-        //         <p className="text-xs  text-gray-100">拖动排序</p>
-        //       </div>
-        //       <div className=""></div>
-        //       <NestedDraggable key={card.id} {...card} />
-        //     </div>
-        //   )}
-        // </Draggable>
         <NestedDraggable
           key={card.id}
           {...card}
@@ -123,13 +98,7 @@ const DesignArea: FC<DesignAreaProps> = ({
       {isOver && canDrop ? (
         <div className="border-indigo-600 border border-solid"></div>
       ) : null}
-
-      {/* {provided.placeholder}
-            </div>
-          )}
-        </Droppable> */}
     </div>
-    // </DragDropContext>
   );
 };
 

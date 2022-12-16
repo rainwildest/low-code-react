@@ -1,5 +1,6 @@
 import type { CSSProperties, FC } from "react";
 import storage from "./storage";
+import { EventEmitter } from "events";
 
 export const UUID =
   (prefix = 0, i = 0) =>
@@ -82,4 +83,13 @@ export const setTheme = () => {
     document.documentElement.classList.remove("dark");
     document.documentElement.classList.add("light");
   }
+};
+
+export const emitter = new EventEmitter();
+
+export const hasClass = (selector: string, target: string) => {
+  const node = document.querySelector(selector);
+  const classNames = node.getAttribute("class").split(" ");
+
+  return classNames.includes(target);
 };

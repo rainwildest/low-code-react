@@ -228,15 +228,6 @@ const NestedDraggable: FC<DragDataProps> = ({
         }`}
       />
     </div>
-
-    // <div ref={drag} style={{ ...style, opacity }}>
-    //   {text} {id}
-    //   <div
-    //     ref={drop}
-    //     className="w-full h-24 border border-solid border-red-700"
-    //   ></div>
-    //   {isOver && canDrop ? <div className="border-indigo-600 border" /> : null}
-    // </div>
   );
 };
 
