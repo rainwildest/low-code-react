@@ -121,10 +121,10 @@ const LowCode = observer(() => {
    */
   const onClassNameOperation = (isClear?: boolean) => {
     const selectors = selectorsRef.current;
-
+    console.log(selectors);
     if (selectors.prev) {
       document
-        .querySelector(`.target-${selectors.prev}`)
+        .querySelector(`.target-${selectors.prev.id}`)
         .classList.remove("before:!border-purple-600");
 
       if (isClear) {
@@ -137,7 +137,7 @@ const LowCode = observer(() => {
     if (!selectors.current) return;
 
     document
-      .querySelector(`.target-${selectors.current}`)
+      .querySelector(`.target-${selectors.current.id}`)
       .classList.add("before:!border-purple-600");
 
     selectors.prev = selectors.current;
@@ -160,7 +160,7 @@ const LowCode = observer(() => {
   /* ******************************* */
 
   const onContextMenu = (value: ContextMenuProps) => {
-    selectorsRef.current.current = value.data.id;
+    selectorsRef.current.current = value.data;
 
     onClassNameOperation();
 
@@ -178,11 +178,15 @@ const LowCode = observer(() => {
   };
 
   const onSelected = (data: AnyProps) => {
-    selectorsRef.current.current = data.id;
+    selectorsRef.current.current = data;
 
     onClassNameOperation();
 
     setVisible(false);
+  };
+
+  const onMenuDelete = () => {
+    emitter.emit("delete", selectorsRef.current.current);
   };
 
   useEffect(() => {
@@ -274,17 +278,15 @@ const LowCode = observer(() => {
             {visible && (
               <section
                 ref={contextmenuRef}
-                className="w-32 rounded-md shadow-lg overflow-hidden fixed"
+                className="w-32 rounded-md shadow-md overflow-hidden fixed"
                 style={{ left: `${position.left}px`, top: `${position.top}px` }}
               >
                 {/* <Menu className="w-32" selectable={false} items={items} /> */}
                 <div
-                  className="cursor-pointer flex items-center px-2 h-10 bg-gray-1000"
-                  onClick={() => {
-                    console.log("kk");
-                  }}
+                  className="hover:bg-gray-200 transition ease-linear cursor-pointer flex items-center px-2 h-10 bg-gray-1000"
+                  onClick={onMenuDelete}
                 >
-                  <span className="text-red-600 inline-block rounded w-full text-sm font-semibold tracking-widest hover:bg-gray-200 px-2 py-1 transition ease-linear">
+                  <span className="text-red-600 inline-block rounded w-full text-sm font-semibold tracking-widest px-2 py-1">
                     删除
                   </span>
                 </div>

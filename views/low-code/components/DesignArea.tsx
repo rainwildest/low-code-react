@@ -77,11 +77,20 @@ const DesignArea: FC<DesignAreaProps> = ({
     }
   };
 
+  const onMenuDelete = (value: AnyProps) => {
+    setSchema(schema => dragData.remove(value, schema));
+
+    emitter.emit("isClear");
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
+    emitter.on("delete", onMenuDelete);
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
+
+      emitter.off("delete", onMenuDelete);
     };
   }, []);
 
