@@ -6,7 +6,7 @@ import { emitter } from "lib/utils";
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
-import { Layout } from "components";
+import { Icon, Layout } from "components";
 
 import { observer } from "mobx-react";
 
@@ -143,9 +143,6 @@ const LowCode = observer(() => {
     selectors.prev = selectors.current;
   };
 
-  /**
-   *
-   */
   const onDisabledWheel = (e: MouseEvent) => {
     const event = e || (window.event as MouseEvent);
 
@@ -283,10 +280,14 @@ const LowCode = observer(() => {
               >
                 {/* <Menu className="w-32" selectable={false} items={items} /> */}
                 <div
-                  className="hover:bg-gray-200 transition ease-linear cursor-pointer flex items-center px-2 h-10 bg-gray-1000"
+                  className="transition ease-linear cursor-pointer flex items-center px-2 h-10 bg-gray-1000 dark:bg-purple-1000 hover:bg-red-50 dark:hover:bg-purple-1300"
                   onClick={onMenuDelete}
                 >
-                  <span className="text-red-600 inline-block rounded w-full text-sm font-semibold tracking-widest px-2 py-1">
+                  <Icon
+                    name="trash"
+                    className="dark:text-purple-1200 text-gray-1200 w-5 h-5"
+                  />
+                  <span className="text-red-600 dark:text-purple-1200 inline-block rounded w-full text-sm font-semibold tracking-widest px-2 py-1">
                     删除
                   </span>
                 </div>

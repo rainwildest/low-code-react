@@ -32,7 +32,9 @@ const Icon: React.FC<IconProps> = ({
     style,
     onClick,
     src: url,
-    className: `inline-block ${width ?? "w-4"} ${height ?? "h-4"}`,
+    className: `inline-block flex-shrink-0 ${width ?? "w-4"} ${
+      height ?? "h-4"
+    }`,
     beforeInjection: (svg: AnyProps) => {
       let iconClass = !name ? "text-gray-300" : "";
       iconClass = mergeClassName(
