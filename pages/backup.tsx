@@ -132,10 +132,10 @@ const Blog = () => {
             </div>
           ))}
         </main> */}
-        <div className="w-20 h-20 border border-solid border-sky-600 absolute">
+        <div className="absolute h-20 w-20 border border-solid border-sky-600">
           8
         </div>
-        <div className="w-20 h-20 border border-solid border-sky-600 absolute">
+        <div className="absolute h-20 w-20 border border-solid border-sky-600">
           8
         </div>
       </div>

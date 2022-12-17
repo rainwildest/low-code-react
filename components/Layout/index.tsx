@@ -12,7 +12,7 @@ const Layout = observer(({ children }) => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col overflow-hidden bg-gray-1000 dark:bg-purple-1000">
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-gray-1000 dark:bg-purple-1000">
       {/* 头部 */}
       <header className="h-16 bg-gray-1000 dark:bg-purple-1000">
         {JSON.stringify(useThemeStore.isDark)}
@@ -22,7 +22,7 @@ const Layout = observer(({ children }) => {
       </header>
       <section className="flex h-full w-full">
         {/* 导航栏 */}
-        <aside className="h-ful w-16 relative z-50 bg-gray-1000 dark:bg-purple-1000"></aside>
+        <aside className="relative z-50 h-full w-16 bg-gray-1000 dark:bg-purple-1000"></aside>
 
         <main className="h-full w-full">{children}</main>
       </section>

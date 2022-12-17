@@ -1,15 +1,54 @@
-// @import "tailwindcss/base";
+@import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 :root {
+  --gray-1100: #f9fbfd;
+  --gray-1200: #111520;
+
+  --collapse-header-text-color: var(--gray-1200);
+  --collapse-bg-color: var(--gray-1100);
   --bg-line: url(/assets/bg-line-01.svg);
 }
 
 html.dark {
+  --purple-1100: #3b3854;
+  --purple-1200: #eeecff;
+
+  --collapse-header-text-color: var(--purple-1200);
+  --collapse-bg-color: var(--purple-1100);
   --bg-line: url(/assets/bg-line-02.svg);
 }
 
 .bg-container {
   background-image: var(--bg-line);
+}
+
+[data-theme="compact"]
+  .site-collapse-custom-collapse
+  .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: var(--collapse-bg-color);
+  border: 0 !important;
+  border-radius: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+    border-radius: 8px;
+  }
+}
+
+.site-collapse-custom-collapse {
+  background-color: transparent;
+
+  .ant-collapse-header-text {
+    color: var(--collapse-header-text-color);
+    font-weight: 600;
+  }
+
+  .ant-collapse-expand-icon svg {
+    color: var(--collapse-header-text-color);
+  }
 }

@@ -112,17 +112,17 @@ const ControlArea: FC<ControlProps> = forwardRef(
 
     return (
       <div
-        className={`w-64 h-full overflow-auto absolute left-0 top-0 z-20 ${className}`}
+        className={`absolute left-0 top-0 z-20 h-full w-72 overflow-auto ${className}`}
         ref={nodeRef}
       >
         {tags.map((item, index) => (
           <section
-            className={`bg-gray-1100 dark:bg-purple-1100 px-4 rounded-lg py-4 ${
+            className={`rounded-lg bg-gray-1100 px-4 py-4 dark:bg-purple-1100 ${
               index ? "mt-8" : ""
             }`}
             key={item.title}
           >
-            <div className="pb-3 text-gray-1200 dark:text-purple-1200 text-base font-semibold">
+            <div className="pb-3 text-base font-semibold text-gray-1200 dark:text-purple-1200">
               {item.title}
             </div>
 

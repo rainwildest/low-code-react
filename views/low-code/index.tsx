@@ -213,7 +213,7 @@ const LowCode = observer(() => {
 
           setVisible(false);
 
-          onClassNameOperation(true);
+          if (selectorsRef.current.current) onClassNameOperation(true);
         },
         options: false
       }
@@ -245,17 +245,17 @@ const LowCode = observer(() => {
               </Button>
             </div> */}
 
-        <section className="h-full relative flex overflow-hidden">
+        <section className="relative flex h-full overflow-hidden">
           {/* 控件区 */}
           <ControlArea
             ref={controlRef}
-            className="bg-gray-1000 pr-5 dark:bg-purple-1000 shadow-lg"
+            className="bg-gray-1000 pr-5 shadow-lg dark:bg-purple-1000"
           />
 
           {/* 拖拽区 */}
           <div
             ref={draggableRef}
-            className="w-full relative bg-container"
+            className="bg-container relative w-full"
             onWheel={onWheel}
           >
             <DesignArea
@@ -267,7 +267,7 @@ const LowCode = observer(() => {
                 transform: `scale(${zoom}) translate(-50%, -50%)`,
                 transformOrigin: "0 0"
               }}
-              className="p-5 bg-white absolute transition-all duration-150 ease-linear"
+              className="absolute bg-white p-5 transition-all duration-150 ease-linear"
               onContextMenu={onContextMenu}
               onSelected={onSelected}
             />
@@ -275,19 +275,19 @@ const LowCode = observer(() => {
             {visible && (
               <section
                 ref={contextmenuRef}
-                className="w-32 rounded-md shadow-md overflow-hidden fixed"
+                className="fixed w-36 overflow-hidden rounded-md shadow-md"
                 style={{ left: `${position.left}px`, top: `${position.top}px` }}
               >
                 {/* <Menu className="w-32" selectable={false} items={items} /> */}
                 <div
-                  className="transition ease-linear cursor-pointer flex items-center px-2 h-10 bg-gray-1000 dark:bg-purple-1000 hover:bg-red-50 dark:hover:bg-purple-1300"
+                  className="flex h-10 cursor-pointer items-center bg-gray-1000 px-3 transition ease-linear hover:bg-red-50 dark:bg-purple-1000 dark:hover:bg-purple-1300"
                   onClick={onMenuDelete}
                 >
                   <Icon
                     name="trash"
-                    className="dark:text-purple-1200 text-gray-1200 w-5 h-5"
+                    className="h-5 w-5 text-gray-1200 dark:text-purple-1200"
                   />
-                  <span className="text-red-600 dark:text-purple-1200 inline-block rounded w-full text-sm font-semibold tracking-widest px-2 py-1">
+                  <span className="inline-block w-full rounded px-2 py-1 text-sm font-semibold tracking-widest text-red-600 dark:text-purple-1200">
                     删除
                   </span>
                 </div>
@@ -302,7 +302,7 @@ const LowCode = observer(() => {
 
           <AttributeArea
             ref={attributeRef}
-            className="bg-gray-1000 dark:bg-purple-1000 shadow-lg"
+            className="bg-gray-1000 shadow-lg dark:bg-purple-1000"
           />
         </section>
       </DndProvider>

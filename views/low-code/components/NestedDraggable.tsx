@@ -200,7 +200,7 @@ const NestedDraggable: FC<DragDataProps> = ({
       onContextMenu={onItemContextMenu}
     >
       <div
-        className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
+        className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${
           isUpOutside ? "h-2" : "h-0"
         }`}
       />
@@ -208,7 +208,7 @@ const NestedDraggable: FC<DragDataProps> = ({
       {/* style={{ ...style, opacity }} */}
       <div
         className={`target-${props.id}
-        relative grid w-full h-full ${upOutSideClassName}`}
+        relative grid h-full w-full ${upOutSideClassName}`}
       >
         <CurrentTag id={props.id} {...$attr}>
           {props?.children?.map(item => (
@@ -223,7 +223,7 @@ const NestedDraggable: FC<DragDataProps> = ({
       </div>
 
       <div
-        className={`bg-sky-100 rounded-sm transition-all duration-200 ease-linear ${
+        className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${
           isDownOutside ? "h-2" : "h-0"
         }`}
       />

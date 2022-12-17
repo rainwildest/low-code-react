@@ -113,7 +113,7 @@ const Layout = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className="border border-solid border-red-800 !h-60 !w-60"
+                            className="!h-60 !w-60 border border-solid border-red-800"
                           >
                             sdfsd
                           </div>

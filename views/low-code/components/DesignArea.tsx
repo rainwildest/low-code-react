@@ -105,7 +105,7 @@ const DesignArea: FC<DesignAreaProps> = ({
         />
       ))}
       {isOver && canDrop ? (
-        <div className="border-indigo-600 border border-solid"></div>
+        <div className="border border-solid border-indigo-600"></div>
       ) : null}
     </div>
   );
