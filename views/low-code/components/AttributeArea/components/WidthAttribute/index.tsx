@@ -1,22 +1,23 @@
 import { FC, ForwardedRef, LegacyRef, useState } from "react";
 import { memo, forwardRef, Fragment } from "react";
-import { Input, Select, Collapse } from "antd";
+import { Input, Select } from "antd";
 
 type WidthAttributeProps = {
   ref?: LegacyRef<HTMLElement>;
   className?: string;
+
+  callback?: (value: AnyProps) => void;
 };
-const { Panel } = Collapse;
 
 const WidthAttribute: FC<WidthAttributeProps> = forwardRef(
-  ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
+  ({ className, callback }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     const [test, setTest] = useState("");
 
     return (
       <Fragment>
         <div className="pb-5">
           <span className="inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-            width className：
+            Width ClassName：
           </span>
           <Select
             showSearch
@@ -47,14 +48,16 @@ const WidthAttribute: FC<WidthAttributeProps> = forwardRef(
         </div>
         <div className="">
           <span className="inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-            自定义 width：
+            自定义 Width：
           </span>
           <Input
+            allowClear
             placeholder="0px"
             value={test}
             onChange={val => {
               setTest(val.target.value);
               console.log(val.target.value);
+              callback && callback({});
             }}
           />
         </div>

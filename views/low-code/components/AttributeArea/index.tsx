@@ -4,7 +4,7 @@ import { tagsName } from "../ItemTypes";
 import { Icon } from "components";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
-import { WidthAttribute, HeightAttribute } from "./components";
+import { WidthAttribute, HeightAttribute, LayoutAttribute } from "./components";
 
 type AttributeProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -17,12 +17,18 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
   ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     const [test, setTest] = useState("");
 
+    const attributeComponents = [
+      { name: "Layout 属性", key: "layout", component: LayoutAttribute },
+      { name: "Width 属性", key: "width", component: WidthAttribute },
+      { name: "Height 属性", key: "height", component: HeightAttribute }
+    ];
+
     return (
       <section
-        className={`absolute right-0 top-0 h-full w-72 p-2.5 ${className} ${test}`}
+        className={`absolute right-0 top-0 h-full w-72 p-2.5 flex flex-col ${className} ${test}`}
         ref={nodeRef}
       >
-        <div className="flex items-center justify-center pb-6">
+        <div className="flex items-center justify-center pb-5">
           <Icon name="tailwindcss" className="h-10 w-10 text-sky-400" />
           <span className="pl-2.5 text-2xl font-semibold text-gray-1200 dark:text-purple-1200">
             tailwindcss
@@ -32,34 +38,40 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
           </span>
         </div>
 
-        <Collapse
-          accordion
-          bordered={false}
-          defaultActiveKey={["1"]}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined
-              className="text-gray-1200 dark:text-purple-1200"
-              rotate={isActive ? 90 : 0}
-            />
-          )}
-          className="site-collapse-custom-collapse"
-        >
-          <Panel
-            header="width 属性"
-            key="1"
-            className="site-collapse-custom-panel"
+        <div className="flex-1 overflow-auto rounded-lg">
+          <Collapse
+            accordion
+            bordered={false}
+            defaultActiveKey={[attributeComponents[0].key]}
+            expandIcon={({ isActive }) => (
+              <CaretRightOutlined
+                className="text-gray-1200 dark:text-purple-1200"
+                rotate={isActive ? 90 : 0}
+              />
+            )}
+            className="site-collapse-custom-collapse"
           >
-            <WidthAttribute />
-          </Panel>
+            {attributeComponents.map(item => {
+              const Attribute = item.component;
 
-          <Panel
-            header="height 属性"
-            key="2"
-            className="site-collapse-custom-panel"
-          >
-            <HeightAttribute />
-          </Panel>
-        </Collapse>
+              return (
+                Attribute && (
+                  <Panel
+                    key={item.key}
+                    header={item.name}
+                    className="site-collapse-custom-panel"
+                  >
+                    <Attribute
+                      callback={val => {
+                        console.log(val);
+                      }}
+                    />
+                  </Panel>
+                )
+              );
+            })}
+          </Collapse>
+        </div>
       </section>
     );
   }
