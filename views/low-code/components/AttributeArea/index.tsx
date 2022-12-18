@@ -4,12 +4,7 @@ import { tagsName } from "../ItemTypes";
 import { Icon } from "components";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
-import {
-  Attribute,
-  WidthAttribute,
-  HeightAttribute,
-  LayoutAttribute
-} from "./components";
+import { Attribute } from "./components";
 
 type AttributeProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -20,8 +15,6 @@ const { Panel } = Collapse;
 
 const AttributeArea: FC<AttributeProps> = forwardRef(
   ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
-    const [test, setTest] = useState("");
-
     const attributes = [
       {
         header: "Width 属性",
@@ -41,7 +34,7 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
 
     return (
       <section
-        className={`absolute right-0 top-0 flex h-full w-72 flex-col p-2.5 ${className} ${test}`}
+        className={`absolute right-0 top-0 flex h-full w-72 flex-col p-2.5 ${className}`}
         ref={nodeRef}
       >
         <div className="flex items-center justify-center pb-5">
