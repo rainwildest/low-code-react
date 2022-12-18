@@ -4,7 +4,7 @@ import { tagsName } from "../ItemTypes";
 import { Icon } from "components";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
-import { Attribute } from "./components";
+import { attributeItems, Attribute } from "./components";
 
 type AttributeProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -15,22 +15,7 @@ const { Panel } = Collapse;
 
 const AttributeArea: FC<AttributeProps> = forwardRef(
   ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
-    const attributes = [
-      {
-        header: "Width 属性",
-        title: "Width ClassName：",
-        type: "width",
-        hasCustom: true,
-        placeholder: "0px"
-      },
-      {
-        header: "Height 属性",
-        title: "Height ClassName：",
-        type: "height",
-        hasCustom: true,
-        placeholder: "0px"
-      }
-    ];
+    const attributes = attributeItems;
 
     return (
       <section
@@ -69,8 +54,10 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
                 <Attribute
                   title={attr.title}
                   type={attr.type}
+                  options={attr?.options || []}
                   hasCustom={attr?.hasCustom}
-                  placeholder={attr?.placeholder}
+                  inputPlaceholder={attr?.inputPlaceholder}
+                  selectPlaceholder={attr?.selectPlaceholder}
                 />
               </Panel>
             ))}

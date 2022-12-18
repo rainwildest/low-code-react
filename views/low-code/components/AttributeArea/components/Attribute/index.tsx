@@ -3,64 +3,71 @@ import { memo, forwardRef, Fragment } from "react";
 import { Input, Select } from "antd";
 import _ from "lodash";
 
+const { Option } = Select;
 type WidthAttributeProps = {
   ref?: LegacyRef<HTMLElement>;
 
   title?: string;
   type?: string;
+  options: Array<AnyProps>;
   hasCustom?: boolean;
-  placeholder?: string;
+  selectPlaceholder?: string;
+  inputPlaceholder?: string;
   callback?: (value: AnyProps) => void;
 };
 
 const Attribute: FC<WidthAttributeProps> = forwardRef(
   (
-    { type, title, hasCustom = false, placeholder = "", callback },
+    {
+      type,
+      title,
+      options,
+      hasCustom = false,
+      inputPlaceholder = "",
+      selectPlaceholder = "",
+      callback
+    },
     nodeRef: ForwardedRef<HTMLDivElement>
   ) => {
     const [test, setTest] = useState("");
-
+    const onSelectedChange = (val: string) => {
+      setTest(test);
+    };
     return (
       <Fragment>
         <div className={hasCustom ? "pb-5" : ""}>
-          <span className="inline-block max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
+          <span className="inline-block pointer-events-none max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
             {title}
           </span>
           <Select
             showSearch
             allowClear
             className="block"
-            placeholder="Select a person"
-            optionFilterProp="children"
-            // onChange={onChange}
-            // onSearch={onSearch}
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-            }
-            options={[
-              {
-                value: "jack",
-                label: "Jack"
-              },
-              {
-                value: "lucy",
-                label: "Lucy"
-              },
-              {
-                value: "tom",
-                label: "Tom"
-              }
-            ]}
-          />
+            optionLabelProp="value"
+            placeholder={selectPlaceholder}
+            onChange={onSelectedChange}
+          >
+            {options.map(option => (
+              <Option value={option.value} label={option.label}>
+                <div className="">
+                  {option.value && (
+                    <span className="pr-2.5">{option.label}</span>
+                  )}
+
+                  {!option.value && "请选择"}
+                </div>
+              </Option>
+            ))}
+          </Select>
         </div>
         {hasCustom && (
           <div className="">
-            <span className="inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
+            <span className="inline-block pointer-events-none pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
               自定义 {_.capitalize(type)}：
             </span>
             <Input
               allowClear
-              placeholder={placeholder}
+              placeholder={inputPlaceholder}
               value={test}
               onChange={val => {
                 setTest(val.target.value);
