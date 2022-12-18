@@ -1,5 +1,6 @@
 import WidthAttribute from "./WidthAttribute";
 import HeightAttribute from "./HeightAttribute";
 import LayoutAttribute from "./LayoutAttribute";
+import Attribute from "./Attribute";
 
-export { WidthAttribute, HeightAttribute, LayoutAttribute };
+export { Attribute, WidthAttribute, HeightAttribute, LayoutAttribute };

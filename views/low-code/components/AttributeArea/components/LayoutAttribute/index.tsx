@@ -29,7 +29,7 @@ const WidthAttribute: FC<WidthAttributeProps> = forwardRef(
           return (
             <section className={index ? "pt-5" : ""}>
               <div className={index && layout.custom ? "pb-5" : ""}>
-                <span className="inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200 truncate">
+                <span className="inline-block truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
                   {layout.name}
                 </span>
                 <Select

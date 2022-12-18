@@ -4,7 +4,12 @@ import { tagsName } from "../ItemTypes";
 import { Icon } from "components";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
-import { WidthAttribute, HeightAttribute, LayoutAttribute } from "./components";
+import {
+  Attribute,
+  WidthAttribute,
+  HeightAttribute,
+  LayoutAttribute
+} from "./components";
 
 type AttributeProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -17,15 +22,26 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
   ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     const [test, setTest] = useState("");
 
-    const attributeComponents = [
-      { name: "Layout 属性", key: "layout", component: LayoutAttribute },
-      { name: "Width 属性", key: "width", component: WidthAttribute },
-      { name: "Height 属性", key: "height", component: HeightAttribute }
+    const attributes = [
+      {
+        header: "Width 属性",
+        title: "Width ClassName：",
+        type: "width",
+        hasCustom: true,
+        placeholder: "0px"
+      },
+      {
+        header: "Height 属性",
+        title: "Height ClassName：",
+        type: "height",
+        hasCustom: true,
+        placeholder: "0px"
+      }
     ];
 
     return (
       <section
-        className={`absolute right-0 top-0 h-full w-72 p-2.5 flex flex-col ${className} ${test}`}
+        className={`absolute right-0 top-0 flex h-full w-72 flex-col p-2.5 ${className} ${test}`}
         ref={nodeRef}
       >
         <div className="flex items-center justify-center pb-5">
@@ -42,7 +58,7 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
           <Collapse
             accordion
             bordered={false}
-            defaultActiveKey={[attributeComponents[0].key]}
+            defaultActiveKey={[attributes[0].type]}
             expandIcon={({ isActive }) => (
               <CaretRightOutlined
                 className="text-gray-1200 dark:text-purple-1200"
@@ -51,25 +67,20 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
             )}
             className="site-collapse-custom-collapse"
           >
-            {attributeComponents.map(item => {
-              const Attribute = item.component;
-
-              return (
-                Attribute && (
-                  <Panel
-                    key={item.key}
-                    header={item.name}
-                    className="site-collapse-custom-panel"
-                  >
-                    <Attribute
-                      callback={val => {
-                        console.log(val);
-                      }}
-                    />
-                  </Panel>
-                )
-              );
-            })}
+            {attributes.map(attr => (
+              <Panel
+                key={attr.type}
+                header={attr.header}
+                className="site-collapse-custom-panel"
+              >
+                <Attribute
+                  title={attr.title}
+                  type={attr.type}
+                  hasCustom={attr?.hasCustom}
+                  placeholder={attr?.placeholder}
+                />
+              </Panel>
+            ))}
           </Collapse>
         </div>
       </section>
