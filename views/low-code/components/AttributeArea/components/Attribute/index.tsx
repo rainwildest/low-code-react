@@ -1,6 +1,7 @@
 import { FC, ForwardedRef, LegacyRef, useState } from "react";
 import { memo, forwardRef, Fragment } from "react";
 import { Input, Select } from "antd";
+import _ from "lodash";
 
 type WidthAttributeProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -55,7 +56,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
         {hasCustom && (
           <div className="">
             <span className="inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-              自定义 {type}：
+              自定义 {_.capitalize(type)}：
             </span>
             <Input
               allowClear
