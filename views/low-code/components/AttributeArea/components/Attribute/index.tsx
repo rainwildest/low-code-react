@@ -31,12 +31,13 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
   ) => {
     const [test, setTest] = useState("");
     const onSelectedChange = (val: string) => {
-      setTest(test);
+      setTest(val);
     };
+
     return (
       <Fragment>
         <div className={hasCustom ? "pb-5" : ""}>
-          <span className="inline-block pointer-events-none max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
+          <span className="pointer-events-none inline-block max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
             {title}
           </span>
           <Select
@@ -44,14 +45,21 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
             allowClear
             className="block"
             optionLabelProp="value"
+            optionFilterProp="label"
             placeholder={selectPlaceholder}
             onChange={onSelectedChange}
           >
             {options.map(option => (
-              <Option value={option.value} label={option.label}>
+              <Option
+                value={option.value}
+                label={option.label}
+                key={option.label}
+              >
                 <div className="">
-                  {option.value && (
-                    <span className="pr-2.5">{option.label}</span>
+                  {!!option.value && (
+                    <span className="inline-block max-w-full truncate pr-2.5">
+                      {option.label}
+                    </span>
                   )}
 
                   {!option.value && "请选择"}
@@ -62,7 +70,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
         </div>
         {hasCustom && (
           <div className="">
-            <span className="inline-block pointer-events-none pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
+            <span className="pointer-events-none inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
               自定义 {_.capitalize(type)}：
             </span>
             <Input

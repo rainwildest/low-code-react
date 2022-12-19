@@ -16,7 +16,7 @@
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api",
     "prisma-init": "npx prisma migrate dev --name init",
     "prisma-seed": "prisma db seed",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,vue}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,vue,cjs}\"",
     "lint": "eslint ./**/*.{js,ts,tsx} --quiet --fix"
   },
   "dependencies": {

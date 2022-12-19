@@ -150,7 +150,7 @@ const LowCode = observer(() => {
   };
 
   const onDisabledContextmenu = (event: MouseEvent) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     onClassNameOperation(true);
   };
