@@ -6,8 +6,9 @@ type ContextMenuProps = {
 };
 
 type AttributeOptionsProps = {
-  value: undefined | null | string;
-  label: undefined | null | string;
+  value?: undefined | null | string;
+  label?: undefined | null | string;
+  options?: Array<AttributeOptionsProps>;
 };
 
 type AttributeProps = {

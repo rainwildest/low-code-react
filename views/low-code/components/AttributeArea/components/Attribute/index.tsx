@@ -48,8 +48,9 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
             optionFilterProp="label"
             placeholder={selectPlaceholder}
             onChange={onSelectedChange}
+            options={options}
           >
-            {options.map(option => (
+            {/* {options.map(option => (
               <Option
                 value={option.value}
                 label={option.label}
@@ -65,7 +66,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
                   {!option.value && "请选择"}
                 </div>
               </Option>
-            ))}
+            ))} */}
           </Select>
         </div>
         {hasCustom && (

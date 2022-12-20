@@ -2,7 +2,7 @@ import Attribute from "./Attribute";
 
 export { Attribute };
 
-const init = [{ value: undefined, label: null }];
+const init = [{ value: null, label: "请选择" }];
 
 export const attributeItems: Array<AttributeProps> = [
   {
@@ -184,59 +184,69 @@ export const attributeItems: Array<AttributeProps> = [
     options: [
       ...init,
       {
-        value: "inset-0",
-        label: "top: 0px; right: 0px; bottom: 0px; left: 0px;"
+        label: "0px",
+        options: [
+          {
+            value: "inset-0",
+            label: "top: 0px; right: 0px; bottom: 0px; left: 0px;"
+          },
+          { value: "inset-x-0", label: "left: 0px; right: 0px;" },
+          { value: "inset-y-0", label: "top: 0px; bottom: 0px;" },
+          { value: "top-0", label: "top: 0px;" },
+          { value: "right-0", label: "right: 0px;" },
+          { value: "bottom-0", label: "bottom: 0px;" },
+          { value: "left-0", label: "	left: 0px;" }
+        ]
       },
       {
-        value: "inset-x-0",
-        label: "left: 0px; right: 0px;"
+        label: "1px",
+        options: [
+          {
+            value: "inset-px",
+            label: "top: 1px; right: 1px; bottom: 1px; left: 1px;"
+          },
+          { value: "inset-x-px", label: "left: 1px; right: 1px;" },
+          { value: "inset-y-px", label: "top: 1px; bottom: 1px;" },
+          { value: "top-px", label: "top: 1px;" },
+          { value: "right-px", label: "right: 1px;" },
+          { value: "bottom-px", label: "bottom: 1px;" },
+          { value: "left-px", label: "left: 1px;" }
+        ]
       },
       {
-        value: "inset-y-0",
-        label: "top: 0px; bottom: 0px;"
+        label: "2px",
+        options: [
+          {
+            value: "inset-0.5",
+            label:
+              "top: 0.125rem; right: 0.125rem; bottom: 0.125rem; left: 0.125rem;"
+          },
+          { value: "inset-x-0.5", label: "left: 0.125rem; right: 0.125rem;" },
+          { value: "inset-y-0.5", label: "top: 0.125rem; bottom: 0.125rem;" },
+          { value: "top-0.5", label: "top: 0.125rem;" },
+          { value: "right-0.5", label: "right: 0.125rem;" },
+          { value: "bottom-0.5", label: "bottom: 0.125rem;" },
+          { value: "left-0.5", label: "left: 0.125rem;" }
+        ]
+      },
+      {
+        label: "4px",
+        options: [
+          {
+            value: "inset-1",
+            label:
+              "top: 0.25rem; right: 0.25rem; bottom: 0.25rem; left: 0.25rem;"
+          },
+          { value: "inset-x-1", label: "left: 0.25rem; right: 0.25rem;" },
+          { value: "inset-y-1", label: "top: 0.25rem; bottom: 0.25rem;" },
+          { value: "top-1", label: "top: 0.25rem;" },
+          { value: "right-1", label: "right: 0.25rem;" },
+          { value: "bottom-1", label: "bottom: 0.25rem;" },
+          { value: "left-1", label: "left: 0.25rem;" }
+        ]
       }
     ]
 
-    // top-0	top: 0px;
-    // right-0	right: 0px;
-    // bottom-0	bottom: 0px;
-    // left-0	left: 0px;
-    // inset-px	top: 1px;
-    // right: 1px;
-    // bottom: 1px;
-    // left: 1px;
-    // inset-x-px	left: 1px;
-    // right: 1px;
-    // inset-y-px	top: 1px;
-    // bottom: 1px;
-    // top-px	top: 1px;
-    // right-px	right: 1px;
-    // bottom-px	bottom: 1px;
-    // left-px	left: 1px;
-    // inset-0.5	top: 0.125rem; /* 2px */
-    // right: 0.125rem; /* 2px */
-    // bottom: 0.125rem; /* 2px */
-    // left: 0.125rem; /* 2px */
-    // inset-x-0.5	left: 0.125rem; /* 2px */
-    // right: 0.125rem; /* 2px */
-    // inset-y-0.5	top: 0.125rem; /* 2px */
-    // bottom: 0.125rem; /* 2px */
-    // top-0.5	top: 0.125rem; /* 2px */
-    // right-0.5	right: 0.125rem; /* 2px */
-    // bottom-0.5	bottom: 0.125rem; /* 2px */
-    // left-0.5	left: 0.125rem; /* 2px */
-    // inset-1	top: 0.25rem; /* 4px */
-    // right: 0.25rem; /* 4px */
-    // bottom: 0.25rem; /* 4px */
-    // left: 0.25rem; /* 4px */
-    // inset-x-1	left: 0.25rem; /* 4px */
-    // right: 0.25rem; /* 4px */
-    // inset-y-1	top: 0.25rem; /* 4px */
-    // bottom: 0.25rem; /* 4px */
-    // top-1	top: 0.25rem; /* 4px */
-    // right-1	right: 0.25rem; /* 4px */
-    // bottom-1	bottom: 0.25rem; /* 4px */
-    // left-1	left: 0.25rem; /* 4px */
     // inset-1.5	top: 0.375rem; /* 6px */
     // right: 0.375rem; /* 6px */
     // bottom: 0.375rem; /* 6px */
