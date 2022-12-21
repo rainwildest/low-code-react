@@ -244,61 +244,82 @@ export const attributeItems: Array<AttributeProps> = [
           { value: "bottom-1", label: "bottom: 0.25rem;" },
           { value: "left-1", label: "left: 0.25rem;" }
         ]
+      },
+      {
+        label: "6px",
+        options: [
+          {
+            value: "inset-1.5",
+            label:
+              "top: 0.375rem; right: 0.375rem; bottom: 0.375rem; left: 0.375rem;"
+          },
+          { value: "inset-x-1.5", label: "left: 0.375rem; right: 0.375rem;" },
+          { value: "inset-y-1.5", label: "top: 0.375rem; bottom: 0.375rem;" },
+          { value: "top-1.5", label: "top: 0.375rem;" },
+          { value: "right-1.5", label: "right: 0.375rem;" },
+          { value: "bottom-1.5", label: "bottom: 0.375rem;" },
+          { value: "left-1.5", label: "left: 0.375rem;" }
+        ]
+      },
+      {
+        label: "8px",
+        options: [
+          {
+            value: "inset-2",
+            label: "top: 0.5rem; right: 0.5rem; bottom: 0.5rem; left: 0.5rem;"
+          },
+          { value: "inset-x-2", label: "left: 0.5rem; right: 0.5rem;" },
+          { value: "inset-y-2", label: "top: 0.5rem; bottom: 0.5rem;" },
+          { value: "top-2", label: "top: 0.5rem;" },
+          { value: "right-2", label: "right: 0.5rem;" },
+          { value: "bottom-2", label: "bottom: 0.5rem;" },
+          { value: "left-20", label: "left: 0.5rem;" }
+        ]
+      },
+      {
+        label: "10px",
+        options: [
+          {
+            value: "inset-2.5",
+            label:
+              "top: 0.625rem; right: 0.625rem; bottom: 0.625rem; left: 0.625rem;"
+          },
+          { value: "inset-x-2.5", label: "left: 0.625rem; right: 0.625rem;" },
+          { value: "inset-y-2.5", label: "top: 0.625rem; bottom: 0.625rem;" },
+          { value: "top-2.5", label: "top: 0.625rem;" },
+          { value: "right-2.5", label: "right: 0.625rem;" },
+          { value: "bottom-2.5", label: "bottom: 0.625rem;" },
+          { value: "left-2.5", label: "left: 0.625rem;" }
+        ]
+      },
+      {
+        label: "12px",
+        options: [
+          {
+            value: "inset-3",
+            label:
+              "top: 0.75rem; right: 0.75rem; bottom: 0.75rem; left: 0.75rem;"
+          },
+          { value: "inset-x-3", label: "left: 0.75rem; right: 0.75rem;" },
+          { value: "inset-y-3", label: "top: 0.75rem; bottom: 0.75rem;" },
+          { value: "top-3", label: "top: 0.75rem;" },
+          { value: "right-3", label: "right: 0.75rem;" },
+          { value: "bottom-3", label: "bottom: 0.75rem;" },
+          { value: "left-3", label: "left: 0.75rem;" }
+        ]
+      },
+      {
+        label: "14px",
+        options: [
+          {
+            value: "inset-3.5",
+            label:
+              "top: 0.875rem; right: 0.875rem; bottom: 0.875rem; left: 0.875rem;"
+          }
+        ]
       }
     ]
 
-    // inset-1.5	top: 0.375rem; /* 6px */
-    // right: 0.375rem; /* 6px */
-    // bottom: 0.375rem; /* 6px */
-    // left: 0.375rem; /* 6px */
-    // inset-x-1.5	left: 0.375rem; /* 6px */
-    // right: 0.375rem; /* 6px */
-    // inset-y-1.5	top: 0.375rem; /* 6px */
-    // bottom: 0.375rem; /* 6px */
-    // top-1.5	top: 0.375rem; /* 6px */
-    // right-1.5	right: 0.375rem; /* 6px */
-    // bottom-1.5	bottom: 0.375rem; /* 6px */
-    // left-1.5	left: 0.375rem; /* 6px */
-    // inset-2	top: 0.5rem; /* 8px */
-    // right: 0.5rem; /* 8px */
-    // bottom: 0.5rem; /* 8px */
-    // left: 0.5rem; /* 8px */
-    // inset-x-2	left: 0.5rem; /* 8px */
-    // right: 0.5rem; /* 8px */
-    // inset-y-2	top: 0.5rem; /* 8px */
-    // bottom: 0.5rem; /* 8px */
-    // top-2	top: 0.5rem; /* 8px */
-    // right-2	right: 0.5rem; /* 8px */
-    // bottom-2	bottom: 0.5rem; /* 8px */
-    // left-2	left: 0.5rem; /* 8px */
-    // inset-2.5	top: 0.625rem; /* 10px */
-    // right: 0.625rem; /* 10px */
-    // bottom: 0.625rem; /* 10px */
-    // left: 0.625rem; /* 10px */
-    // inset-x-2.5	left: 0.625rem; /* 10px */
-    // right: 0.625rem; /* 10px */
-    // inset-y-2.5	top: 0.625rem; /* 10px */
-    // bottom: 0.625rem; /* 10px */
-    // top-2.5	top: 0.625rem; /* 10px */
-    // right-2.5	right: 0.625rem; /* 10px */
-    // bottom-2.5	bottom: 0.625rem; /* 10px */
-    // left-2.5	left: 0.625rem; /* 10px */
-    // inset-3	top: 0.75rem; /* 12px */
-    // right: 0.75rem; /* 12px */
-    // bottom: 0.75rem; /* 12px */
-    // left: 0.75rem; /* 12px */
-    // inset-x-3	left: 0.75rem; /* 12px */
-    // right: 0.75rem; /* 12px */
-    // inset-y-3	top: 0.75rem; /* 12px */
-    // bottom: 0.75rem; /* 12px */
-    // top-3	top: 0.75rem; /* 12px */
-    // right-3	right: 0.75rem; /* 12px */
-    // bottom-3	bottom: 0.75rem; /* 12px */
-    // left-3	left: 0.75rem; /* 12px */
-    // inset-3.5	top: 0.875rem; /* 14px */
-    // right: 0.875rem; /* 14px */
-    // bottom: 0.875rem; /* 14px */
-    // left: 0.875rem; /* 14px */
     // inset-x-3.5	left: 0.875rem; /* 14px */
     // right: 0.875rem; /* 14px */
     // inset-y-3.5	top: 0.875rem; /* 14px */

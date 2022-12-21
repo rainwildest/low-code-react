@@ -10,9 +10,6 @@ import { Icon, Layout } from "components";
 
 import { observer } from "mobx-react";
 
-import type { MenuProps } from "antd";
-import { Button, Menu } from "antd";
-
 const LowCode = observer(() => {
   const controlRef = useRef<HTMLDivElement>(null);
   const attributeRef = useRef<HTMLDivElement>(null);
