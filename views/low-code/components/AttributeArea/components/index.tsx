@@ -987,6 +987,21 @@ export const attributeItems: Array<AttributeProps> = [
     ]
   },
   {
+    type: "flex",
+    header: "Flex 属性",
+    title: "Flex ClassName：",
+    selectPlaceholder: "flex: xxxx",
+    inputPlaceholder: "flex: xxxx",
+    hasCustom: true,
+    options: [
+      ...init,
+      { value: "flex-1", label: "flex: 1 1 0%;" },
+      { value: "flex-auto", label: "flex: 1 1 auto;" },
+      { value: "flex-initial", label: "flex: 0 1 auto;" },
+      { value: "flex-none", label: "flex: none;" }
+    ]
+  },
+  {
     type: "width",
     header: "Width 属性",
     title: "Width ClassName：",
