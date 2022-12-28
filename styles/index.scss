@@ -52,3 +52,9 @@ html.dark {
     color: var(--collapse-header-text-color);
   }
 }
+
+.rc-virtual-list-scrollbar-thumb {
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
