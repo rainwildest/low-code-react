@@ -72,7 +72,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
         {hasCustom && (
           <div className="">
             <span className="pointer-events-none inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-              自定义 {_.capitalize(type)}：
+              自定义 {type}：
             </span>
             <Input
               allowClear
