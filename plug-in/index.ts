@@ -10,14 +10,14 @@ const file = path.resolve(__dirname, "./file.json");
 
 try {
   fs.accessSync(file);
-  console.log("file does exist, clearing...");
+  console.log("file does exist, clearing...\n");
 
   // 文件存在则删除改文件
   fs.rmSync(file);
 
-  console.log("clear complete.");
+  console.log("clear complete.\n");
 } catch (err) {
-  console.error("File does not exist");
+  console.error("File does not exist.\n");
 }
 
 data.forEach(val => {
