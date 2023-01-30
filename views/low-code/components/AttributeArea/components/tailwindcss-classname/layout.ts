@@ -1,4 +1,4 @@
-const BoxSizing = {
+export const BoxSizing = {
   type: "box-sizing",
   header: "Box Sizing 属性",
   title: "Box Sizing ClassName：",
@@ -16,7 +16,7 @@ const BoxSizing = {
   ]
 };
 
-const Display = {
+export const Display = {
   type: "display",
   header: "Display 属性",
   title: "Display ClassName：",
@@ -77,7 +77,7 @@ const Display = {
   ]
 };
 
-const Floats = {
+export const Floats = {
   type: "float",
   header: "Float 属性",
   title: "Float ClassName：",
@@ -90,7 +90,7 @@ const Floats = {
   ]
 };
 
-const Clear = {
+export const Clear = {
   type: "clear",
   header: "Clear 属性",
   title: "Clear ClassName：",
@@ -104,7 +104,7 @@ const Clear = {
   ]
 };
 
-const ObjectFit = {
+export const ObjectFit = {
   type: "object-fit",
   header: "Object Fit 属性",
   title: "Object Fit ClassName：",
@@ -125,7 +125,7 @@ const ObjectFit = {
   ]
 };
 
-const ObjectPosition = {
+export const ObjectPosition = {
   type: "object-position",
   header: "Object Position 属性",
   title: "Object Position ClassName：",
@@ -168,7 +168,7 @@ const ObjectPosition = {
   ]
 };
 
-const Overflow = {
+export const Overflow = {
   type: "overflow",
   header: "Overflow 属性",
   title: "Overflow ClassName：",
@@ -232,7 +232,7 @@ const Overflow = {
   ]
 };
 
-const OverscrollBehavior = {
+export const OverscrollBehavior = {
   type: "overscroll-behavior",
   header: "Overscroll Behavior 属性",
   title: "Overscroll Behavior ClassName：",
@@ -278,7 +278,7 @@ const OverscrollBehavior = {
   ]
 };
 
-const Position = {
+export const Position = {
   type: "position",
   header: "Position 属性",
   title: "Position ClassName：",
@@ -293,7 +293,7 @@ const Position = {
   ]
 };
 
-const Inset = {
+export const Inset = {
   type: "inset",
   header: "Inset 属性",
   title: "Inset ClassName：",
@@ -1242,7 +1242,7 @@ const Inset = {
   ]
 };
 
-const Visibility = {
+export const Visibility = {
   type: "visibility",
   header: "Visibility 属性",
   title: "Visibility ClassName：",
@@ -1255,7 +1255,7 @@ const Visibility = {
   ]
 };
 
-const ZIndex = {
+export const ZIndex = {
   type: "z-index",
   header: "Z-Index 属性",
   title: "Z-Index ClassName：",
@@ -1271,19 +1271,4 @@ const ZIndex = {
     { value: "z-50", label: "『 z-50 』 z-index: 50;" },
     { value: "z-auto", label: "『 z-auto 』 z-index: auto;" }
   ]
-};
-
-export {
-  BoxSizing,
-  Display,
-  Floats,
-  Clear,
-  ObjectFit,
-  ObjectPosition,
-  Overflow,
-  OverscrollBehavior,
-  Position,
-  Inset,
-  Visibility,
-  ZIndex
 };
