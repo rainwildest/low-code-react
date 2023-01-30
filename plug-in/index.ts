@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import data from "./data";
 
-type AnyPros = { [key: string]: any };
+type AnyProps = { [key: string]: any };
 
-const format: AnyPros = [];
+const format: AnyProps = [];
 
 const file = path.resolve(__dirname, "./json/file.json");
 

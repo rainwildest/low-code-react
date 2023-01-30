@@ -3,3 +3,6 @@ src/generated/
 .next/
 prisma/migrations
 prisma/*.db
+
+plug-in/json
+plug-in/node_modules
