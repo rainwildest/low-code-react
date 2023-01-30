@@ -6,7 +6,7 @@ type AnyPros = { [key: string]: any };
 
 const format: AnyPros = [];
 
-const file = path.resolve(__dirname, "./file.json");
+const file = path.resolve(__dirname, "./json/file.json");
 
 try {
   fs.accessSync(file);
@@ -18,6 +18,14 @@ try {
   console.log("clear complete.\n");
 } catch (err) {
   console.error("File does not exist.\n");
+
+  const dir = path.resolve(__dirname, "./json");
+
+  try {
+    fs.accessSync(dir);
+  } catch (err) {
+    fs.mkdirSync(dir);
+  }
 }
 
 data.forEach(val => {
