@@ -1,4 +1,5 @@
 import Attribute from "./Attribute";
+import { Config } from "tailwindcss";
 
 export { Attribute };
 
