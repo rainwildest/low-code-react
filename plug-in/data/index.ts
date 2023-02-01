@@ -1,5 +1,7 @@
-const data = ["w-0	width: 0px;"];
-
+const data = [
+  "box-decoration-clone	box-decoration-break: clone;",
+  "box-decoration-slice	box-decoration-break: slice;"
+];
 // w-0	width: 0px;
 // w-px	width: 1px;
 // w-0.5	width: 0.125rem; /* 2px */

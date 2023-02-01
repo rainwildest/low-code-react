@@ -1,4 +1,4 @@
-export const FlexBasis = {
+export const FlexBasis: AttributeProps = {
   type: "flex-basis",
   header: "Flex Basis 属性",
   title: "Flex Basis ClassName：",
@@ -186,7 +186,7 @@ export const FlexBasis = {
   ]
 };
 
-export const FlexDirection = {
+export const FlexDirection: AttributeProps = {
   type: "flex-direction",
   header: "Flex Direction 属性",
   title: "Flex Direction ClassName：",
@@ -206,7 +206,7 @@ export const FlexDirection = {
   ]
 };
 
-export const FlexWrap = {
+export const FlexWrap: AttributeProps = {
   type: "flex-wrap",
   header: "Flex Wrap 属性",
   title: "Flex Wrap ClassName：",
@@ -222,7 +222,7 @@ export const FlexWrap = {
   ]
 };
 
-export const Flex = {
+export const Flex: AttributeProps = {
   type: "flex",
   header: "Flex 属性",
   title: "Flex ClassName：",
@@ -237,7 +237,7 @@ export const Flex = {
   ]
 };
 
-export const FlexGrow = {
+export const FlexGrow: AttributeProps = {
   type: "flex-grow",
   header: "Flex Grow 属性",
   title: "Flex Grow ClassName：",
@@ -250,7 +250,7 @@ export const FlexGrow = {
   ]
 };
 
-export const FlexShrink = {
+export const FlexShrink: AttributeProps = {
   type: "flex-shrink",
   header: "Flex Shrink 属性",
   title: "Flex Shrink ClassName：",
@@ -263,7 +263,7 @@ export const FlexShrink = {
   ]
 };
 
-export const Order = {
+export const Order: AttributeProps = {
   type: "order",
   header: "Order 属性",
   title: "Order ClassName：",
@@ -334,7 +334,7 @@ export const Order = {
   ]
 };
 
-export const GridTemplateColumns = {
+export const GridTemplateColumns: AttributeProps = {
   type: "grid-template-columns",
   header: "Grid Template Columns 属性",
   title: "Grid Template Columns ClassName：",
@@ -409,7 +409,7 @@ export const GridTemplateColumns = {
   ]
 };
 
-export const GridColumn = {
+export const GridColumn: AttributeProps = {
   type: "grid-column",
   header: "Grid Column Start / End 属性",
   title: "Grid Column Start / End ClassName：",
@@ -588,7 +588,7 @@ export const GridColumn = {
   ]
 };
 
-export const GridTemplateRows = {
+export const GridTemplateRows: AttributeProps = {
   type: "grid-template-rows",
   header: "Grid Template Rows 属性",
   title: "Grid Template Rows ClassName：",
@@ -627,7 +627,7 @@ export const GridTemplateRows = {
   ]
 };
 
-export const GridRow = {
+export const GridRow: AttributeProps = {
   type: "grid-row",
   header: "Grid Row Start / End 属性",
   title: "Grid Row Start / End ClassName：",
@@ -734,7 +734,7 @@ export const GridRow = {
   ]
 };
 
-export const GridAutoFlow = {
+export const GridAutoFlow: AttributeProps = {
   type: "grid-auto-flow",
   header: "Grid Auto Flow 属性",
   title: "Grid Auto Flow ClassName：",
@@ -765,7 +765,7 @@ export const GridAutoFlow = {
   ]
 };
 
-export const GridAutoColumns = {
+export const GridAutoColumns: AttributeProps = {
   type: "grid-auto-columns",
   header: "Grid Auto Columns 属性",
   title: "Grid Auto Columns ClassName：",
@@ -792,7 +792,7 @@ export const GridAutoColumns = {
   ]
 };
 
-export const GridAutoRows = {
+export const GridAutoRows: AttributeProps = {
   type: "grid-auto-rows",
   header: "Grid Auto Rows 属性",
   title: "Grid Auto Rows ClassName：",
@@ -819,7 +819,7 @@ export const GridAutoRows = {
   ]
 };
 
-export const Gap = {
+export const Gap: AttributeProps = {
   type: "gap",
   header: "Gap 属性",
   title: "Gap ClassName：",
@@ -1425,7 +1425,7 @@ export const Gap = {
   ]
 };
 
-export const JustifyContent = {
+export const JustifyContent: AttributeProps = {
   type: "justify-content",
   header: "Justify Content 属性",
   title: "Justify Content ClassName：",
@@ -1460,7 +1460,7 @@ export const JustifyContent = {
   ]
 };
 
-export const JustifyItems = {
+export const JustifyItems: AttributeProps = {
   type: "justify-items",
   header: "Justify Items 属性",
   title: "Justify Items ClassName：",
@@ -1487,7 +1487,7 @@ export const JustifyItems = {
   ]
 };
 
-export const JustifySelf = {
+export const JustifySelf: AttributeProps = {
   type: "justify-self",
   header: "Justify Self 属性",
   title: "Justify Self ClassName：",
@@ -1518,7 +1518,7 @@ export const JustifySelf = {
   ]
 };
 
-export const AlignContent = {
+export const AlignContent: AttributeProps = {
   type: "align-content",
   header: "Align Content 属性",
   title: "Align Content ClassName：",
@@ -1557,7 +1557,7 @@ export const AlignContent = {
   ]
 };
 
-export const AlignItems = {
+export const AlignItems: AttributeProps = {
   type: "align-items",
   header: "Align Items 属性",
   title: "Align Items ClassName：",
@@ -1588,7 +1588,7 @@ export const AlignItems = {
   ]
 };
 
-export const AlignSelf = {
+export const AlignSelf: AttributeProps = {
   type: "align-self",
   header: "Align Self 属性",
   title: "Align Self ClassName：",
@@ -1623,7 +1623,7 @@ export const AlignSelf = {
   ]
 };
 
-export const PlaceContent = {
+export const PlaceContent: AttributeProps = {
   type: "place-content",
   header: "Place Content 属性",
   title: "Place Content ClassName：",
@@ -1666,7 +1666,7 @@ export const PlaceContent = {
   ]
 };
 
-export const PlaceItems = {
+export const PlaceItems: AttributeProps = {
   type: "place-items",
   header: "Place Items 属性",
   title: "Place Items ClassName：",
@@ -1697,7 +1697,7 @@ export const PlaceItems = {
   ]
 };
 
-export const PlaceSelf = {
+export const PlaceSelf: AttributeProps = {
   type: "place-self",
   header: "Place Self 属性",
   title: "Place Self ClassName：",

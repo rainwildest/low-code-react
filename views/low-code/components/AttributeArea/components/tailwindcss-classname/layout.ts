@@ -1,4 +1,269 @@
-export const BoxSizing = {
+export const AspectRatio: AttributeProps = {
+  type: "aspect-ratio",
+  header: "Aspect Ratio 属性",
+  title: "Aspect Ratio ClassName：",
+  selectPlaceholder: "aspect-ratio: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "aspect-auto",
+      label: "『 aspect-auto 』 aspect-ratio: auto;"
+    },
+    {
+      value: "aspect-square",
+      label: "『 aspect-square 』 aspect-ratio: 1 / 1;"
+    },
+    {
+      value: "aspect-video",
+      label: "『 aspect-video 』 aspect-ratio: 16 / 9;"
+    }
+  ]
+};
+
+export const Columns: AttributeProps = {
+  type: "columns",
+  header: "Columns 属性",
+  title: "Columns ClassName：",
+  selectPlaceholder: "columns: xxxx",
+  inputPlaceholder: "columns: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "columns-1",
+      label: "『 columns-1 』 columns: 1;"
+    },
+    {
+      value: "columns-2",
+      label: "『 columns-2 』 columns: 2;"
+    },
+    {
+      value: "columns-3",
+      label: "『 columns-3 』 columns: 3;"
+    },
+    {
+      value: "columns-4",
+      label: "『 columns-4 』 columns: 4;"
+    },
+    {
+      value: "columns-5",
+      label: "『 columns-5 』 columns: 5;"
+    },
+    {
+      value: "columns-6",
+      label: "『 columns-6 』 columns: 6;"
+    },
+    {
+      value: "columns-7",
+      label: "『 columns-7 』 columns: 7;"
+    },
+    {
+      value: "columns-8",
+      label: "『 columns-8 』 columns: 8;"
+    },
+    {
+      value: "columns-9",
+      label: "『 columns-9 』 columns: 9;"
+    },
+    {
+      value: "columns-10",
+      label: "『 columns-10 』 columns: 10;"
+    },
+    {
+      value: "columns-11",
+      label: "『 columns-11 』 columns: 11;"
+    },
+    {
+      value: "columns-12",
+      label: "『 columns-12 』 columns: 12;"
+    },
+    {
+      value: "columns-auto",
+      label: "『 columns-auto 』 columns: auto;"
+    },
+    {
+      value: "columns-3xs",
+      label: "『 columns-3xs 』 columns: 16rem; /* 256px */"
+    },
+    {
+      value: "columns-2xs",
+      label: "『 columns-2xs 』 columns: 18rem; /* 288px */"
+    },
+    {
+      value: "columns-xs",
+      label: "『 columns-xs 』 columns: 20rem; /* 320px */"
+    },
+    {
+      value: "columns-sm",
+      label: "『 columns-sm 』 columns: 24rem; /* 384px */"
+    },
+    {
+      value: "columns-md",
+      label: "『 columns-md 』 columns: 28rem; /* 448px */"
+    },
+    {
+      value: "columns-lg",
+      label: "『 columns-lg 』 columns: 32rem; /* 512px */"
+    },
+    {
+      value: "columns-xl",
+      label: "『 columns-xl 』 columns: 36rem; /* 576px */"
+    },
+    {
+      value: "columns-2xl",
+      label: "『 columns-2xl 』 columns: 42rem; /* 672px */"
+    },
+    {
+      value: "columns-3xl",
+      label: "『 columns-3xl 』 columns: 48rem; /* 768px */"
+    },
+    {
+      value: "columns-4xl",
+      label: "『 columns-4xl 』 columns: 56rem; /* 896px */"
+    },
+    {
+      value: "columns-5xl",
+      label: "『 columns-5xl 』 columns: 64rem; /* 1024px */"
+    },
+    {
+      value: "columns-6xl",
+      label: "『 columns-6xl 』 columns: 72rem; /* 1152px */"
+    },
+    {
+      value: "columns-7xl",
+      label: "『 columns-7xl 』 columns: 80rem; /* 1280px */"
+    }
+  ]
+};
+
+export const BreakAfter: AttributeProps = {
+  type: "break-after",
+  header: "Break After 属性",
+  title: "Break After ClassName：",
+  selectPlaceholder: "break-after: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "break-after-auto",
+      label: "『 break-after-auto 』 break-after: auto;"
+    },
+    {
+      value: "break-after-avoid",
+      label: "『 break-after-avoid 』 break-after: avoid;"
+    },
+    {
+      value: "break-after-all",
+      label: "『 break-after-all 』 break-after: all;"
+    },
+    {
+      value: "break-after-avoid-page",
+      label: "『 break-after-avoid-page 』 break-after: avoid-page;"
+    },
+    {
+      value: "break-after-page",
+      label: "『 break-after-page 』 break-after: page;"
+    },
+    {
+      value: "break-after-left",
+      label: "『 break-after-left 』 break-after: left;"
+    },
+    {
+      value: "break-after-right",
+      label: "『 break-after-right 』 break-after: right;"
+    },
+    {
+      value: "break-after-column",
+      label: "『 break-after-column 』 break-after: column;"
+    }
+  ]
+};
+
+export const BreakBefore: AttributeProps = {
+  type: "break-before",
+  header: "Break Before 属性",
+  title: "Break Before ClassName：",
+  selectPlaceholder: "break-before: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "break-before-auto",
+      label: "『 break-before-auto 』 break-before: auto;"
+    },
+    {
+      value: "break-before-avoid",
+      label: "『 break-before-avoid 』 break-before: avoid;"
+    },
+    {
+      value: "break-before-all",
+      label: "『 break-before-all 』 break-before: all;"
+    },
+    {
+      value: "break-before-avoid-page",
+      label: "『 break-before-avoid-page 』 break-before: avoid-page;"
+    },
+    {
+      value: "break-before-page",
+      label: "『 break-before-page 』 break-before: page;"
+    },
+    {
+      value: "break-before-left",
+      label: "『 break-before-left 』 break-before: left;"
+    },
+    {
+      value: "break-before-right",
+      label: "『 break-before-right 』 break-before: right;"
+    },
+    {
+      value: "break-before-column",
+      label: "『 break-before-column 』 break-before: column;"
+    }
+  ]
+};
+
+export const BreakInside: AttributeProps = {
+  type: "break-inside",
+  header: "Break Inside 属性",
+  title: "Break Inside ClassName：",
+  selectPlaceholder: "break-inside: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "break-inside-auto",
+      label: "『 break-inside-auto 』 break-inside: auto;"
+    },
+    {
+      value: "break-inside-avoid",
+      label: "『 break-inside-avoid 』 break-inside: avoid;"
+    },
+    {
+      value: "break-inside-avoid-page",
+      label: "『 break-inside-avoid-page 』 break-inside: avoid-page;"
+    },
+    {
+      value: "break-inside-avoid-column",
+      label: "『 break-inside-avoid-column 』 break-inside: avoid-column;"
+    }
+  ]
+};
+
+export const BoxDecorationBreak: AttributeProps = {
+  type: "box-decoration-break",
+  header: "Box Decoration Break 属性",
+  title: "Box Decoration Break ClassName：",
+  selectPlaceholder: "box-decoration-break: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "box-decoration-clone",
+      label: "『 box-decoration-clone 』 box-decoration-break: clone;"
+    },
+    {
+      value: "box-decoration-slice",
+      label: "『 box-decoration-slice 』 box-decoration-break: slice;"
+    }
+  ]
+};
+
+export const BoxSizing: AttributeProps = {
   type: "box-sizing",
   header: "Box Sizing 属性",
   title: "Box Sizing ClassName：",
@@ -16,7 +281,7 @@ export const BoxSizing = {
   ]
 };
 
-export const Display = {
+export const Display: AttributeProps = {
   type: "display",
   header: "Display 属性",
   title: "Display ClassName：",
@@ -77,7 +342,7 @@ export const Display = {
   ]
 };
 
-export const Floats = {
+export const Floats: AttributeProps = {
   type: "float",
   header: "Float 属性",
   title: "Float ClassName：",
@@ -90,7 +355,7 @@ export const Floats = {
   ]
 };
 
-export const Clear = {
+export const Clear: AttributeProps = {
   type: "clear",
   header: "Clear 属性",
   title: "Clear ClassName：",
@@ -104,7 +369,7 @@ export const Clear = {
   ]
 };
 
-export const ObjectFit = {
+export const ObjectFit: AttributeProps = {
   type: "object-fit",
   header: "Object Fit 属性",
   title: "Object Fit ClassName：",
@@ -125,7 +390,7 @@ export const ObjectFit = {
   ]
 };
 
-export const ObjectPosition = {
+export const ObjectPosition: AttributeProps = {
   type: "object-position",
   header: "Object Position 属性",
   title: "Object Position ClassName：",
@@ -168,7 +433,7 @@ export const ObjectPosition = {
   ]
 };
 
-export const Overflow = {
+export const Overflow: AttributeProps = {
   type: "overflow",
   header: "Overflow 属性",
   title: "Overflow ClassName：",
@@ -232,7 +497,7 @@ export const Overflow = {
   ]
 };
 
-export const OverscrollBehavior = {
+export const OverscrollBehavior: AttributeProps = {
   type: "overscroll-behavior",
   header: "Overscroll Behavior 属性",
   title: "Overscroll Behavior ClassName：",
@@ -278,7 +543,7 @@ export const OverscrollBehavior = {
   ]
 };
 
-export const Position = {
+export const Position: AttributeProps = {
   type: "position",
   header: "Position 属性",
   title: "Position ClassName：",
@@ -293,7 +558,7 @@ export const Position = {
   ]
 };
 
-export const Inset = {
+export const Inset: AttributeProps = {
   type: "inset",
   header: "Inset 属性",
   title: "Inset ClassName：",
@@ -1242,7 +1507,7 @@ export const Inset = {
   ]
 };
 
-export const Visibility = {
+export const Visibility: AttributeProps = {
   type: "visibility",
   header: "Visibility 属性",
   title: "Visibility ClassName：",
@@ -1255,7 +1520,7 @@ export const Visibility = {
   ]
 };
 
-export const ZIndex = {
+export const ZIndex: AttributeProps = {
   type: "z-index",
   header: "Z-Index 属性",
   title: "Z-Index ClassName：",

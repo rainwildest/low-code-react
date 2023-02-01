@@ -1,4 +1,4 @@
-export const Padding = {
+export const Padding: AttributeProps = {
   type: "padding",
   header: "Padding 属性",
   title: "Padding ClassName：",
@@ -1164,7 +1164,7 @@ export const Padding = {
   ]
 };
 
-export const Margin = {
+export const Margin: AttributeProps = {
   type: "margin",
   header: "Margin 属性",
   title: "Margin ClassName：",
@@ -2363,7 +2363,7 @@ export const Margin = {
   ]
 };
 
-export const SpaceBetween = {
+export const SpaceBetween: AttributeProps = {
   type: "space-between",
   header: "Space Between",
   title: "Space Between ClassName：",

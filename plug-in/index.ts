@@ -43,6 +43,6 @@ fs.writeFile(
   JSON.stringify(format, null, 2),
   { encoding: "utf8" },
   err => {
-    console.log(err);
+    // console.log(err);
   }
 );
