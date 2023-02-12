@@ -1537,3 +1537,24 @@ export const ZIndex: AttributeProps = {
     { value: "z-auto", label: "『 z-auto 』 z-index: auto;" }
   ]
 };
+
+export default [
+  AspectRatio,
+  Columns,
+  BreakAfter,
+  BreakBefore,
+  BreakInside,
+  BoxDecorationBreak,
+  BoxSizing,
+  Display,
+  Floats,
+  Clear,
+  ObjectFit,
+  ObjectPosition,
+  Overflow,
+  OverscrollBehavior,
+  Position,
+  Inset,
+  Visibility,
+  ZIndex
+];

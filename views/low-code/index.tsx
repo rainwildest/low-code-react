@@ -8,6 +8,7 @@ import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
 import Layout from "./components/Layout";
 
+import { emitinfo } from "config/emitter";
 import { Icon } from "components";
 
 import { observer } from "mobx-react";
@@ -22,6 +23,8 @@ const LowCode = observer(() => {
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+
+  const [currentAttribute, setCurrentAttribute] = useState<AnyProps>({});
 
   const [visible, setVisible] = useState(false);
 
@@ -120,7 +123,9 @@ const LowCode = observer(() => {
    */
   const onClassNameOperation = (isClear?: boolean) => {
     const selectors = selectorsRef.current;
-    console.log(selectors);
+
+    setCurrentAttribute(selectors.current);
+
     if (selectors.prev) {
       document
         .querySelector(`.target-${selectors.prev.id}`)
@@ -182,7 +187,7 @@ const LowCode = observer(() => {
   };
 
   const onMenuDelete = () => {
-    emitter.emit("delete", selectorsRef.current.current);
+    emitter.emit(emitinfo["delete:remove"], selectorsRef.current.current);
   };
 
   useEffect(() => {
@@ -222,14 +227,14 @@ const LowCode = observer(() => {
       document.addEventListener(item.name, item.function, item.options);
     });
 
-    emitter.on("isClear", onIsClear);
+    emitter.on(emitinfo["delete:clear"], onIsClear);
 
     return () => {
       events.forEach(item => {
         document.removeEventListener(item.name, item.function);
       });
 
-      emitter.off("isClear", onIsClear);
+      emitter.off(emitinfo["delete:clear"], onIsClear);
     };
   }, []);
 
@@ -301,6 +306,10 @@ const LowCode = observer(() => {
 
           <AttributeArea
             ref={attributeRef}
+            attrs={currentAttribute}
+            callback={val => {
+              emitter.emit(emitinfo["change:attribute"], val);
+            }}
             className="bg-gray-1000 shadow-lg dark:bg-purple-1000"
           />
         </section>

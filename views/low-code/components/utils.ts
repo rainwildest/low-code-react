@@ -457,6 +457,52 @@ class DragData {
 
     return $original;
   }
+
+  modify(
+    target: AnyProps,
+    original: Array<AnyProps>,
+    positions?: Array<string> | null
+  ) {
+    const $positions = positions || target.__positions__;
+    let $original = _.cloneDeep(original);
+
+    if ($positions) {
+      const index = $original.findIndex(item => item.id === $positions[0]);
+
+      if (!~index) return [];
+
+      const $children = $original[index].children;
+      const subIndex = $children.findIndex(
+        (item: AnyProps) => item.id === target.id
+      );
+
+      const childrenId = $children[subIndex]?.id;
+
+      if (childrenId !== target.id) {
+        const $data = this.modify(
+          target,
+          $children,
+          update($positions, { $splice: [[0, 1]] })
+        );
+        $original[index].children = $data;
+
+        return $original;
+      }
+
+      $original[index].children = update($children, {
+        $splice: [[subIndex, 1, target]]
+      });
+    } else {
+      /* 当前 modify 的对象已经是顶层 */
+      const index = $original.findIndex(item => item.id === target.id);
+
+      if (~index) {
+        $original = update($original, { $splice: [[index, 1, target]] });
+      }
+    }
+
+    return $original;
+  }
 }
 
 export default DragData;

@@ -9,6 +9,7 @@ import NestedDraggable from "./NestedDraggable";
 // import { v4 as uuid } from "uuid";
 import DragData from "./utils";
 import { emitter } from "lib/utils";
+import { emitinfo } from "config/emitter";
 
 export interface ContainerState {
   cards: AnyProps[];
@@ -28,11 +29,13 @@ const DesignArea: FC<DesignAreaProps> = ({
   onSelected
 }) => {
   const [schema, setSchema] = useState<any[]>([]);
+
   const dragData = new DragData();
   const selectorRef = useRef<AnyProps>(null);
 
   const onDrop = (item: AnyProps, monitor: AnyProps) => {
-    console.log("onDrop: ", monitor.getDropResult(), item);
+    // console.log("onDrop: ", monitor.getDropResult(), item);
+
     let $data = [];
     const dropResult = monitor.getDropResult();
 
@@ -73,24 +76,32 @@ const DesignArea: FC<DesignAreaProps> = ({
         return dragData.remove(selectorRef.current, schema);
       });
 
-      emitter.emit("isClear");
+      emitter.emit(emitinfo["delete:clear"]);
     }
   };
 
   const onMenuDelete = (value: AnyProps) => {
     setSchema(schema => dragData.remove(value, schema));
 
-    emitter.emit("isClear");
+    emitter.emit(emitinfo["delete:clear"]);
+  };
+
+  const onAttributeChange = (val: AnyProps) => {
+    setSchema(schema => {
+      return dragData.modify(val, schema);
+    });
   };
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
-    emitter.on("delete", onMenuDelete);
+    emitter.on(emitinfo["delete:remove"], onMenuDelete);
+    emitter.on(emitinfo["change:attribute"], onAttributeChange);
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
 
-      emitter.off("delete", onMenuDelete);
+      emitter.off(emitinfo["delete:remove"], onMenuDelete);
+      emitter.off(emitinfo["change:attribute"], onAttributeChange);
     };
   }, []);
 

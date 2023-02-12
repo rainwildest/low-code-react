@@ -13,6 +13,7 @@ type WidthAttributeProps = {
   hasCustom?: boolean;
   selectPlaceholder?: string;
   inputPlaceholder?: string;
+  value: AnyProps;
   callback?: (value: AnyProps) => void;
 };
 
@@ -21,6 +22,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
     {
       type,
       title,
+      value,
       options,
       hasCustom = false,
       inputPlaceholder = "",
@@ -29,13 +31,27 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
     },
     nodeRef: ForwardedRef<HTMLDivElement>
   ) => {
-    const [test, setTest] = useState("");
+    // const [test, setTest] = useState("");
     const onSelectedChange = (val: string) => {
-      setTest(val);
+      // setTest(val);
+      if (!value?.attribute) return;
+
+      const { className } = value.attribute;
+      if (!className || className.split(" ")?.includes(val)) return;
+      console.log(val, className?.split(" ")?.includes(val));
+
+      console.log(value);
+      callback &&
+        callback({
+          ...value,
+          attribute: { className: `${className || ""} ${val}`.trim() }
+        });
     };
 
+    // console.log(value);
+
     return (
-      <Fragment>
+      <div ref={nodeRef}>
         <div className={hasCustom ? "pb-5" : ""}>
           <span className="pointer-events-none inline-block max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
             {title}
@@ -71,22 +87,22 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
         </div>
         {hasCustom && (
           <div className="">
-            <span className="pointer-events-none inline-block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
+            <span className="pointer-events-none block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
               自定义 {type}：
             </span>
             <Input
               allowClear
               placeholder={inputPlaceholder}
-              value={test}
+              // value={test}
               onChange={val => {
-                setTest(val.target.value);
+                // setTest(val.target.value);
                 console.log(val.target.value);
                 callback && callback({});
               }}
             />
           </div>
         )}
-      </Fragment>
+      </div>
     );
   }
 );

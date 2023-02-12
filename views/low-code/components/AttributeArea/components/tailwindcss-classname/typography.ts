@@ -1346,3 +1346,1348 @@ export const TextDecoration: AttributeProps = {
     }
   ]
 };
+
+export const TextDecorationColor: AttributeProps = {
+  type: "text-decoration-color",
+  header: "Text Decoration Color 属性",
+  title: "Text Decoration Color ClassName：",
+  inputPlaceholder: "text-decoration-color: xxxx",
+  selectPlaceholder: "text-decoration-color: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "decoration-inherit",
+      label: "『 decoration-inherit 』 text-decoration-color: inherit;"
+    },
+    {
+      value: "decoration-current",
+      label: "『 decoration-current 』 text-decoration-color: currentColor;"
+    },
+    {
+      value: "decoration-transparent",
+      label: "『 decoration-transparent 』 text-decoration-color: transparent;"
+    },
+    {
+      value: "decoration-black",
+      label: "『 decoration-black 』 text-decoration-color: #000;"
+    },
+    {
+      value: "decoration-white",
+      label: "『 decoration-white 』 text-decoration-color: #fff;"
+    },
+    {
+      value: "decoration-slate-50",
+      label: "『 decoration-slate-50 』 text-decoration-color: #f8fafc;"
+    },
+    {
+      value: "decoration-slate-100",
+      label: "『 decoration-slate-100 』 text-decoration-color: #f1f5f9;"
+    },
+    {
+      value: "decoration-slate-200",
+      label: "『 decoration-slate-200 』 text-decoration-color: #e2e8f0;"
+    },
+    {
+      value: "decoration-slate-300",
+      label: "『 decoration-slate-300 』 text-decoration-color: #cbd5e1;"
+    },
+    {
+      value: "decoration-slate-400",
+      label: "『 decoration-slate-400 』 text-decoration-color: #94a3b8;"
+    },
+    {
+      value: "decoration-slate-500",
+      label: "『 decoration-slate-500 』 text-decoration-color: #64748b;"
+    },
+    {
+      value: "decoration-slate-600",
+      label: "『 decoration-slate-600 』 text-decoration-color: #475569;"
+    },
+    {
+      value: "decoration-slate-700",
+      label: "『 decoration-slate-700 』 text-decoration-color: #334155;"
+    },
+    {
+      value: "decoration-slate-800",
+      label: "『 decoration-slate-800 』 text-decoration-color: #1e293b;"
+    },
+    {
+      value: "decoration-slate-900",
+      label: "『 decoration-slate-900 』 text-decoration-color: #0f172a;"
+    },
+    {
+      value: "decoration-gray-50",
+      label: "『 decoration-gray-50 』 text-decoration-color: #f9fafb;"
+    },
+    {
+      value: "decoration-gray-100",
+      label: "『 decoration-gray-100 』 text-decoration-color: #f3f4f6;"
+    },
+    {
+      value: "decoration-gray-200",
+      label: "『 decoration-gray-200 』 text-decoration-color: #e5e7eb;"
+    },
+    {
+      value: "decoration-gray-300",
+      label: "『 decoration-gray-300 』 text-decoration-color: #d1d5db;"
+    },
+    {
+      value: "decoration-gray-400",
+      label: "『 decoration-gray-400 』 text-decoration-color: #9ca3af;"
+    },
+    {
+      value: "decoration-gray-500",
+      label: "『 decoration-gray-500 』 text-decoration-color: #6b7280;"
+    },
+    {
+      value: "decoration-gray-600",
+      label: "『 decoration-gray-600 』 text-decoration-color: #4b5563;"
+    },
+    {
+      value: "decoration-gray-700",
+      label: "『 decoration-gray-700 』 text-decoration-color: #374151;"
+    },
+    {
+      value: "decoration-gray-800",
+      label: "『 decoration-gray-800 』 text-decoration-color: #1f2937;"
+    },
+    {
+      value: "decoration-gray-900",
+      label: "『 decoration-gray-900 』 text-decoration-color: #111827;"
+    },
+    {
+      value: "decoration-zinc-50",
+      label: "『 decoration-zinc-50 』 text-decoration-color: #fafafa;"
+    },
+    {
+      value: "decoration-zinc-100",
+      label: "『 decoration-zinc-100 』 text-decoration-color: #f4f4f5;"
+    },
+    {
+      value: "decoration-zinc-200",
+      label: "『 decoration-zinc-200 』 text-decoration-color: #e4e4e7;"
+    },
+    {
+      value: "decoration-zinc-300",
+      label: "『 decoration-zinc-300 』 text-decoration-color: #d4d4d8;"
+    },
+    {
+      value: "decoration-zinc-400",
+      label: "『 decoration-zinc-400 』 text-decoration-color: #a1a1aa;"
+    },
+    {
+      value: "decoration-zinc-500",
+      label: "『 decoration-zinc-500 』 text-decoration-color: #71717a;"
+    },
+    {
+      value: "decoration-zinc-600",
+      label: "『 decoration-zinc-600 』 text-decoration-color: #52525b;"
+    },
+    {
+      value: "decoration-zinc-700",
+      label: "『 decoration-zinc-700 』 text-decoration-color: #3f3f46;"
+    },
+    {
+      value: "decoration-zinc-800",
+      label: "『 decoration-zinc-800 』 text-decoration-color: #27272a;"
+    },
+    {
+      value: "decoration-zinc-900",
+      label: "『 decoration-zinc-900 』 text-decoration-color: #18181b;"
+    },
+    {
+      value: "decoration-neutral-50",
+      label: "『 decoration-neutral-50 』 text-decoration-color: #fafafa;"
+    },
+    {
+      value: "decoration-neutral-100",
+      label: "『 decoration-neutral-100 』 text-decoration-color: #f5f5f5;"
+    },
+    {
+      value: "decoration-neutral-200",
+      label: "『 decoration-neutral-200 』 text-decoration-color: #e5e5e5;"
+    },
+    {
+      value: "decoration-neutral-300",
+      label: "『 decoration-neutral-300 』 text-decoration-color: #d4d4d4;"
+    },
+    {
+      value: "decoration-neutral-400",
+      label: "『 decoration-neutral-400 』 text-decoration-color: #a3a3a3;"
+    },
+    {
+      value: "decoration-neutral-500",
+      label: "『 decoration-neutral-500 』 text-decoration-color: #737373;"
+    },
+    {
+      value: "decoration-neutral-600",
+      label: "『 decoration-neutral-600 』 text-decoration-color: #525252;"
+    },
+    {
+      value: "decoration-neutral-700",
+      label: "『 decoration-neutral-700 』 text-decoration-color: #404040;"
+    },
+    {
+      value: "decoration-neutral-800",
+      label: "『 decoration-neutral-800 』 text-decoration-color: #262626;"
+    },
+    {
+      value: "decoration-neutral-900",
+      label: "『 decoration-neutral-900 』 text-decoration-color: #171717;"
+    },
+    {
+      value: "decoration-stone-50",
+      label: "『 decoration-stone-50 』 text-decoration-color: #fafaf9;"
+    },
+    {
+      value: "decoration-stone-100",
+      label: "『 decoration-stone-100 』 text-decoration-color: #f5f5f4;"
+    },
+    {
+      value: "decoration-stone-200",
+      label: "『 decoration-stone-200 』 text-decoration-color: #e7e5e4;"
+    },
+    {
+      value: "decoration-stone-300",
+      label: "『 decoration-stone-300 』 text-decoration-color: #d6d3d1;"
+    },
+    {
+      value: "decoration-stone-400",
+      label: "『 decoration-stone-400 』 text-decoration-color: #a8a29e;"
+    },
+    {
+      value: "decoration-stone-500",
+      label: "『 decoration-stone-500 』 text-decoration-color: #78716c;"
+    },
+    {
+      value: "decoration-stone-600",
+      label: "『 decoration-stone-600 』 text-decoration-color: #57534e;"
+    },
+    {
+      value: "decoration-stone-700",
+      label: "『 decoration-stone-700 』 text-decoration-color: #44403c;"
+    },
+    {
+      value: "decoration-stone-800",
+      label: "『 decoration-stone-800 』 text-decoration-color: #292524;"
+    },
+    {
+      value: "decoration-stone-900",
+      label: "『 decoration-stone-900 』 text-decoration-color: #1c1917;"
+    },
+    {
+      value: "decoration-red-50",
+      label: "『 decoration-red-50 』 text-decoration-color: #fef2f2;"
+    },
+    {
+      value: "decoration-red-100",
+      label: "『 decoration-red-100 』 text-decoration-color: #fee2e2;"
+    },
+    {
+      value: "decoration-red-200",
+      label: "『 decoration-red-200 』 text-decoration-color: #fecaca;"
+    },
+    {
+      value: "decoration-red-300",
+      label: "『 decoration-red-300 』 text-decoration-color: #fca5a5;"
+    },
+    {
+      value: "decoration-red-400",
+      label: "『 decoration-red-400 』 text-decoration-color: #f87171;"
+    },
+    {
+      value: "decoration-red-500",
+      label: "『 decoration-red-500 』 text-decoration-color: #ef4444;"
+    },
+    {
+      value: "decoration-red-600",
+      label: "『 decoration-red-600 』 text-decoration-color: #dc2626;"
+    },
+    {
+      value: "decoration-red-700",
+      label: "『 decoration-red-700 』 text-decoration-color: #b91c1c;"
+    },
+    {
+      value: "decoration-red-800",
+      label: "『 decoration-red-800 』 text-decoration-color: #991b1b;"
+    },
+    {
+      value: "decoration-red-900",
+      label: "『 decoration-red-900 』 text-decoration-color: #7f1d1d;"
+    },
+    {
+      value: "decoration-orange-50",
+      label: "『 decoration-orange-50 』 text-decoration-color: #fff7ed;"
+    },
+    {
+      value: "decoration-orange-100",
+      label: "『 decoration-orange-100 』 text-decoration-color: #ffedd5;"
+    },
+    {
+      value: "decoration-orange-200",
+      label: "『 decoration-orange-200 』 text-decoration-color: #fed7aa;"
+    },
+    {
+      value: "decoration-orange-300",
+      label: "『 decoration-orange-300 』 text-decoration-color: #fdba74;"
+    },
+    {
+      value: "decoration-orange-400",
+      label: "『 decoration-orange-400 』 text-decoration-color: #fb923c;"
+    },
+    {
+      value: "decoration-orange-500",
+      label: "『 decoration-orange-500 』 text-decoration-color: #f97316;"
+    },
+    {
+      value: "decoration-orange-600",
+      label: "『 decoration-orange-600 』 text-decoration-color: #ea580c;"
+    },
+    {
+      value: "decoration-orange-700",
+      label: "『 decoration-orange-700 』 text-decoration-color: #c2410c;"
+    },
+    {
+      value: "decoration-orange-800",
+      label: "『 decoration-orange-800 』 text-decoration-color: #9a3412;"
+    },
+    {
+      value: "decoration-orange-900",
+      label: "『 decoration-orange-900 』 text-decoration-color: #7c2d12;"
+    },
+    {
+      value: "decoration-amber-50",
+      label: "『 decoration-amber-50 』 text-decoration-color: #fffbeb;"
+    },
+    {
+      value: "decoration-amber-100",
+      label: "『 decoration-amber-100 』 text-decoration-color: #fef3c7;"
+    },
+    {
+      value: "decoration-amber-200",
+      label: "『 decoration-amber-200 』 text-decoration-color: #fde68a;"
+    },
+    {
+      value: "decoration-amber-300",
+      label: "『 decoration-amber-300 』 text-decoration-color: #fcd34d;"
+    },
+    {
+      value: "decoration-amber-400",
+      label: "『 decoration-amber-400 』 text-decoration-color: #fbbf24;"
+    },
+    {
+      value: "decoration-amber-500",
+      label: "『 decoration-amber-500 』 text-decoration-color: #f59e0b;"
+    },
+    {
+      value: "decoration-amber-600",
+      label: "『 decoration-amber-600 』 text-decoration-color: #d97706;"
+    },
+    {
+      value: "decoration-amber-700",
+      label: "『 decoration-amber-700 』 text-decoration-color: #b45309;"
+    },
+    {
+      value: "decoration-amber-800",
+      label: "『 decoration-amber-800 』 text-decoration-color: #92400e;"
+    },
+    {
+      value: "decoration-amber-900",
+      label: "『 decoration-amber-900 』 text-decoration-color: #78350f;"
+    },
+    {
+      value: "decoration-yellow-50",
+      label: "『 decoration-yellow-50 』 text-decoration-color: #fefce8;"
+    },
+    {
+      value: "decoration-yellow-100",
+      label: "『 decoration-yellow-100 』 text-decoration-color: #fef9c3;"
+    },
+    {
+      value: "decoration-yellow-200",
+      label: "『 decoration-yellow-200 』 text-decoration-color: #fef08a;"
+    },
+    {
+      value: "decoration-yellow-300",
+      label: "『 decoration-yellow-300 』 text-decoration-color: #fde047;"
+    },
+    {
+      value: "decoration-yellow-400",
+      label: "『 decoration-yellow-400 』 text-decoration-color: #facc15;"
+    },
+    {
+      value: "decoration-yellow-500",
+      label: "『 decoration-yellow-500 』 text-decoration-color: #eab308;"
+    },
+    {
+      value: "decoration-yellow-600",
+      label: "『 decoration-yellow-600 』 text-decoration-color: #ca8a04;"
+    },
+    {
+      value: "decoration-yellow-700",
+      label: "『 decoration-yellow-700 』 text-decoration-color: #a16207;"
+    },
+    {
+      value: "decoration-yellow-800",
+      label: "『 decoration-yellow-800 』 text-decoration-color: #854d0e;"
+    },
+    {
+      value: "decoration-yellow-900",
+      label: "『 decoration-yellow-900 』 text-decoration-color: #713f12;"
+    },
+    {
+      value: "decoration-lime-50",
+      label: "『 decoration-lime-50 』 text-decoration-color: #f7fee7;"
+    },
+    {
+      value: "decoration-lime-100",
+      label: "『 decoration-lime-100 』 text-decoration-color: #ecfccb;"
+    },
+    {
+      value: "decoration-lime-200",
+      label: "『 decoration-lime-200 』 text-decoration-color: #d9f99d;"
+    },
+    {
+      value: "decoration-lime-300",
+      label: "『 decoration-lime-300 』 text-decoration-color: #bef264;"
+    },
+    {
+      value: "decoration-lime-400",
+      label: "『 decoration-lime-400 』 text-decoration-color: #a3e635;"
+    },
+    {
+      value: "decoration-lime-500",
+      label: "『 decoration-lime-500 』 text-decoration-color: #84cc16;"
+    },
+    {
+      value: "decoration-lime-600",
+      label: "『 decoration-lime-600 』 text-decoration-color: #65a30d;"
+    },
+    {
+      value: "decoration-lime-700",
+      label: "『 decoration-lime-700 』 text-decoration-color: #4d7c0f;"
+    },
+    {
+      value: "decoration-lime-800",
+      label: "『 decoration-lime-800 』 text-decoration-color: #3f6212;"
+    },
+    {
+      value: "decoration-lime-900",
+      label: "『 decoration-lime-900 』 text-decoration-color: #365314;"
+    },
+    {
+      value: "decoration-green-50",
+      label: "『 decoration-green-50 』 text-decoration-color: #f0fdf4;"
+    },
+    {
+      value: "decoration-green-100",
+      label: "『 decoration-green-100 』 text-decoration-color: #dcfce7;"
+    },
+    {
+      value: "decoration-green-200",
+      label: "『 decoration-green-200 』 text-decoration-color: #bbf7d0;"
+    },
+    {
+      value: "decoration-green-300",
+      label: "『 decoration-green-300 』 text-decoration-color: #86efac;"
+    },
+    {
+      value: "decoration-green-400",
+      label: "『 decoration-green-400 』 text-decoration-color: #4ade80;"
+    },
+    {
+      value: "decoration-green-500",
+      label: "『 decoration-green-500 』 text-decoration-color: #22c55e;"
+    },
+    {
+      value: "decoration-green-600",
+      label: "『 decoration-green-600 』 text-decoration-color: #16a34a;"
+    },
+    {
+      value: "decoration-green-700",
+      label: "『 decoration-green-700 』 text-decoration-color: #15803d;"
+    },
+    {
+      value: "decoration-green-800",
+      label: "『 decoration-green-800 』 text-decoration-color: #166534;"
+    },
+    {
+      value: "decoration-green-900",
+      label: "『 decoration-green-900 』 text-decoration-color: #14532d;"
+    },
+    {
+      value: "decoration-emerald-50",
+      label: "『 decoration-emerald-50 』 text-decoration-color: #ecfdf5;"
+    },
+    {
+      value: "decoration-emerald-100",
+      label: "『 decoration-emerald-100 』 text-decoration-color: #d1fae5;"
+    },
+    {
+      value: "decoration-emerald-200",
+      label: "『 decoration-emerald-200 』 text-decoration-color: #a7f3d0;"
+    },
+    {
+      value: "decoration-emerald-300",
+      label: "『 decoration-emerald-300 』 text-decoration-color: #6ee7b7;"
+    },
+    {
+      value: "decoration-emerald-400",
+      label: "『 decoration-emerald-400 』 text-decoration-color: #34d399;"
+    },
+    {
+      value: "decoration-emerald-500",
+      label: "『 decoration-emerald-500 』 text-decoration-color: #10b981;"
+    },
+    {
+      value: "decoration-emerald-600",
+      label: "『 decoration-emerald-600 』 text-decoration-color: #059669;"
+    },
+    {
+      value: "decoration-emerald-700",
+      label: "『 decoration-emerald-700 』 text-decoration-color: #047857;"
+    },
+    {
+      value: "decoration-emerald-800",
+      label: "『 decoration-emerald-800 』 text-decoration-color: #065f46;"
+    },
+    {
+      value: "decoration-emerald-900",
+      label: "『 decoration-emerald-900 』 text-decoration-color: #064e3b;"
+    },
+    {
+      value: "decoration-teal-50",
+      label: "『 decoration-teal-50 』 text-decoration-color: #f0fdfa;"
+    },
+    {
+      value: "decoration-teal-100",
+      label: "『 decoration-teal-100 』 text-decoration-color: #ccfbf1;"
+    },
+    {
+      value: "decoration-teal-200",
+      label: "『 decoration-teal-200 』 text-decoration-color: #99f6e4;"
+    },
+    {
+      value: "decoration-teal-300",
+      label: "『 decoration-teal-300 』 text-decoration-color: #5eead4;"
+    },
+    {
+      value: "decoration-teal-400",
+      label: "『 decoration-teal-400 』 text-decoration-color: #2dd4bf;"
+    },
+    {
+      value: "decoration-teal-500",
+      label: "『 decoration-teal-500 』 text-decoration-color: #14b8a6;"
+    },
+    {
+      value: "decoration-teal-600",
+      label: "『 decoration-teal-600 』 text-decoration-color: #0d9488;"
+    },
+    {
+      value: "decoration-teal-700",
+      label: "『 decoration-teal-700 』 text-decoration-color: #0f766e;"
+    },
+    {
+      value: "decoration-teal-800",
+      label: "『 decoration-teal-800 』 text-decoration-color: #115e59;"
+    },
+    {
+      value: "decoration-teal-900",
+      label: "『 decoration-teal-900 』 text-decoration-color: #134e4a;"
+    },
+    {
+      value: "decoration-cyan-50",
+      label: "『 decoration-cyan-50 』 text-decoration-color: #ecfeff;"
+    },
+    {
+      value: "decoration-cyan-100",
+      label: "『 decoration-cyan-100 』 text-decoration-color: #cffafe;"
+    },
+    {
+      value: "decoration-cyan-200",
+      label: "『 decoration-cyan-200 』 text-decoration-color: #a5f3fc;"
+    },
+    {
+      value: "decoration-cyan-300",
+      label: "『 decoration-cyan-300 』 text-decoration-color: #67e8f9;"
+    },
+    {
+      value: "decoration-cyan-400",
+      label: "『 decoration-cyan-400 』 text-decoration-color: #22d3ee;"
+    },
+    {
+      value: "decoration-cyan-500",
+      label: "『 decoration-cyan-500 』 text-decoration-color: #06b6d4;"
+    },
+    {
+      value: "decoration-cyan-600",
+      label: "『 decoration-cyan-600 』 text-decoration-color: #0891b2;"
+    },
+    {
+      value: "decoration-cyan-700",
+      label: "『 decoration-cyan-700 』 text-decoration-color: #0e7490;"
+    },
+    {
+      value: "decoration-cyan-800",
+      label: "『 decoration-cyan-800 』 text-decoration-color: #155e75;"
+    },
+    {
+      value: "decoration-cyan-900",
+      label: "『 decoration-cyan-900 』 text-decoration-color: #164e63;"
+    },
+    {
+      value: "decoration-sky-50",
+      label: "『 decoration-sky-50 』 text-decoration-color: #f0f9ff;"
+    },
+    {
+      value: "decoration-sky-100",
+      label: "『 decoration-sky-100 』 text-decoration-color: #e0f2fe;"
+    },
+    {
+      value: "decoration-sky-200",
+      label: "『 decoration-sky-200 』 text-decoration-color: #bae6fd;"
+    },
+    {
+      value: "decoration-sky-300",
+      label: "『 decoration-sky-300 』 text-decoration-color: #7dd3fc;"
+    },
+    {
+      value: "decoration-sky-400",
+      label: "『 decoration-sky-400 』 text-decoration-color: #38bdf8;"
+    },
+    {
+      value: "decoration-sky-500",
+      label: "『 decoration-sky-500 』 text-decoration-color: #0ea5e9;"
+    },
+    {
+      value: "decoration-sky-600",
+      label: "『 decoration-sky-600 』 text-decoration-color: #0284c7;"
+    },
+    {
+      value: "decoration-sky-700",
+      label: "『 decoration-sky-700 』 text-decoration-color: #0369a1;"
+    },
+    {
+      value: "decoration-sky-800",
+      label: "『 decoration-sky-800 』 text-decoration-color: #075985;"
+    },
+    {
+      value: "decoration-sky-900",
+      label: "『 decoration-sky-900 』 text-decoration-color: #0c4a6e;"
+    },
+    {
+      value: "decoration-blue-50",
+      label: "『 decoration-blue-50 』 text-decoration-color: #eff6ff;"
+    },
+    {
+      value: "decoration-blue-100",
+      label: "『 decoration-blue-100 』 text-decoration-color: #dbeafe;"
+    },
+    {
+      value: "decoration-blue-200",
+      label: "『 decoration-blue-200 』 text-decoration-color: #bfdbfe;"
+    },
+    {
+      value: "decoration-blue-300",
+      label: "『 decoration-blue-300 』 text-decoration-color: #93c5fd;"
+    },
+    {
+      value: "decoration-blue-400",
+      label: "『 decoration-blue-400 』 text-decoration-color: #60a5fa;"
+    },
+    {
+      value: "decoration-blue-500",
+      label: "『 decoration-blue-500 』 text-decoration-color: #3b82f6;"
+    },
+    {
+      value: "decoration-blue-600",
+      label: "『 decoration-blue-600 』 text-decoration-color: #2563eb;"
+    },
+    {
+      value: "decoration-blue-700",
+      label: "『 decoration-blue-700 』 text-decoration-color: #1d4ed8;"
+    },
+    {
+      value: "decoration-blue-800",
+      label: "『 decoration-blue-800 』 text-decoration-color: #1e40af;"
+    },
+    {
+      value: "decoration-blue-900",
+      label: "『 decoration-blue-900 』 text-decoration-color: #1e3a8a;"
+    },
+    {
+      value: "decoration-indigo-50",
+      label: "『 decoration-indigo-50 』 text-decoration-color: #eef2ff;"
+    },
+    {
+      value: "decoration-indigo-100",
+      label: "『 decoration-indigo-100 』 text-decoration-color: #e0e7ff;"
+    },
+    {
+      value: "decoration-indigo-200",
+      label: "『 decoration-indigo-200 』 text-decoration-color: #c7d2fe;"
+    },
+    {
+      value: "decoration-indigo-300",
+      label: "『 decoration-indigo-300 』 text-decoration-color: #a5b4fc;"
+    },
+    {
+      value: "decoration-indigo-400",
+      label: "『 decoration-indigo-400 』 text-decoration-color: #818cf8;"
+    },
+    {
+      value: "decoration-indigo-500",
+      label: "『 decoration-indigo-500 』 text-decoration-color: #6366f1;"
+    },
+    {
+      value: "decoration-indigo-600",
+      label: "『 decoration-indigo-600 』 text-decoration-color: #4f46e5;"
+    },
+    {
+      value: "decoration-indigo-700",
+      label: "『 decoration-indigo-700 』 text-decoration-color: #4338ca;"
+    },
+    {
+      value: "decoration-indigo-800",
+      label: "『 decoration-indigo-800 』 text-decoration-color: #3730a3;"
+    },
+    {
+      value: "decoration-indigo-900",
+      label: "『 decoration-indigo-900 』 text-decoration-color: #312e81;"
+    },
+    {
+      value: "decoration-violet-50",
+      label: "『 decoration-violet-50 』 text-decoration-color: #f5f3ff;"
+    },
+    {
+      value: "decoration-violet-100",
+      label: "『 decoration-violet-100 』 text-decoration-color: #ede9fe;"
+    },
+    {
+      value: "decoration-violet-200",
+      label: "『 decoration-violet-200 』 text-decoration-color: #ddd6fe;"
+    },
+    {
+      value: "decoration-violet-300",
+      label: "『 decoration-violet-300 』 text-decoration-color: #c4b5fd;"
+    },
+    {
+      value: "decoration-violet-400",
+      label: "『 decoration-violet-400 』 text-decoration-color: #a78bfa;"
+    },
+    {
+      value: "decoration-violet-500",
+      label: "『 decoration-violet-500 』 text-decoration-color: #8b5cf6;"
+    },
+    {
+      value: "decoration-violet-600",
+      label: "『 decoration-violet-600 』 text-decoration-color: #7c3aed;"
+    },
+    {
+      value: "decoration-violet-700",
+      label: "『 decoration-violet-700 』 text-decoration-color: #6d28d9;"
+    },
+    {
+      value: "decoration-violet-800",
+      label: "『 decoration-violet-800 』 text-decoration-color: #5b21b6;"
+    },
+    {
+      value: "decoration-violet-900",
+      label: "『 decoration-violet-900 』 text-decoration-color: #4c1d95;"
+    },
+    {
+      value: "decoration-purple-50",
+      label: "『 decoration-purple-50 』 text-decoration-color: #faf5ff;"
+    },
+    {
+      value: "decoration-purple-100",
+      label: "『 decoration-purple-100 』 text-decoration-color: #f3e8ff;"
+    },
+    {
+      value: "decoration-purple-200",
+      label: "『 decoration-purple-200 』 text-decoration-color: #e9d5ff;"
+    },
+    {
+      value: "decoration-purple-300",
+      label: "『 decoration-purple-300 』 text-decoration-color: #d8b4fe;"
+    },
+    {
+      value: "decoration-purple-400",
+      label: "『 decoration-purple-400 』 text-decoration-color: #c084fc;"
+    },
+    {
+      value: "decoration-purple-500",
+      label: "『 decoration-purple-500 』 text-decoration-color: #a855f7;"
+    },
+    {
+      value: "decoration-purple-600",
+      label: "『 decoration-purple-600 』 text-decoration-color: #9333ea;"
+    },
+    {
+      value: "decoration-purple-700",
+      label: "『 decoration-purple-700 』 text-decoration-color: #7e22ce;"
+    },
+    {
+      value: "decoration-purple-800",
+      label: "『 decoration-purple-800 』 text-decoration-color: #6b21a8;"
+    },
+    {
+      value: "decoration-purple-900",
+      label: "『 decoration-purple-900 』 text-decoration-color: #581c87;"
+    },
+    {
+      value: "decoration-fuchsia-50",
+      label: "『 decoration-fuchsia-50 』 text-decoration-color: #fdf4ff;"
+    },
+    {
+      value: "decoration-fuchsia-100",
+      label: "『 decoration-fuchsia-100 』 text-decoration-color: #fae8ff;"
+    },
+    {
+      value: "decoration-fuchsia-200",
+      label: "『 decoration-fuchsia-200 』 text-decoration-color: #f5d0fe;"
+    },
+    {
+      value: "decoration-fuchsia-300",
+      label: "『 decoration-fuchsia-300 』 text-decoration-color: #f0abfc;"
+    },
+    {
+      value: "decoration-fuchsia-400",
+      label: "『 decoration-fuchsia-400 』 text-decoration-color: #e879f9;"
+    },
+    {
+      value: "decoration-fuchsia-500",
+      label: "『 decoration-fuchsia-500 』 text-decoration-color: #d946ef;"
+    },
+    {
+      value: "decoration-fuchsia-600",
+      label: "『 decoration-fuchsia-600 』 text-decoration-color: #c026d3;"
+    },
+    {
+      value: "decoration-fuchsia-700",
+      label: "『 decoration-fuchsia-700 』 text-decoration-color: #a21caf;"
+    },
+    {
+      value: "decoration-fuchsia-800",
+      label: "『 decoration-fuchsia-800 』 text-decoration-color: #86198f;"
+    },
+    {
+      value: "decoration-fuchsia-900",
+      label: "『 decoration-fuchsia-900 』 text-decoration-color: #701a75;"
+    },
+    {
+      value: "decoration-pink-50",
+      label: "『 decoration-pink-50 』 text-decoration-color: #fdf2f8;"
+    },
+    {
+      value: "decoration-pink-100",
+      label: "『 decoration-pink-100 』 text-decoration-color: #fce7f3;"
+    },
+    {
+      value: "decoration-pink-200",
+      label: "『 decoration-pink-200 』 text-decoration-color: #fbcfe8;"
+    },
+    {
+      value: "decoration-pink-300",
+      label: "『 decoration-pink-300 』 text-decoration-color: #f9a8d4;"
+    },
+    {
+      value: "decoration-pink-400",
+      label: "『 decoration-pink-400 』 text-decoration-color: #f472b6;"
+    },
+    {
+      value: "decoration-pink-500",
+      label: "『 decoration-pink-500 』 text-decoration-color: #ec4899;"
+    },
+    {
+      value: "decoration-pink-600",
+      label: "『 decoration-pink-600 』 text-decoration-color: #db2777;"
+    },
+    {
+      value: "decoration-pink-700",
+      label: "『 decoration-pink-700 』 text-decoration-color: #be185d;"
+    },
+    {
+      value: "decoration-pink-800",
+      label: "『 decoration-pink-800 』 text-decoration-color: #9d174d;"
+    },
+    {
+      value: "decoration-pink-900",
+      label: "『 decoration-pink-900 』 text-decoration-color: #831843;"
+    },
+    {
+      value: "decoration-rose-50",
+      label: "『 decoration-rose-50 』 text-decoration-color: #fff1f2;"
+    },
+    {
+      value: "decoration-rose-100",
+      label: "『 decoration-rose-100 』 text-decoration-color: #ffe4e6;"
+    },
+    {
+      value: "decoration-rose-200",
+      label: "『 decoration-rose-200 』 text-decoration-color: #fecdd3;"
+    },
+    {
+      value: "decoration-rose-300",
+      label: "『 decoration-rose-300 』 text-decoration-color: #fda4af;"
+    },
+    {
+      value: "decoration-rose-400",
+      label: "『 decoration-rose-400 』 text-decoration-color: #fb7185;"
+    },
+    {
+      value: "decoration-rose-500",
+      label: "『 decoration-rose-500 』 text-decoration-color: #f43f5e;"
+    },
+    {
+      value: "decoration-rose-600",
+      label: "『 decoration-rose-600 』 text-decoration-color: #e11d48;"
+    },
+    {
+      value: "decoration-rose-700",
+      label: "『 decoration-rose-700 』 text-decoration-color: #be123c;"
+    },
+    {
+      value: "decoration-rose-800",
+      label: "『 decoration-rose-800 』 text-decoration-color: #9f1239;"
+    },
+    {
+      value: "decoration-rose-900",
+      label: "『 decoration-rose-900 』 text-decoration-color: #881337;"
+    }
+  ]
+};
+
+export const TextDecorationStyle: AttributeProps = {
+  type: "text-decoration-style",
+  header: "Text Decoration Style 属性",
+  title: "Text Decoration Style ClassName：",
+  inputPlaceholder: "text-decoration-style: xxxx",
+  selectPlaceholder: "text-decoration-style: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "decoration-solid",
+      label: "『 decoration-solid 』 text-decoration-style: solid;"
+    },
+    {
+      value: "decoration-double",
+      label: "『 decoration-double 』 text-decoration-style: double;"
+    },
+    {
+      value: "decoration-dotted",
+      label: "『 decoration-dotted 』 text-decoration-style: dotted;"
+    },
+    {
+      value: "decoration-dashed",
+      label: "『 decoration-dashed 』 text-decoration-style: dashed;"
+    },
+    {
+      value: "decoration-wavy",
+      label: "『 decoration-wavy 』 text-decoration-style: wavy;"
+    }
+  ]
+};
+
+export const TextDecorationThickness: AttributeProps = {
+  type: "text-decoration-thickness",
+  header: "Text Decoration Thickness 属性",
+  title: "Text Decoration Thickness ClassName：",
+  inputPlaceholder: "text-decoration-thickness: xxxx",
+  selectPlaceholder: "text-decoration-thickness: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "decoration-auto",
+      label: "『 decoration-auto 』 text-decoration-thickness: auto;"
+    },
+    {
+      value: "decoration-from-font",
+      label: "『 decoration-from-font 』 text-decoration-thickness: from-font;"
+    },
+    {
+      value: "decoration-0",
+      label: "『 decoration-0 』 text-decoration-thickness: 0px;"
+    },
+    {
+      value: "decoration-1",
+      label: "『 decoration-1 』 text-decoration-thickness: 1px;"
+    },
+    {
+      value: "decoration-2",
+      label: "『 decoration-2 』 text-decoration-thickness: 2px;"
+    },
+    {
+      value: "decoration-4",
+      label: "『 decoration-4 』 text-decoration-thickness: 4px;"
+    },
+    {
+      value: "decoration-8",
+      label: "『 decoration-8 』 text-decoration-thickness: 8px;"
+    }
+  ]
+};
+
+export const TextUnderlineOffset: AttributeProps = {
+  type: "text-underline-offset",
+  header: "Text Underline Offset 属性",
+  title: "Text Underline Offset ClassName：",
+  inputPlaceholder: "text-underline-offset: xxxx",
+  selectPlaceholder: "text-underline-offset: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "underline-offset-auto",
+      label: "『 underline-offset-auto 』 text-underline-offset: auto;"
+    },
+    {
+      value: "underline-offset-0",
+      label: "『 underline-offset-0 』 text-underline-offset: 0px;"
+    },
+    {
+      value: "underline-offset-1",
+      label: "『 underline-offset-1 』 text-underline-offset: 1px;"
+    },
+    {
+      value: "underline-offset-2",
+      label: "『 underline-offset-2 』 text-underline-offset: 2px;"
+    },
+    {
+      value: "underline-offset-4",
+      label: "『 underline-offset-4 』 text-underline-offset: 4px;"
+    },
+    {
+      value: "underline-offset-8",
+      label: "『 underline-offset-8 』 text-underline-offset: 8px;"
+    }
+  ]
+};
+
+export const TextTransform: AttributeProps = {
+  type: "text-transform",
+  header: "Text Transform 属性",
+  title: "Text Transform ClassName：",
+  inputPlaceholder: "text-transform: xxxx",
+  selectPlaceholder: "text-transform: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "uppercase",
+      label: "『 uppercase 』 text-transform: uppercase;"
+    },
+    {
+      value: "lowercase",
+      label: "『 lowercase 』 text-transform: lowercase;"
+    },
+    {
+      value: "capitalize",
+      label: "『 capitalize 』 text-transform: capitalize;"
+    },
+    {
+      value: "normal-case",
+      label: "『 normal-case 』 text-transform: none;"
+    }
+  ]
+};
+
+export const TextOverflow: AttributeProps = {
+  type: "text-overflow",
+  header: "Text Overflow 属性",
+  title: "Text Overflow ClassName：",
+  inputPlaceholder: "text-overflow: xxxx",
+  selectPlaceholder: "text-overflow: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "truncate",
+      label:
+        "『 truncate 』 overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+    },
+    {
+      value: "text-ellipsis",
+      label: "『 text-ellipsis 』 text-overflow: ellipsis;"
+    },
+    {
+      value: "text-clip",
+      label: "『 text-clip 』 text-overflow: clip;"
+    }
+  ]
+};
+
+export const TextIndent: AttributeProps = {
+  type: "text-indent",
+  header: "Text Indent 属性",
+  title: "Text Indent ClassName：",
+  inputPlaceholder: "text-indent: xxxx",
+  selectPlaceholder: "text-indent: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "indent-0",
+      label: "『 indent-0 』 text-indent: 0px;"
+    },
+    {
+      value: "indent-px",
+      label: "『 indent-px 』 text-indent: 1px;"
+    },
+    {
+      value: "indent-0.5",
+      label: "『 indent-0.5 』 text-indent: 0.125rem; /* 2px */"
+    },
+    {
+      value: "indent-1",
+      label: "『 indent-1 』 text-indent: 0.25rem; /* 4px */"
+    },
+    {
+      value: "indent-1.5",
+      label: "『 indent-1.5 』 text-indent: 0.375rem; /* 6px */"
+    },
+    {
+      value: "indent-2",
+      label: "『 indent-2 』 text-indent: 0.5rem; /* 8px */"
+    },
+    {
+      value: "indent-2.5",
+      label: "『 indent-2.5 』 text-indent: 0.625rem; /* 10px */"
+    },
+    {
+      value: "indent-3",
+      label: "『 indent-3 』 text-indent: 0.75rem; /* 12px */"
+    },
+    {
+      value: "indent-3.5",
+      label: "『 indent-3.5 』 text-indent: 0.875rem; /* 14px */"
+    },
+    {
+      value: "indent-4",
+      label: "『 indent-4 』 text-indent: 1rem; /* 16px */"
+    },
+    {
+      value: "indent-5",
+      label: "『 indent-5 』 text-indent: 1.25rem; /* 20px */"
+    },
+    {
+      value: "indent-6",
+      label: "『 indent-6 』 text-indent: 1.5rem; /* 24px */"
+    },
+    {
+      value: "indent-7",
+      label: "『 indent-7 』 text-indent: 1.75rem; /* 28px */"
+    },
+    {
+      value: "indent-8",
+      label: "『 indent-8 』 text-indent: 2rem; /* 32px */"
+    },
+    {
+      value: "indent-9",
+      label: "『 indent-9 』 text-indent: 2.25rem; /* 36px */"
+    },
+    {
+      value: "indent-10",
+      label: "『 indent-10 』 text-indent: 2.5rem; /* 40px */"
+    },
+    {
+      value: "indent-11",
+      label: "『 indent-11 』 text-indent: 2.75rem; /* 44px */"
+    },
+    {
+      value: "indent-12",
+      label: "『 indent-12 』 text-indent: 3rem; /* 48px */"
+    },
+    {
+      value: "indent-14",
+      label: "『 indent-14 』 text-indent: 3.5rem; /* 56px */"
+    },
+    {
+      value: "indent-16",
+      label: "『 indent-16 』 text-indent: 4rem; /* 64px */"
+    },
+    {
+      value: "indent-20",
+      label: "『 indent-20 』 text-indent: 5rem; /* 80px */"
+    },
+    {
+      value: "indent-24",
+      label: "『 indent-24 』 text-indent: 6rem; /* 96px */"
+    },
+    {
+      value: "indent-28",
+      label: "『 indent-28 』 text-indent: 7rem; /* 112px */"
+    },
+    {
+      value: "indent-32",
+      label: "『 indent-32 』 text-indent: 8rem; /* 128px */"
+    },
+    {
+      value: "indent-36",
+      label: "『 indent-36 』 text-indent: 9rem; /* 144px */"
+    },
+    {
+      value: "indent-40",
+      label: "『 indent-40 』 text-indent: 10rem; /* 160px */"
+    },
+    {
+      value: "indent-44",
+      label: "『 indent-44 』 text-indent: 11rem; /* 176px */"
+    },
+    {
+      value: "indent-48",
+      label: "『 indent-48 』 text-indent: 12rem; /* 192px */"
+    },
+    {
+      value: "indent-52",
+      label: "『 indent-52 』 text-indent: 13rem; /* 208px */"
+    },
+    {
+      value: "indent-56",
+      label: "『 indent-56 』 text-indent: 14rem; /* 224px */"
+    },
+    {
+      value: "indent-60",
+      label: "『 indent-60 』 text-indent: 15rem; /* 240px */"
+    },
+    {
+      value: "indent-64",
+      label: "『 indent-64 』 text-indent: 16rem; /* 256px */"
+    },
+    {
+      value: "indent-72",
+      label: "『 indent-72 』 text-indent: 18rem; /* 288px */"
+    },
+    {
+      value: "indent-80",
+      label: "『 indent-80 』 text-indent: 20rem; /* 320px */"
+    },
+    {
+      value: "indent-96",
+      label: "『 indent-96 』 text-indent: 24rem; /* 384px */"
+    }
+  ]
+};
+
+export const VerticalAlign: AttributeProps = {
+  type: "vertical-align",
+  header: "Vertical Align 属性",
+  title: "Vertical Align ClassName：",
+  inputPlaceholder: "vertical-align: xxxx",
+  selectPlaceholder: "vertical-align: xxxx",
+  hasCustom: true,
+  options: [
+    {
+      value: "align-baseline",
+      label: "『 align-baseline 』 vertical-align: baseline;"
+    },
+    {
+      value: "align-top",
+      label: "『 align-top 』 vertical-align: top;"
+    },
+    {
+      value: "align-middle",
+      label: "『 align-middle 』 vertical-align: middle;"
+    },
+    {
+      value: "align-bottom",
+      label: "『 align-bottom 』 vertical-align: bottom;"
+    },
+    {
+      value: "align-text-top",
+      label: "『 align-text-top 』 vertical-align: text-top;"
+    },
+    {
+      value: "align-text-bottom",
+      label: "『 align-text-bottom 』 vertical-align: text-bottom;"
+    },
+    {
+      value: "align-sub",
+      label: "『 align-sub 』 vertical-align: sub;"
+    },
+    {
+      value: "align-super",
+      label: "『 align-super 』 vertical-align: super;"
+    }
+  ]
+};
+
+export const Whitespace: AttributeProps = {
+  type: "white-space",
+  header: "Whitespace 属性",
+  title: "Whitespace ClassName：",
+  inputPlaceholder: "white-space: xxxx",
+  selectPlaceholder: "white-space: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "whitespace-normal",
+      label: "『 whitespace-normal 』 white-space: normal;"
+    },
+    {
+      value: "whitespace-nowrap",
+      label: "『 whitespace-nowrap 』 white-space: nowrap;"
+    },
+    {
+      value: "whitespace-pre",
+      label: "『 whitespace-pre 』 white-space: pre;"
+    },
+    {
+      value: "whitespace-pre-line",
+      label: "『 whitespace-pre-line 』 white-space: pre-line;"
+    },
+    {
+      value: "whitespace-pre-wrap",
+      label: "『 whitespace-pre-wrap 』 white-space: pre-wrap;"
+    }
+  ]
+};
+
+export const WordBreak: AttributeProps = {
+  type: "word-break",
+  header: "Word Break 属性",
+  title: "Word Break ClassName：",
+  inputPlaceholder: "word-break: xxxx",
+  selectPlaceholder: "word-break: xxxx",
+  hasCustom: false,
+  options: [
+    {
+      value: "break-normal",
+      label: "『 break-normal 』 overflow-wrap: normal; word-break: normal;"
+    },
+    {
+      value: "break-words",
+      label: "『 break-words 』 overflow-wrap: break-word;"
+    },
+    {
+      value: "break-all",
+      label: "『 break-all 』 word-break: break-all;"
+    },
+    {
+      value: "break-keep",
+      label: "『 break-keep 』 word-break: keep-all;"
+    }
+  ]
+};
+
+export default [
+  FontFamily,
+  FontSize,
+  FontSmoothing,
+  FontStyle,
+  FontWeight,
+  FontVariantNumeric,
+  LetterSpacing,
+  LineHeight,
+  ListStyleType,
+  ListStylePosition,
+  TextAlign,
+  TextColor,
+  TextDecoration,
+  TextDecorationColor,
+  TextDecorationStyle,
+  TextDecorationThickness,
+  TextUnderlineOffset,
+  TextTransform,
+  TextOverflow,
+  TextIndent,
+  VerticalAlign,
+  Whitespace,
+  WordBreak
+];

@@ -1,37 +1,29 @@
 import Attribute from "./Attribute";
-import { Config } from "tailwindcss";
+
+import Layout from "./tailwindcss-classname/layout";
+import FlexboxGrid from "./tailwindcss-classname/flexbox-grid";
+import Sizing from "./tailwindcss-classname/sizing";
+import Spacing from "./tailwindcss-classname/spacing";
+import Typography from "./tailwindcss-classname/typography";
 
 export { Attribute };
 
-const init = [{ value: null, label: "请选择" }];
-
 export const attributeItems: Array<AttributeProps> = [
-  {
-    type: "",
-    header: " 属性",
-    title: " ClassName：",
-    inputPlaceholder: ": xxxx",
-    selectPlaceholder: ": xxxx",
-    hasCustom: false,
-    options: [
-      { value: "", label: "『  』 " },
-      { value: "", label: "『  』 " }
-    ]
-  },
-  {
-    type: "width",
-    header: "Width 属性",
-    title: "Width ClassName：",
-    inputPlaceholder: "0px",
-    hasCustom: true,
-    options: []
-  },
-  {
-    type: "height",
-    header: "Height 属性",
-    title: "Height ClassName：",
-    inputPlaceholder: "0px",
-    hasCustom: true,
-    options: []
-  }
+  ...Layout,
+  ...FlexboxGrid,
+  ...Sizing,
+  ...Spacing,
+  ...Typography
+  // {
+  //   type: "",
+  //   header: " 属性",
+  //   title: " ClassName：",
+  //   inputPlaceholder: ": xxxx",
+  //   selectPlaceholder: ": xxxx",
+  //   hasCustom: false,
+  //   options: [
+  //     { value: "", label: "『  』 " },
+  //     { value: "", label: "『  』 " }
+  //   ]
+  // }
 ];

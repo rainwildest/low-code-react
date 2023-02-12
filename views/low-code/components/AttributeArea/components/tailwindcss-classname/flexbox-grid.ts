@@ -1727,3 +1727,30 @@ export const PlaceSelf: AttributeProps = {
     }
   ]
 };
+
+export default [
+  FlexBasis,
+  FlexDirection,
+  FlexWrap,
+  Flex,
+  FlexGrow,
+  FlexShrink,
+  Order,
+  GridTemplateColumns,
+  GridColumn,
+  GridTemplateRows,
+  GridRow,
+  GridAutoFlow,
+  GridAutoColumns,
+  GridAutoRows,
+  Gap,
+  JustifyContent,
+  JustifyItems,
+  JustifySelf,
+  AlignContent,
+  AlignItems,
+  AlignSelf,
+  PlaceContent,
+  PlaceItems,
+  PlaceSelf
+];

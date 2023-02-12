@@ -412,11 +412,11 @@ export const MaxWidth: AttributeProps = {
 };
 
 export const Height: AttributeProps = {
-  type: "max-width",
-  header: "Max-Width 属性",
-  title: "Max-Width ClassName：",
-  inputPlaceholder: "max-width: xxxx",
-  selectPlaceholder: "max-width: xxxx",
+  type: "height",
+  header: "Height 属性",
+  title: "Height ClassName：",
+  inputPlaceholder: "height: xxxx",
+  selectPlaceholder: "height: xxxx",
   hasCustom: true,
   options: [
     {
@@ -851,3 +851,5 @@ export const MaxHeight: AttributeProps = {
     }
   ]
 };
+
+export default [Width, MinWidth, MaxWidth, Height, MinHeight, MaxHeight];

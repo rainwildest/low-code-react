@@ -9,13 +9,16 @@ import { attributeItems, Attribute } from "./components";
 type AttributeProps = {
   ref?: LegacyRef<HTMLElement>;
   className?: string;
+  attrs?: AnyProps;
+  callback?: (value: AnyProps) => void;
 };
 
 const { Panel } = Collapse;
 
 const AttributeArea: FC<AttributeProps> = forwardRef(
-  ({ className }, nodeRef: ForwardedRef<HTMLDivElement>) => {
+  ({ className, attrs, callback }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     const attributes = attributeItems;
+    console.log(attrs);
 
     return (
       <section
@@ -49,15 +52,17 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
               <Panel
                 key={attr.type}
                 header={attr.header}
-                className="site-collapse-custom-panel"
+                className="site-collapse-custom-panel truncate"
               >
                 <Attribute
                   title={attr.title}
                   type={attr.type}
                   options={attr?.options || []}
                   hasCustom={attr?.hasCustom}
+                  value={attrs}
                   inputPlaceholder={attr?.inputPlaceholder}
                   selectPlaceholder={attr?.selectPlaceholder}
+                  callback={callback}
                 />
               </Panel>
             ))}
