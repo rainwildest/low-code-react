@@ -6,7 +6,9 @@ import { emitter } from "lib/utils";
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
-import { Icon, Layout } from "components";
+import Layout from "./components/Layout";
+
+import { Icon } from "components";
 
 import { observer } from "mobx-react";
 

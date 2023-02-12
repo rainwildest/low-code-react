@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { ComponentType } from "react";
+import { ComponentType, memo } from "react";
 
 const Editor: ComponentType = dynamic(() => import("views/low-code"), {
   ssr: false,
@@ -8,6 +8,6 @@ const Editor: ComponentType = dynamic(() => import("views/low-code"), {
   )
 });
 
-export default () => {
-  return <Editor />;
-};
+const Index = () => <Editor />;
+
+export default memo(Index);

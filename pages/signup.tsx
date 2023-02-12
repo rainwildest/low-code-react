@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
+import Layout from "../views/low-code/components/Layout";
 import Router, { useRouter } from "next/router";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
