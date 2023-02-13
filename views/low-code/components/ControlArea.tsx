@@ -19,7 +19,8 @@ const ControlArea: FC<ControlProps> = forwardRef(
             type: tagsName.DIV,
             description: "",
             attribute: {
-              className: "px-2.5 py-2.5 min-h-[50px]"
+              className: "px-2.5 py-2.5 min-h-[50px]",
+              tailwindcss: {}
             }
           },
           {

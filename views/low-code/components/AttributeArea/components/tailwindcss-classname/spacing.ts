@@ -1,5 +1,11 @@
+import {
+  PaddingType,
+  MarginType,
+  SpaceBetweenType
+} from "config/tailwind-type";
+
 export const Padding: AttributeProps = {
-  type: "padding",
+  type: PaddingType.toString(),
   header: "Padding 属性",
   title: "Padding ClassName：",
   inputPlaceholder: "padding: xxxx",
@@ -1165,7 +1171,7 @@ export const Padding: AttributeProps = {
 };
 
 export const Margin: AttributeProps = {
-  type: "margin",
+  type: MarginType.toString(),
   header: "Margin 属性",
   title: "Margin ClassName：",
   inputPlaceholder: "margin: xxxx",
@@ -2364,7 +2370,7 @@ export const Margin: AttributeProps = {
 };
 
 export const SpaceBetween: AttributeProps = {
-  type: "space-between",
+  type: SpaceBetweenType.toString(),
   header: "Space Between",
   title: "Space Between ClassName：",
   inputPlaceholder: "space-between: xxxx",

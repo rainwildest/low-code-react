@@ -1,5 +1,26 @@
+import {
+  AspectRatioType,
+  ColumnsType,
+  BreakAfterType,
+  BreakBeforeType,
+  BreakInsideType,
+  BoxDecorationBreakType,
+  BoxSizingType,
+  DisplayType,
+  FloatsType,
+  ClearType,
+  ObjectFitType,
+  ObjectPositionType,
+  OverflowType,
+  OverscrollBehaviorType,
+  PositionType,
+  InsetType,
+  VisibilityType,
+  ZIndexType
+} from "config/tailwind-type";
+
 export const AspectRatio: AttributeProps = {
-  type: "aspect-ratio",
+  type: AspectRatioType.toString(),
   header: "Aspect Ratio 属性",
   title: "Aspect Ratio ClassName：",
   selectPlaceholder: "aspect-ratio: xxxx",
@@ -21,7 +42,7 @@ export const AspectRatio: AttributeProps = {
 };
 
 export const Columns: AttributeProps = {
-  type: "columns",
+  type: ColumnsType.toString(),
   header: "Columns 属性",
   title: "Columns ClassName：",
   selectPlaceholder: "columns: xxxx",
@@ -136,7 +157,7 @@ export const Columns: AttributeProps = {
 };
 
 export const BreakAfter: AttributeProps = {
-  type: "break-after",
+  type: BreakAfterType.toString(),
   header: "Break After 属性",
   title: "Break After ClassName：",
   selectPlaceholder: "break-after: xxxx",
@@ -178,7 +199,7 @@ export const BreakAfter: AttributeProps = {
 };
 
 export const BreakBefore: AttributeProps = {
-  type: "break-before",
+  type: BreakBeforeType.toString(),
   header: "Break Before 属性",
   title: "Break Before ClassName：",
   selectPlaceholder: "break-before: xxxx",
@@ -220,7 +241,7 @@ export const BreakBefore: AttributeProps = {
 };
 
 export const BreakInside: AttributeProps = {
-  type: "break-inside",
+  type: BreakInsideType.toString(),
   header: "Break Inside 属性",
   title: "Break Inside ClassName：",
   selectPlaceholder: "break-inside: xxxx",
@@ -246,7 +267,7 @@ export const BreakInside: AttributeProps = {
 };
 
 export const BoxDecorationBreak: AttributeProps = {
-  type: "box-decoration-break",
+  type: BoxDecorationBreakType.toString(),
   header: "Box Decoration Break 属性",
   title: "Box Decoration Break ClassName：",
   selectPlaceholder: "box-decoration-break: xxxx",
@@ -264,7 +285,7 @@ export const BoxDecorationBreak: AttributeProps = {
 };
 
 export const BoxSizing: AttributeProps = {
-  type: "box-sizing",
+  type: BoxSizingType.toString(),
   header: "Box Sizing 属性",
   title: "Box Sizing ClassName：",
   selectPlaceholder: "box-sizing: xxxx",
@@ -282,7 +303,7 @@ export const BoxSizing: AttributeProps = {
 };
 
 export const Display: AttributeProps = {
-  type: "display",
+  type: DisplayType.toString(),
   header: "Display 属性",
   title: "Display ClassName：",
   selectPlaceholder: "display: xxxx",
@@ -343,7 +364,7 @@ export const Display: AttributeProps = {
 };
 
 export const Floats: AttributeProps = {
-  type: "float",
+  type: FloatsType.toString(),
   header: "Float 属性",
   title: "Float ClassName：",
   selectPlaceholder: "float: xxxx",
@@ -356,7 +377,7 @@ export const Floats: AttributeProps = {
 };
 
 export const Clear: AttributeProps = {
-  type: "clear",
+  type: ClearType.toString(),
   header: "Clear 属性",
   title: "Clear ClassName：",
   selectPlaceholder: "clear: xxxx",
@@ -370,7 +391,7 @@ export const Clear: AttributeProps = {
 };
 
 export const ObjectFit: AttributeProps = {
-  type: "object-fit",
+  type: ObjectFitType.toString(),
   header: "Object Fit 属性",
   title: "Object Fit ClassName：",
   selectPlaceholder: "object-fit: xxxx",
@@ -391,7 +412,7 @@ export const ObjectFit: AttributeProps = {
 };
 
 export const ObjectPosition: AttributeProps = {
-  type: "object-position",
+  type: ObjectPositionType.toString(),
   header: "Object Position 属性",
   title: "Object Position ClassName：",
   selectPlaceholder: "object-position: xxxx",
@@ -434,7 +455,7 @@ export const ObjectPosition: AttributeProps = {
 };
 
 export const Overflow: AttributeProps = {
-  type: "overflow",
+  type: OverflowType.toString(),
   header: "Overflow 属性",
   title: "Overflow ClassName：",
   selectPlaceholder: "overflow: xxxx",
@@ -498,7 +519,7 @@ export const Overflow: AttributeProps = {
 };
 
 export const OverscrollBehavior: AttributeProps = {
-  type: "overscroll-behavior",
+  type: OverscrollBehaviorType.toString(),
   header: "Overscroll Behavior 属性",
   title: "Overscroll Behavior ClassName：",
   selectPlaceholder: "overscroll-behavior: xxxx",
@@ -544,7 +565,7 @@ export const OverscrollBehavior: AttributeProps = {
 };
 
 export const Position: AttributeProps = {
-  type: "position",
+  type: PositionType.toString(),
   header: "Position 属性",
   title: "Position ClassName：",
   selectPlaceholder: "position: xxxx",
@@ -559,7 +580,7 @@ export const Position: AttributeProps = {
 };
 
 export const Inset: AttributeProps = {
-  type: "inset",
+  type: InsetType.toString(),
   header: "Inset 属性",
   title: "Inset ClassName：",
   selectPlaceholder: "top:xxx; / right: xxxx / ...",
@@ -1508,7 +1529,7 @@ export const Inset: AttributeProps = {
 };
 
 export const Visibility: AttributeProps = {
-  type: "visibility",
+  type: VisibilityType.toString(),
   header: "Visibility 属性",
   title: "Visibility ClassName：",
   selectPlaceholder: "visibility: xxxx",
@@ -1521,7 +1542,7 @@ export const Visibility: AttributeProps = {
 };
 
 export const ZIndex: AttributeProps = {
-  type: "z-index",
+  type: ZIndexType.toString(),
   header: "Z-Index 属性",
   title: "Z-Index ClassName：",
   selectPlaceholder: "z-index: xxxx",

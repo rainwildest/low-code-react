@@ -1,5 +1,32 @@
+import {
+  FlexBasisType,
+  FlexDirectionType,
+  FlexWrapType,
+  FlexType,
+  FlexGrowType,
+  FlexShrinkType,
+  OrderType,
+  GridTemplateColumnsType,
+  GridColumnType,
+  GridTemplateRowsType,
+  GridRowType,
+  GridAutoFlowType,
+  GridAutoColumnsType,
+  GridAutoRowsType,
+  GapType,
+  JustifyContentType,
+  JustifyItemsType,
+  JustifySelfType,
+  AlignContentType,
+  AlignItemsType,
+  AlignSelfType,
+  PlaceContentType,
+  PlaceItemsType,
+  PlaceSelfType
+} from "config/tailwind-type";
+
 export const FlexBasis: AttributeProps = {
-  type: "flex-basis",
+  type: FlexBasisType.toString(),
   header: "Flex Basis 属性",
   title: "Flex Basis ClassName：",
   selectPlaceholder: "flex-basis: xxxx",
@@ -187,7 +214,7 @@ export const FlexBasis: AttributeProps = {
 };
 
 export const FlexDirection: AttributeProps = {
-  type: "flex-direction",
+  type: FlexDirectionType.toString(),
   header: "Flex Direction 属性",
   title: "Flex Direction ClassName：",
   selectPlaceholder: "flex-direction: xxxx",
@@ -207,7 +234,7 @@ export const FlexDirection: AttributeProps = {
 };
 
 export const FlexWrap: AttributeProps = {
-  type: "flex-wrap",
+  type: FlexWrapType.toString(),
   header: "Flex Wrap 属性",
   title: "Flex Wrap ClassName：",
   selectPlaceholder: "flex-wrap: xxxx",
@@ -223,7 +250,7 @@ export const FlexWrap: AttributeProps = {
 };
 
 export const Flex: AttributeProps = {
-  type: "flex",
+  type: FlexType.toString(),
   header: "Flex 属性",
   title: "Flex ClassName：",
   selectPlaceholder: "flex: xxxx",
@@ -238,7 +265,7 @@ export const Flex: AttributeProps = {
 };
 
 export const FlexGrow: AttributeProps = {
-  type: "flex-grow",
+  type: FlexGrowType.toString(),
   header: "Flex Grow 属性",
   title: "Flex Grow ClassName：",
   selectPlaceholder: "flex-grow: xxxx",
@@ -251,7 +278,7 @@ export const FlexGrow: AttributeProps = {
 };
 
 export const FlexShrink: AttributeProps = {
-  type: "flex-shrink",
+  type: FlexShrinkType.toString(),
   header: "Flex Shrink 属性",
   title: "Flex Shrink ClassName：",
   inputPlaceholder: "flex-shrink: xxxx",
@@ -264,7 +291,7 @@ export const FlexShrink: AttributeProps = {
 };
 
 export const Order: AttributeProps = {
-  type: "order",
+  type: OrderType.toString(),
   header: "Order 属性",
   title: "Order ClassName：",
   selectPlaceholder: "order: xxxx",
@@ -335,7 +362,7 @@ export const Order: AttributeProps = {
 };
 
 export const GridTemplateColumns: AttributeProps = {
-  type: "grid-template-columns",
+  type: GridTemplateColumnsType.toString(),
   header: "Grid Template Columns 属性",
   title: "Grid Template Columns ClassName：",
   selectPlaceholder: "fgrid-template-columns: xxxx",
@@ -410,7 +437,7 @@ export const GridTemplateColumns: AttributeProps = {
 };
 
 export const GridColumn: AttributeProps = {
-  type: "grid-column",
+  type: GridColumnType.toString(),
   header: "Grid Column Start / End 属性",
   title: "Grid Column Start / End ClassName：",
   inputPlaceholder: "grid-column: xxxx",
@@ -589,7 +616,7 @@ export const GridColumn: AttributeProps = {
 };
 
 export const GridTemplateRows: AttributeProps = {
-  type: "grid-template-rows",
+  type: GridTemplateRowsType.toString(),
   header: "Grid Template Rows 属性",
   title: "Grid Template Rows ClassName：",
   inputPlaceholder: "grid-template-rows: xxxx",
@@ -628,7 +655,7 @@ export const GridTemplateRows: AttributeProps = {
 };
 
 export const GridRow: AttributeProps = {
-  type: "grid-row",
+  type: GridRowType.toString(),
   header: "Grid Row Start / End 属性",
   title: "Grid Row Start / End ClassName：",
   inputPlaceholder: "grid-row: xxxx",
@@ -735,7 +762,7 @@ export const GridRow: AttributeProps = {
 };
 
 export const GridAutoFlow: AttributeProps = {
-  type: "grid-auto-flow",
+  type: GridAutoFlowType.toString(),
   header: "Grid Auto Flow 属性",
   title: "Grid Auto Flow ClassName：",
   inputPlaceholder: "grid-auto-flow: xxxx",
@@ -766,7 +793,7 @@ export const GridAutoFlow: AttributeProps = {
 };
 
 export const GridAutoColumns: AttributeProps = {
-  type: "grid-auto-columns",
+  type: GridAutoColumnsType.toString(),
   header: "Grid Auto Columns 属性",
   title: "Grid Auto Columns ClassName：",
   inputPlaceholder: "grid-auto-columns: xxxx",
@@ -793,7 +820,7 @@ export const GridAutoColumns: AttributeProps = {
 };
 
 export const GridAutoRows: AttributeProps = {
-  type: "grid-auto-rows",
+  type: GridAutoRowsType.toString(),
   header: "Grid Auto Rows 属性",
   title: "Grid Auto Rows ClassName：",
   inputPlaceholder: "grid-auto-rows: xxxx",
@@ -820,7 +847,7 @@ export const GridAutoRows: AttributeProps = {
 };
 
 export const Gap: AttributeProps = {
-  type: "gap",
+  type: GapType.toString(),
   header: "Gap 属性",
   title: "Gap ClassName：",
   inputPlaceholder: "gap: xxxx",
@@ -1426,7 +1453,7 @@ export const Gap: AttributeProps = {
 };
 
 export const JustifyContent: AttributeProps = {
-  type: "justify-content",
+  type: JustifyContentType.toString(),
   header: "Justify Content 属性",
   title: "Justify Content ClassName：",
   inputPlaceholder: "justify-content: xxxx",
@@ -1461,7 +1488,7 @@ export const JustifyContent: AttributeProps = {
 };
 
 export const JustifyItems: AttributeProps = {
-  type: "justify-items",
+  type: JustifyItemsType.toString(),
   header: "Justify Items 属性",
   title: "Justify Items ClassName：",
   inputPlaceholder: "justify-items: xxxx",
@@ -1488,7 +1515,7 @@ export const JustifyItems: AttributeProps = {
 };
 
 export const JustifySelf: AttributeProps = {
-  type: "justify-self",
+  type: JustifySelfType.toString(),
   header: "Justify Self 属性",
   title: "Justify Self ClassName：",
   inputPlaceholder: "justify-self: xxxx",
@@ -1519,7 +1546,7 @@ export const JustifySelf: AttributeProps = {
 };
 
 export const AlignContent: AttributeProps = {
-  type: "align-content",
+  type: AlignContentType.toString(),
   header: "Align Content 属性",
   title: "Align Content ClassName：",
   inputPlaceholder: ": xxxx",
@@ -1558,7 +1585,7 @@ export const AlignContent: AttributeProps = {
 };
 
 export const AlignItems: AttributeProps = {
-  type: "align-items",
+  type: AlignItemsType.toString(),
   header: "Align Items 属性",
   title: "Align Items ClassName：",
   inputPlaceholder: "align-items: xxxx",
@@ -1589,7 +1616,7 @@ export const AlignItems: AttributeProps = {
 };
 
 export const AlignSelf: AttributeProps = {
-  type: "align-self",
+  type: AlignSelfType.toString(),
   header: "Align Self 属性",
   title: "Align Self ClassName：",
   inputPlaceholder: "align-self: xxxx",
@@ -1624,7 +1651,7 @@ export const AlignSelf: AttributeProps = {
 };
 
 export const PlaceContent: AttributeProps = {
-  type: "place-content",
+  type: PlaceContentType.toString(),
   header: "Place Content 属性",
   title: "Place Content ClassName：",
   inputPlaceholder: "place-content: xxxx",
@@ -1667,7 +1694,7 @@ export const PlaceContent: AttributeProps = {
 };
 
 export const PlaceItems: AttributeProps = {
-  type: "place-items",
+  type: PlaceItemsType.toString(),
   header: "Place Items 属性",
   title: "Place Items ClassName：",
   inputPlaceholder: "place-items: xxxx",
@@ -1698,7 +1725,7 @@ export const PlaceItems: AttributeProps = {
 };
 
 export const PlaceSelf: AttributeProps = {
-  type: "place-self",
+  type: PlaceSelfType.toString(),
   header: "Place Self 属性",
   title: "Place Self ClassName：",
   inputPlaceholder: "place-self: xxxx",

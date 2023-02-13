@@ -48,7 +48,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
         });
     };
 
-    // console.log(value);
+    console.log(type);
 
     return (
       <div ref={nodeRef}>

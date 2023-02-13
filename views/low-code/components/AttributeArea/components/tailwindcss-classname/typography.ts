@@ -1,5 +1,31 @@
+import {
+  FontFamilyType,
+  FontSizeType,
+  FontSmoothingType,
+  FontStyleType,
+  FontWeightType,
+  FontVariantNumericType,
+  LetterSpacingType,
+  LineHeightType,
+  ListStyleTypeType,
+  ListStylePositionType,
+  TextAlignType,
+  TextColorType,
+  TextDecorationType,
+  TextDecorationColorType,
+  TextDecorationStyleType,
+  TextDecorationThicknessType,
+  TextUnderlineOffsetType,
+  TextTransformType,
+  TextOverflowType,
+  TextIndentType,
+  VerticalAlignType,
+  WhitespaceType,
+  WordBreakType
+} from "config/tailwind-type";
+
 export const FontFamily: AttributeProps = {
-  type: "font-family",
+  type: FontFamilyType.toString(),
   header: "Font Family 属性",
   title: "Font Family ClassName：",
   inputPlaceholder: "font-family: xxxx",
@@ -25,7 +51,7 @@ export const FontFamily: AttributeProps = {
 };
 
 export const FontSize: AttributeProps = {
-  type: "font-size",
+  type: FontSizeType.toString(),
   header: "Font Size 属性",
   title: "Font Size ClassName：",
   inputPlaceholder: "font-size: xxxx",
@@ -96,7 +122,7 @@ export const FontSize: AttributeProps = {
 };
 
 export const FontSmoothing: AttributeProps = {
-  type: "font-smoothing",
+  type: FontSmoothingType.toString(),
   header: "Font Smoothing 属性",
   title: "Font Smoothing ClassName：",
   inputPlaceholder: "font-smoothing: xxxx",
@@ -117,7 +143,7 @@ export const FontSmoothing: AttributeProps = {
 };
 
 export const FontStyle: AttributeProps = {
-  type: "font-style",
+  type: FontStyleType.toString(),
   header: "Font Style 属性",
   title: "Font Style ClassName：",
   inputPlaceholder: "font-style: xxxx",
@@ -136,7 +162,7 @@ export const FontStyle: AttributeProps = {
 };
 
 export const FontWeight: AttributeProps = {
-  type: "font-weight",
+  type: FontWeightType.toString(),
   header: "Font Weight 属性",
   title: "Font Weight ClassName：",
   inputPlaceholder: "font-weight: xxxx",
@@ -183,7 +209,7 @@ export const FontWeight: AttributeProps = {
 };
 
 export const FontVariantNumeric: AttributeProps = {
-  type: "font-variant-numeric",
+  type: FontVariantNumericType.toString(),
   header: "Font Variant Numeric 属性",
   title: "Font Variant Numeric ClassName：",
   inputPlaceholder: "font-variant-numeric: xxxx",
@@ -231,7 +257,7 @@ export const FontVariantNumeric: AttributeProps = {
 };
 
 export const LetterSpacing: AttributeProps = {
-  type: "letter-spacing",
+  type: LetterSpacingType.toString(),
   header: "Letter Spacing 属性",
   title: "Letter Spacing ClassName：",
   inputPlaceholder: "letter-spacing: xxxx",
@@ -266,7 +292,7 @@ export const LetterSpacing: AttributeProps = {
 };
 
 export const LineHeight: AttributeProps = {
-  type: "line-height",
+  type: LineHeightType.toString(),
   header: "Line Height 属性",
   title: "Line Height ClassName：",
   inputPlaceholder: "line-height: xxxx",
@@ -333,7 +359,7 @@ export const LineHeight: AttributeProps = {
 };
 
 export const ListStyleType: AttributeProps = {
-  type: "list-style-type",
+  type: ListStyleTypeType.toString(),
   header: "List Style Type 属性",
   title: "List Style Type ClassName：",
   inputPlaceholder: "list-style-type: xxxx",
@@ -356,7 +382,7 @@ export const ListStyleType: AttributeProps = {
 };
 
 export const ListStylePosition: AttributeProps = {
-  type: "list-style-position",
+  type: ListStylePositionType.toString(),
   header: "List Style Position 属性",
   title: "List Style Position ClassName：",
   inputPlaceholder: "list-style-position: xxxx",
@@ -375,7 +401,7 @@ export const ListStylePosition: AttributeProps = {
 };
 
 export const TextAlign: AttributeProps = {
-  type: "text-align",
+  type: TextAlignType.toString(),
   header: "Text Align 属性",
   title: "Text Align ClassName：",
   inputPlaceholder: "text-align: xxxx",
@@ -410,7 +436,7 @@ export const TextAlign: AttributeProps = {
 };
 
 export const TextColor: AttributeProps = {
-  type: "color",
+  type: TextColorType.toString(),
   header: "Text Color 属性",
   title: "Text Color ClassName：",
   inputPlaceholder: "color: xxxx",
@@ -1321,7 +1347,7 @@ export const TextColor: AttributeProps = {
 };
 
 export const TextDecoration: AttributeProps = {
-  type: "text-decoration-line",
+  type: TextDecorationType.toString(),
   header: "Text Decoration 属性",
   title: "Text Decoration ClassName：",
   inputPlaceholder: "text-decoration-line: xxxx",
@@ -1348,7 +1374,7 @@ export const TextDecoration: AttributeProps = {
 };
 
 export const TextDecorationColor: AttributeProps = {
-  type: "text-decoration-color",
+  type: TextDecorationColorType.toString(),
   header: "Text Decoration Color 属性",
   title: "Text Decoration Color ClassName：",
   inputPlaceholder: "text-decoration-color: xxxx",
@@ -2259,7 +2285,7 @@ export const TextDecorationColor: AttributeProps = {
 };
 
 export const TextDecorationStyle: AttributeProps = {
-  type: "text-decoration-style",
+  type: TextDecorationStyleType.toString(),
   header: "Text Decoration Style 属性",
   title: "Text Decoration Style ClassName：",
   inputPlaceholder: "text-decoration-style: xxxx",
@@ -2290,7 +2316,7 @@ export const TextDecorationStyle: AttributeProps = {
 };
 
 export const TextDecorationThickness: AttributeProps = {
-  type: "text-decoration-thickness",
+  type: TextDecorationThicknessType.toString(),
   header: "Text Decoration Thickness 属性",
   title: "Text Decoration Thickness ClassName：",
   inputPlaceholder: "text-decoration-thickness: xxxx",
@@ -2329,7 +2355,7 @@ export const TextDecorationThickness: AttributeProps = {
 };
 
 export const TextUnderlineOffset: AttributeProps = {
-  type: "text-underline-offset",
+  type: TextUnderlineOffsetType.toString(),
   header: "Text Underline Offset 属性",
   title: "Text Underline Offset ClassName：",
   inputPlaceholder: "text-underline-offset: xxxx",
@@ -2364,7 +2390,7 @@ export const TextUnderlineOffset: AttributeProps = {
 };
 
 export const TextTransform: AttributeProps = {
-  type: "text-transform",
+  type: TextTransformType.toString(),
   header: "Text Transform 属性",
   title: "Text Transform ClassName：",
   inputPlaceholder: "text-transform: xxxx",
@@ -2391,7 +2417,7 @@ export const TextTransform: AttributeProps = {
 };
 
 export const TextOverflow: AttributeProps = {
-  type: "text-overflow",
+  type: TextOverflowType.toString(),
   header: "Text Overflow 属性",
   title: "Text Overflow ClassName：",
   inputPlaceholder: "text-overflow: xxxx",
@@ -2415,7 +2441,7 @@ export const TextOverflow: AttributeProps = {
 };
 
 export const TextIndent: AttributeProps = {
-  type: "text-indent",
+  type: TextIndentType.toString(),
   header: "Text Indent 属性",
   title: "Text Indent ClassName：",
   inputPlaceholder: "text-indent: xxxx",
@@ -2566,7 +2592,7 @@ export const TextIndent: AttributeProps = {
 };
 
 export const VerticalAlign: AttributeProps = {
-  type: "vertical-align",
+  type: VerticalAlignType.toString(),
   header: "Vertical Align 属性",
   title: "Vertical Align ClassName：",
   inputPlaceholder: "vertical-align: xxxx",
@@ -2609,7 +2635,7 @@ export const VerticalAlign: AttributeProps = {
 };
 
 export const Whitespace: AttributeProps = {
-  type: "white-space",
+  type: WhitespaceType.toString(),
   header: "Whitespace 属性",
   title: "Whitespace ClassName：",
   inputPlaceholder: "white-space: xxxx",
@@ -2640,7 +2666,7 @@ export const Whitespace: AttributeProps = {
 };
 
 export const WordBreak: AttributeProps = {
-  type: "word-break",
+  type: WordBreakType.toString(),
   header: "Word Break 属性",
   title: "Word Break ClassName：",
   inputPlaceholder: "word-break: xxxx",

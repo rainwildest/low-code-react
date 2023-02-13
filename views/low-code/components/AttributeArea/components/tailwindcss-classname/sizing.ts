@@ -1,5 +1,14 @@
+import {
+  WidthType,
+  MinWidthType,
+  MaxWidthType,
+  HeightType,
+  MinHeightType,
+  MaxHeightType
+} from "config/tailwind-type";
+
 export const Width: AttributeProps = {
-  type: "width",
+  type: WidthType.toString(),
   header: "Width 属性",
   title: "Width ClassName：",
   inputPlaceholder: "width: xxxx",
@@ -278,7 +287,7 @@ export const Width: AttributeProps = {
 };
 
 export const MinWidth: AttributeProps = {
-  type: "min-width",
+  type: MinWidthType.toString(),
   header: "Min-Width 属性",
   title: "Min-Width ClassName：",
   inputPlaceholder: "min-width: xxxx",
@@ -309,7 +318,7 @@ export const MinWidth: AttributeProps = {
 };
 
 export const MaxWidth: AttributeProps = {
-  type: "max-width",
+  type: MaxWidthType.toString(),
   header: "Max-Width 属性",
   title: "Max-Width ClassName：",
   inputPlaceholder: "max-width: xxxx",
@@ -412,7 +421,7 @@ export const MaxWidth: AttributeProps = {
 };
 
 export const Height: AttributeProps = {
-  type: "height",
+  type: HeightType.toString(),
   header: "Height 属性",
   title: "Height ClassName：",
   inputPlaceholder: "height: xxxx",
@@ -647,7 +656,7 @@ export const Height: AttributeProps = {
 };
 
 export const MinHeight: AttributeProps = {
-  type: "min-height",
+  type: MinHeightType.toString(),
   header: "Min-Height 属性",
   title: "Min-Height ClassName：",
   inputPlaceholder: "min-height: xxxx",
@@ -682,7 +691,7 @@ export const MinHeight: AttributeProps = {
 };
 
 export const MaxHeight: AttributeProps = {
-  type: "max-height",
+  type: MaxHeightType.toString(),
   header: "Max-Height 属性",
   title: "Max-Height ClassName：",
   inputPlaceholder: "max-height: xxxx",
