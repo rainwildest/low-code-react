@@ -2,6 +2,7 @@ import type { FC, ForwardedRef, LegacyRef } from "react";
 import { memo, forwardRef } from "react";
 import Control from "./Control";
 import { tagsName } from "./ItemTypes";
+import { PaddingType, MinHeightType, DisplayType } from "config/tailwind-type";
 
 type ControlProps = {
   ref?: LegacyRef<HTMLElement>;
@@ -19,8 +20,11 @@ const ControlArea: FC<ControlProps> = forwardRef(
             type: tagsName.DIV,
             description: "",
             attribute: {
-              className: "px-2.5 py-2.5 min-h-[50px]",
-              tailwindcss: {}
+              className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           },
           {
@@ -29,6 +33,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "",
             attribute: {
               className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           },
           {
@@ -37,6 +45,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "",
             attribute: {
               className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           },
           {
@@ -45,6 +57,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "",
             attribute: {
               className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           },
           {
@@ -53,6 +69,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "",
             attribute: {
               className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           },
           {
@@ -61,6 +81,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             description: "",
             attribute: {
               className: "px-2.5 py-2.5 min-h-[50px]"
+            },
+            tailwindcss: {
+              [PaddingType.toString()]: "px-2.5 py-2.5",
+              [MinHeightType.toString()]: "min-h-[50px]"
             }
           }
         ]
@@ -75,6 +99,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             attribute: {
               content: "文本内容",
               className: "inline-block px-2.5 py-2.5"
+            },
+            tailwindcss: {
+              [DisplayType.toString()]: "inline-block",
+              [PaddingType.toString()]: "px-2.5 py-2.5"
             }
           },
           {
@@ -93,6 +121,10 @@ const ControlArea: FC<ControlProps> = forwardRef(
             attribute: {
               content: "链接内容1",
               className: "inline-block px-2.5 py-2.5"
+            },
+            tailwindcss: {
+              [DisplayType.toString()]: "inline-block",
+              [PaddingType.toString()]: "px-2.5 py-2.5"
             }
           },
           {
