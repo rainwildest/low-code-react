@@ -15,24 +15,27 @@ export interface ContainerState {
   cards: AnyProps[];
 }
 type DesignAreaProps = {
+  schema: AnyProps[];
   className?: string;
   style?: CSSProperties;
 
   onSelected?: (data: AnyProps) => void;
   onContextMenu?: (data: ContextMenuProps) => void;
   onClicked?: () => void;
+  onChanged?: (data: AnyProps[]) => void;
+  onDeleted?: (data: AnyProps[]) => void;
 };
 
 const DesignArea: FC<DesignAreaProps> = ({
+  schema = [],
   className = "",
   style = {},
 
   onClicked,
+  onChanged,
   onSelected,
   onContextMenu
 }) => {
-  const [schema, setSchema] = useState<any[]>([]);
-
   const dragData = new DragData();
   const selectorRef = useRef<AnyProps>(null);
 
@@ -48,7 +51,7 @@ const DesignArea: FC<DesignAreaProps> = ({
       $data = dragData.handle({ ...dropResult.data, schema }) || [];
     }
 
-    setSchema($data);
+    onChanged && onChanged($data);
   };
 
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -73,70 +76,12 @@ const DesignArea: FC<DesignAreaProps> = ({
     !!onSelected && onSelected(data);
   };
 
-  const onKeyDown = (value: KeyboardEvent) => {
-    if (value.code === "Delete") {
-      setSchema(schema => {
-        return dragData.remove(selectorRef.current, schema);
-      });
-
-      emitter.emit(emitinfo["delete:clear"]);
-    }
-  };
-
-  const onMenuDelete = (value: AnyProps) => {
-    setSchema(schema => dragData.remove(value, schema));
-
-    emitter.emit(emitinfo["delete:clear"]);
-  };
-
   const onClickDesignArea = (e: MouseEvent<HTMLDivElement>) => {
     onClicked && onClicked();
 
     // e.stopPropagation();
   };
-
-  const onAttributeChange = (val: AnyProps) => {
-    setSchema(schema => {
-      console.log("design area", dragData.modify(val, schema));
-      return dragData.modify(val, schema);
-    });
-  };
-
-  useEffect(() => {
-    const events = [
-      /**
-       * @brief 监听删除按钮
-       */
-      { name: "keydown", function: onKeyDown, isEmit: false },
-      /**
-       * @brief 注册监听删除
-       */
-      { name: emitinfo["delete:remove"], function: onMenuDelete, isEmit: true },
-      {
-        name: emitinfo["change:attribute"],
-        function: onAttributeChange,
-        isEmit: true
-      }
-    ];
-
-    events.forEach(event => {
-      if (event.isEmit) {
-        emitter.on(event.name, event.function);
-      } else {
-        document.addEventListener(event.name as string, event.function);
-      }
-    });
-
-    return () => {
-      events.forEach(event => {
-        if (event.isEmit) {
-          emitter.off(event.name, event.function);
-        } else {
-          document.removeEventListener(event.name as string, event.function);
-        }
-      });
-    };
-  }, []);
+  console.log("kkk");
 
   return (
     <div
@@ -145,7 +90,7 @@ const DesignArea: FC<DesignAreaProps> = ({
       className={`overflow-auto ${className}`}
       onClick={onClickDesignArea}
     >
-      {schema.map(card => (
+      {schema.map((card: any) => (
         <NestedDraggable
           key={card.id}
           {...card}

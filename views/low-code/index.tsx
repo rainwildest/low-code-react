@@ -10,15 +10,20 @@ import Layout from "./components/Layout";
 
 import { emitinfo } from "config/emitter";
 import { Icon } from "components";
+import DragData from "./components/utils";
 
 import { observer } from "mobx-react";
 
 const LowCode = observer(() => {
+  const dragData = new DragData();
+
   const controlRef = useRef<HTMLDivElement>(null);
   const attributeRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
   const contextmenuRef = useRef<HTMLDivElement>(null);
   const selectorsRef = useRef({ current: null, prev: null });
+
+  const [schema, setSchema] = useState<any[]>([]);
 
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
@@ -187,8 +192,16 @@ const LowCode = observer(() => {
     setVisible(false);
   };
 
+  const onKeyDown = (value: KeyboardEvent) => {
+    if (value.code === "Delete") {
+      onMenuDelete();
+    }
+  };
+
   const onMenuDelete = () => {
-    emitter.emit(emitinfo["delete:remove"], selectorsRef.current.current);
+    setSchema(schema => {
+      return dragData.remove(selectorsRef.current.current, schema);
+    });
   };
 
   const onClearSelected = () => {
@@ -198,9 +211,17 @@ const LowCode = observer(() => {
   const onAttrChange = useMemo(() => {
     return (val: AnyProps) => {
       setCurrentAttribute(val);
-      emitter.emit(emitinfo["change:attribute"], val);
+
+      setSchema(schema => {
+        console.log("design area", dragData.modify(val, schema));
+        return dragData.modify(val, schema);
+      });
     };
   }, []);
+
+  const onChange = (val: AnyProps[]) => {
+    setSchema(val);
+  };
 
   useEffect(() => {
     onInitDraggableContainer(960, 800);
@@ -222,6 +243,10 @@ const LowCode = observer(() => {
         function: onDisabledContextmenu,
         options: false
       },
+      /**
+       * @brief 监听删除按钮
+       */
+      { name: "keydown", function: onKeyDown, options: false, isEmit: false },
       {
         name: "click",
         function: (e: MouseEvent) => {
@@ -239,14 +264,10 @@ const LowCode = observer(() => {
       document.addEventListener(item.name, item.function, item.options);
     });
 
-    emitter.on(emitinfo["delete:clear"], onIsClear);
-
     return () => {
       events.forEach(item => {
         document.removeEventListener(item.name, item.function);
       });
-
-      emitter.off(emitinfo["delete:clear"], onIsClear);
     };
   }, []);
 
@@ -276,6 +297,7 @@ const LowCode = observer(() => {
             onClick={onClearSelected}
           >
             <DesignArea
+              schema={schema}
               style={{
                 width: `${canvasSize.width}px`,
                 height: `${canvasSize.height}px`,
@@ -288,6 +310,7 @@ const LowCode = observer(() => {
               onContextMenu={onContextMenu}
               onSelected={onSelected}
               onClicked={onClearSelected}
+              onChanged={onChange}
             />
 
             {visible && (
