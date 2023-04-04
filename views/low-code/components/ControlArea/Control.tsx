@@ -1,7 +1,7 @@
 import type { CSSProperties, FC } from "react";
 import { memo } from "react";
 import { useDrag, DragPreviewImage } from "react-dnd";
-import { ItemTypes } from "./ItemTypes";
+import { ItemTypes } from "config/elementTypes";
 // import Link from "next/link";
 
 const style: CSSProperties = {

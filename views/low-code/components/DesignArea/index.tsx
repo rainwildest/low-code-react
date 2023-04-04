@@ -1,13 +1,13 @@
 import update from "immutability-helper";
-import { FC, CSSProperties, useRef, useEffect } from "react";
+import { FC, CSSProperties, useRef, useEffect, MouseEvent } from "react";
 import { memo, useCallback, useState, Fragment } from "react";
 import { useDrop, DropTargetMonitor } from "react-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { ItemTypes, tagsPosition } from "./ItemTypes";
-import NestedDraggable from "./NestedDraggable";
+import { ItemTypes, tagsPosition } from "config/elementTypes";
+import NestedDraggable from "../NestedDraggable";
 // import { v4 as uuid } from "uuid";
-import DragData from "./utils";
+import DragData from "../utils";
 import { emitter } from "lib/utils";
 import { emitinfo } from "config/emitter";
 
@@ -20,13 +20,16 @@ type DesignAreaProps = {
 
   onSelected?: (data: AnyProps) => void;
   onContextMenu?: (data: ContextMenuProps) => void;
+  onClicked?: () => void;
 };
 
 const DesignArea: FC<DesignAreaProps> = ({
   className = "",
   style = {},
-  onContextMenu,
-  onSelected
+
+  onClicked,
+  onSelected,
+  onContextMenu
 }) => {
   const [schema, setSchema] = useState<any[]>([]);
 
@@ -86,28 +89,63 @@ const DesignArea: FC<DesignAreaProps> = ({
     emitter.emit(emitinfo["delete:clear"]);
   };
 
+  const onClickDesignArea = (e: MouseEvent<HTMLDivElement>) => {
+    onClicked && onClicked();
+
+    // e.stopPropagation();
+  };
+
   const onAttributeChange = (val: AnyProps) => {
     setSchema(schema => {
+      console.log("design area", dragData.modify(val, schema));
       return dragData.modify(val, schema);
     });
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", onKeyDown);
-    emitter.on(emitinfo["delete:remove"], onMenuDelete);
-    emitter.on(emitinfo["change:attribute"], onAttributeChange);
+    const events = [
+      /**
+       * @brief 监听删除按钮
+       */
+      { name: "keydown", function: onKeyDown, isEmit: false },
+      /**
+       * @brief 注册监听删除
+       */
+      { name: emitinfo["delete:remove"], function: onMenuDelete, isEmit: true },
+      {
+        name: emitinfo["change:attribute"],
+        function: onAttributeChange,
+        isEmit: true
+      }
+    ];
+
+    events.forEach(event => {
+      if (event.isEmit) {
+        emitter.on(event.name, event.function);
+      } else {
+        document.addEventListener(event.name as string, event.function);
+      }
+    });
 
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
-
-      emitter.off(emitinfo["delete:remove"], onMenuDelete);
-      emitter.off(emitinfo["change:attribute"], onAttributeChange);
+      events.forEach(event => {
+        if (event.isEmit) {
+          emitter.off(event.name, event.function);
+        } else {
+          document.removeEventListener(event.name as string, event.function);
+        }
+      });
     };
   }, []);
 
   return (
-    <div ref={drop} style={style} className={`overflow-auto ${className}`}>
-      {schema.map((card, index) => (
+    <div
+      ref={drop}
+      style={style}
+      className={`overflow-auto ${className}`}
+      onClick={onClickDesignArea}
+    >
+      {schema.map(card => (
         <NestedDraggable
           key={card.id}
           {...card}
@@ -115,6 +153,7 @@ const DesignArea: FC<DesignAreaProps> = ({
           onSelected={onItemClick}
         />
       ))}
+
       {isOver && canDrop ? (
         <div className="border border-solid border-indigo-600"></div>
       ) : null}

@@ -13,7 +13,7 @@ type WidthAttributeProps = {
   hasCustom?: boolean;
   selectPlaceholder?: string;
   inputPlaceholder?: string;
-  value: AnyProps;
+  attrs: AnyProps;
   callback?: (value: AnyProps) => void;
 };
 
@@ -22,7 +22,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
     {
       type,
       title,
-      value,
+      attrs,
       options,
       hasCustom = false,
       inputPlaceholder = "",
@@ -33,22 +33,30 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
   ) => {
     // const [test, setTest] = useState("");
     const onSelectedChange = (val: string) => {
-      // setTest(val);
-      if (!value?.attribute) return;
+      if (!attrs?.attribute) return;
 
-      const { className } = value.attribute;
+      const { className } = attrs.attribute;
       if (!className || className.split(" ")?.includes(val)) return;
-      console.log(val, className?.split(" ")?.includes(val));
 
-      console.log(value);
+      let tailwindcss = attrs?.tailwindcss || {};
+      tailwindcss = { ...tailwindcss, [type]: val };
+
+      !val && (tailwindcss = _.omit({ ...tailwindcss }, [type]));
+
+      let $className = "";
+      _.keys(tailwindcss).map(key => {
+        tailwindcss[key] && ($className += `${tailwindcss[key]} `);
+      });
+
       callback &&
         callback({
-          ...value,
-          attribute: { className: `${className || ""} ${val}`.trim() }
+          ...attrs,
+          tailwindcss,
+          attribute: { className: $className.trim() }
         });
     };
-
-    console.log(type);
+    console.log("attr", attrs.tailwindcss?.[type]);
+    // console.log(type);
 
     return (
       <div ref={nodeRef}>
@@ -59,32 +67,16 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
           <Select
             showSearch
             allowClear
+            value={attrs.tailwindcss?.[type]}
             className="block"
             optionLabelProp="value"
             optionFilterProp="label"
             placeholder={selectPlaceholder}
             onChange={onSelectedChange}
             options={options}
-          >
-            {/* {options.map(option => (
-              <Option
-                value={option.value}
-                label={option.label}
-                key={option.label}
-              >
-                <div className="">
-                  {!!option.value && (
-                    <span className="inline-block max-w-full truncate pr-2.5">
-                      {option.label}
-                    </span>
-                  )}
-
-                  {!option.value && "请选择"}
-                </div>
-              </Option>
-            ))} */}
-          </Select>
+          />
         </div>
+
         {hasCustom && (
           <div className="">
             <span className="pointer-events-none block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">

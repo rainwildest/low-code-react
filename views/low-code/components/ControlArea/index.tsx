@@ -1,7 +1,7 @@
 import type { FC, ForwardedRef, LegacyRef } from "react";
 import { memo, forwardRef } from "react";
 import Control from "./Control";
-import { tagsName } from "./ItemTypes";
+import { tagsName } from "config/elementTypes";
 import { PaddingType, MinHeightType, DisplayType } from "config/tailwind-type";
 
 type ControlProps = {

@@ -1,4 +1,4 @@
-import { tagsName } from "./ItemTypes";
+import { tagsName } from "config/elementTypes";
 import { typeOf, mergeClassName } from "lib/utils";
 
 const tags = {

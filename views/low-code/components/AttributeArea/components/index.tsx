@@ -1,10 +1,10 @@
 import Attribute from "./Attribute";
 
-import Layout from "./tailwindcss-classname/layout";
-import FlexboxGrid from "./tailwindcss-classname/flexbox-grid";
-import Sizing from "./tailwindcss-classname/sizing";
-import Spacing from "./tailwindcss-classname/spacing";
-import Typography from "./tailwindcss-classname/typography";
+import Layout from "./tailwindcss/layout";
+import FlexboxGrid from "./tailwindcss/flexbox-grid";
+import Sizing from "./tailwindcss/sizing";
+import Spacing from "./tailwindcss/spacing";
+import Typography from "./tailwindcss/typography";
 
 export { Attribute };
 

@@ -15,7 +15,7 @@ const Layout = observer(({ children }) => {
     <div className="flex h-screen w-full flex-col overflow-hidden bg-gray-1000 dark:bg-purple-1000">
       {/* 头部 */}
       <header className="h-16 bg-gray-1000 dark:bg-purple-1000">
-        {JSON.stringify(useThemeStore.isDark)}
+        {/* {JSON.stringify(useThemeStore.isDark)} */}
         <Button className="flex items-center" onClick={onSetTheme}>
           <Icon name={useThemeStore.isDark ? "sun" : "moon"} />
         </Button>

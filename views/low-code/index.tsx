@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, memo, WheelEvent } from "react";
+import { useState, useRef, useEffect, useMemo, memo, WheelEvent } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { emitter } from "lib/utils";
@@ -25,11 +25,8 @@ const LowCode = observer(() => {
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   const [currentAttribute, setCurrentAttribute] = useState<AnyProps>({});
-
   const [visible, setVisible] = useState(false);
-
   const [zoom, setZoom] = useState(0);
-
   const [position, setPosition] = useState({ left: 0, top: 0 });
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
@@ -117,7 +114,7 @@ const LowCode = observer(() => {
   };
 
   /**
-   * 添加选择边框或去除选择边框
+   * @brief 添加选择边框或去除选择边框
    * @param {boolean} isClear
    * @returns void
    */
@@ -178,6 +175,10 @@ const LowCode = observer(() => {
     selectors.current = selectors.prev = null;
   };
 
+  /**
+   * @brief 设置选中的拖动控件
+   * @param {AnyProps} data
+   */
   const onSelected = (data: AnyProps) => {
     selectorsRef.current.current = data;
 
@@ -190,12 +191,23 @@ const LowCode = observer(() => {
     emitter.emit(emitinfo["delete:remove"], selectorsRef.current.current);
   };
 
+  const onClearSelected = () => {
+    if (selectorsRef.current.current) onClassNameOperation(true);
+  };
+
+  const onAttrChange = useMemo(() => {
+    return (val: AnyProps) => {
+      setCurrentAttribute(val);
+      emitter.emit(emitinfo["change:attribute"], val);
+    };
+  }, []);
+
   useEffect(() => {
     onInitDraggableContainer(960, 800);
 
     const events = [
       /**
-       * 禁止 ctr + wheel 事件放大缩小页面
+       * @brief 禁止 ctr + wheel 事件放大缩小页面
        */
       {
         name: "mousewheel",
@@ -203,7 +215,7 @@ const LowCode = observer(() => {
         options: { passive: false }
       },
       /**
-       * 禁止右键菜单
+       * @brief 禁止右键菜单
        */
       {
         name: "contextmenu",
@@ -217,7 +229,7 @@ const LowCode = observer(() => {
 
           setVisible(false);
 
-          if (selectorsRef.current.current) onClassNameOperation(true);
+          // if (selectorsRef.current.current) onClassNameOperation(true);
         },
         options: false
       }
@@ -261,6 +273,7 @@ const LowCode = observer(() => {
             ref={draggableRef}
             className="bg-container relative w-full"
             onWheel={onWheel}
+            onClick={onClearSelected}
           >
             <DesignArea
               style={{
@@ -274,6 +287,7 @@ const LowCode = observer(() => {
               className="absolute bg-white p-5 transition-all duration-150 ease-linear"
               onContextMenu={onContextMenu}
               onSelected={onSelected}
+              onClicked={onClearSelected}
             />
 
             {visible && (
@@ -307,9 +321,7 @@ const LowCode = observer(() => {
           <AttributeArea
             ref={attributeRef}
             attrs={currentAttribute}
-            callback={val => {
-              emitter.emit(emitinfo["change:attribute"], val);
-            }}
+            callback={onAttrChange}
             className="bg-gray-1000 shadow-lg dark:bg-purple-1000"
           />
         </section>

@@ -1,6 +1,6 @@
 import { FC, ForwardedRef, LegacyRef, useState } from "react";
 import { memo, forwardRef } from "react";
-import { tagsName } from "../ItemTypes";
+import { tagsName } from "config/elementTypes";
 import { Icon } from "components";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
@@ -18,7 +18,7 @@ const { Panel } = Collapse;
 const AttributeArea: FC<AttributeProps> = forwardRef(
   ({ className, attrs, callback }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     const attributes = attributeItems;
-    console.log(attrs);
+    // console.log(attrs);
 
     return (
       <section
@@ -37,7 +37,6 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
 
         <div className="flex-1 overflow-auto rounded-lg">
           <Collapse
-            accordion
             bordered={false}
             defaultActiveKey={[attributes[0].type]}
             expandIcon={({ isActive }) => (
@@ -57,9 +56,9 @@ const AttributeArea: FC<AttributeProps> = forwardRef(
                 <Attribute
                   title={attr.title}
                   type={attr.type}
-                  options={attr?.options || []}
+                  options={attr.options || []}
                   hasCustom={attr?.hasCustom}
-                  value={attrs}
+                  attrs={attrs}
                   inputPlaceholder={attr?.inputPlaceholder}
                   selectPlaceholder={attr?.selectPlaceholder}
                   callback={callback}

@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import { tagsPosition, tagsName } from "./ItemTypes";
+import { tagsPosition, tagsName } from "config/elementTypes";
 import _ from "lodash";
 import { UUID } from "lib/utils";
 // import { v4 as uuid } from "uuid";
