@@ -18,5 +18,6 @@ type AttributeProps = {
   inputPlaceholder?: string;
   selectPlaceholder?: string;
   hasCustom: boolean;
+  hasMultiple?: boolean;
   options: Array<AttributeOptionsProps>;
 };

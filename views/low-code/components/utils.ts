@@ -417,7 +417,7 @@ class DragData {
     original: Array<AnyProps>,
     positions?: Array<string> | null
   ) {
-    const $positions = positions || target.__positions__;
+    const $positions = positions || target?.__positions__;
     let $original = _.cloneDeep(original);
 
     if ($positions) {
