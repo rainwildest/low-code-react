@@ -2,8 +2,9 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import NextNprogress from "nextjs-progressbar";
 import { initializeStore, StoreProvider } from "store";
 
-import "styles/index.scss";
 import "antd/dist/reset.css";
+import "styles/index.scss";
+import "styles/tailwindcss.scss";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
