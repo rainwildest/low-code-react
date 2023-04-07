@@ -1,11 +1,4 @@
-import {
-  WidthType,
-  MinWidthType,
-  MaxWidthType,
-  HeightType,
-  MinHeightType,
-  MaxHeightType
-} from "config/tailwind-type";
+import { WidthType, MinWidthType, MaxWidthType, HeightType, MinHeightType, MaxHeightType } from "config/tailwind-type";
 
 export const Width: AttributeProps = {
   type: WidthType.toString(),

@@ -1,8 +1,4 @@
-import {
-  PaddingType,
-  MarginType,
-  SpaceBetweenType
-} from "config/tailwind-type";
+import { PaddingType, MarginType, SpaceBetweenType } from "config/tailwind-type";
 
 export const Padding: AttributeProps = {
   type: PaddingType.toString(),

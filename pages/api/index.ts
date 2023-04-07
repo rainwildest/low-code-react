@@ -1,14 +1,7 @@
 import { ApolloServer } from "apollo-server-micro";
 import { DateTimeResolver } from "graphql-scalars";
 import { NextApiHandler } from "next";
-import {
-  asNexusMethod,
-  makeSchema,
-  nonNull,
-  nullable,
-  objectType,
-  stringArg
-} from "nexus";
+import { asNexusMethod, makeSchema, nonNull, nullable, objectType, stringArg } from "nexus";
 import path from "path";
 import cors from "micro-cors";
 import prisma from "../../lib/prisma";
@@ -109,10 +102,7 @@ const Query = objectType({
       resolve: (_, { searchString }, ctx) => {
         return prisma.post.findMany({
           where: {
-            OR: [
-              { title: { contains: searchString } },
-              { content: { contains: searchString } }
-            ]
+            OR: [{ title: { contains: searchString } }, { content: { contains: searchString } }]
           }
         });
       }

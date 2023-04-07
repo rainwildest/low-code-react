@@ -32,12 +32,7 @@ const Control: FC<BoxProps> = ({ name, type, description, ...props }) => {
   );
 
   return (
-    <div
-      ref={drag}
-      className="cursor-grab"
-      style={{ ...style, opacity }}
-      title={` ${description || `${type.toLocaleLowerCase()} 标签`}`}
-    >
+    <div ref={drag} className="cursor-grab" style={{ ...style, opacity }} title={` ${description || `${type.toLocaleLowerCase()} 标签`}`}>
       {name}
     </div>
   );

@@ -39,13 +39,11 @@ export const FontFamily: AttributeProps = {
     },
     {
       value: "font-serif",
-      label:
-        'font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;'
+      label: 'font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;'
     },
     {
       value: "font-mono",
-      label:
-        'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;'
+      label: 'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;'
     }
   ]
 };
@@ -64,8 +62,7 @@ export const FontSize: AttributeProps = {
     },
     {
       value: "text-sm",
-      label:
-        "font-size: 0.875rem; /* 14px */ \nline-height: 1.25rem; /* 20px */"
+      label: "font-size: 0.875rem; /* 14px */ \nline-height: 1.25rem; /* 20px */"
     },
     {
       value: "text-base",
@@ -73,8 +70,7 @@ export const FontSize: AttributeProps = {
     },
     {
       value: "text-lg",
-      label:
-        "font-size: 1.125rem; /* 18px */ \nline-height: 1.75rem; /* 28px */"
+      label: "font-size: 1.125rem; /* 18px */ \nline-height: 1.75rem; /* 28px */"
     },
     {
       value: "text-xl",
@@ -86,8 +82,7 @@ export const FontSize: AttributeProps = {
     },
     {
       value: "text-3xl",
-      label:
-        "font-size: 1.875rem; /* 30px */ \nline-height: 2.25rem; /* 36px */"
+      label: "font-size: 1.875rem; /* 30px */ \nline-height: 2.25rem; /* 36px */"
     },
     {
       value: "text-4xl",
@@ -126,8 +121,7 @@ export const FontSmoothing: AttributeProps = {
   options: [
     {
       value: "antialiased",
-      label:
-        "-webkit-font-smoothing: antialiased; \n-moz-osx-font-smoothing: grayscale;"
+      label: "-webkit-font-smoothing: antialiased; \n-moz-osx-font-smoothing: grayscale;"
     },
     {
       value: "subpixel-antialiased",
@@ -1162,8 +1156,7 @@ export const TextOverflow: AttributeProps = {
   options: [
     {
       value: "truncate",
-      label:
-        "『 truncate 』 overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+      label: "『 truncate 』 overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
     },
     {
       value: "text-ellipsis",

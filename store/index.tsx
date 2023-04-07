@@ -22,11 +22,7 @@ export function initializeStore(initialData = {}) {
 export const StoreContext = createContext(null);
 
 export function StoreProvider(props: AnyProps) {
-  return (
-    <StoreContext.Provider value={props.value}>
-      {props.children}
-    </StoreContext.Provider>
-  );
+  return <StoreContext.Provider value={props.value}>{props.children}</StoreContext.Provider>;
 }
 
 type StoresProps = {

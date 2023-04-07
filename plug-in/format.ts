@@ -49,11 +49,6 @@ data.forEach((val: AnyProps) => {
 });
 
 // 异步写入数据到文件
-fs.writeFile(
-  file,
-  JSON.stringify(format, null, 2),
-  { encoding: "utf8" },
-  err => {
-    console.log(err);
-  }
-);
+fs.writeFile(file, JSON.stringify(format, null, 2), { encoding: "utf8" }, err => {
+  console.log(err);
+});

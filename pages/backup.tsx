@@ -132,12 +132,8 @@ const Blog = () => {
             </div>
           ))}
         </main> */}
-        <div className="absolute h-20 w-20 border border-solid border-sky-600">
-          8
-        </div>
-        <div className="absolute h-20 w-20 border border-solid border-sky-600">
-          8
-        </div>
+        <div className="absolute h-20 w-20 border border-solid border-sky-600">8</div>
+        <div className="absolute h-20 w-20 border border-solid border-sky-600">8</div>
       </div>
     </Layout>
   );

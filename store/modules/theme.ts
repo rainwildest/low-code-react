@@ -26,11 +26,7 @@ class Store {
 
     storage.set("theme", type);
 
-    if (
-      storage.get("theme") === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
+    if (storage.get("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
     } else {

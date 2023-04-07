@@ -56,21 +56,14 @@ const Layout = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="11" isCombineEnabled={false}>
           {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              className="flex"
-            >
+            <div ref={provided.innerRef} {...provided.droppableProps} className="flex">
               <Draggable draggableId="8888" index={0}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    style={getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
+                    style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                   >
                     ppp
                   </div>
@@ -81,19 +74,9 @@ const Layout = () => {
           )}
         </Droppable>
 
-        <Droppable
-          type="COLUMN"
-          direction="horizontal"
-          droppableId="1"
-          isCombineEnabled={false}
-        >
+        <Droppable type="COLUMN" direction="horizontal" droppableId="1" isCombineEnabled={false}>
           {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              style={getListStyle(snapshot.isDraggingOver)}
-              className="flex"
-            >
+            <div ref={provided.innerRef} {...provided.droppableProps} style={getListStyle(snapshot.isDraggingOver)} className="flex">
               <Draggable draggableId="test" index={1}>
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef} {...provided.draggableProps}>
@@ -123,20 +106,13 @@ const Layout = () => {
                       {(provided, snapshot) => (
                         <div ref={provided.innerRef}>
                           {fruitItems.map((item, index) => (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
+                            <Draggable key={item.id} draggableId={item.id} index={index}>
                               {(provided, snapshot) => (
                                 <div
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
-                                  style={getItemStyle(
-                                    snapshot.isDragging,
-                                    provided.draggableProps.style
-                                  )}
+                                  style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                                 >
                                   {item.Title}
                                 </div>
@@ -166,20 +142,13 @@ const Layout = () => {
                       {(provided, snapshot) => (
                         <div ref={provided.innerRef}>
                           {testItems.map((item, index) => (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
+                            <Draggable key={item.id} draggableId={item.id} index={index}>
                               {(provided, snapshot) => (
                                 <div
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
-                                  style={getItemStyle(
-                                    snapshot.isDragging,
-                                    provided.draggableProps.style
-                                  )}
+                                  style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                                 >
                                   {item.Title}
                                 </div>

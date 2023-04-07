@@ -35,10 +35,7 @@ export const typeOf = (value: unknown): string => {
  * @param {string} className
  * @returns string
  */
-export const mergeClassName = (
-  className: string,
-  defaultClassName = ""
-): string => {
+export const mergeClassName = (className: string, defaultClassName = ""): string => {
   const classNameSplit = className.split(" ");
   const defaultClassNameSplit = defaultClassName.split(" ");
 
@@ -72,11 +69,7 @@ export const isNull = (value: any) => {
 };
 
 export const setTheme = () => {
-  if (
-    storage.get("theme") === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
+  if (storage.get("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
     document.documentElement.classList.remove("light");
     document.documentElement.classList.add("dark");
   } else {

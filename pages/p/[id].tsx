@@ -73,9 +73,7 @@ function Post() {
     title = `${title} (Draft)`;
   }
 
-  const authorName = data.post.author
-    ? data.post.author.name
-    : "Unknown author";
+  const authorName = data.post.author ? data.post.author.name : "Unknown author";
   return (
     <Layout>
       <div>

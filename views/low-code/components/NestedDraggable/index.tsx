@@ -22,13 +22,7 @@ interface DragDataProps {
   onContextMenu?: (data: ContextMenuProps) => void;
 }
 
-const NestedDraggable: FC<DragDataProps> = ({
-  name,
-  type,
-  onContextMenu,
-  onSelected,
-  ...props
-}) => {
+const NestedDraggable: FC<DragDataProps> = ({ name, type, onContextMenu, onSelected, ...props }) => {
   const dragRef = useRef<HTMLDivElement | null>(null);
   const [position, setPosition] = useState("");
   const dragData = new DragData();
@@ -46,10 +40,7 @@ const NestedDraggable: FC<DragDataProps> = ({
   //   inline: Symbol("inline").toString()
   // };
 
-  const inlineTags = (
-    dragRef: React.MutableRefObject<HTMLDivElement>,
-    monitor: DropTargetMonitor
-  ) => {
+  const inlineTags = (dragRef: React.MutableRefObject<HTMLDivElement>, monitor: DropTargetMonitor) => {
     // Determine rectangle on screen
     const hoverBoundingRect = dragRef.current.getBoundingClientRect();
     console.log(hoverBoundingRect);
@@ -78,10 +69,7 @@ const NestedDraggable: FC<DragDataProps> = ({
       }
     }
   };
-  const blockTags = (
-    dragRef: React.MutableRefObject<HTMLDivElement | null>,
-    monitor: DropTargetMonitor
-  ) => {
+  const blockTags = (dragRef: React.MutableRefObject<HTMLDivElement | null>, monitor: DropTargetMonitor) => {
     const hoverBoundingRect = dragRef.current?.getBoundingClientRect();
 
     if (!hoverBoundingRect) return;
@@ -117,11 +105,7 @@ const NestedDraggable: FC<DragDataProps> = ({
     isOver: boolean;
   }
 
-  const [{ isOver, canDrop }, drop] = useDrop<
-    DragDataProps,
-    {},
-    CollectedProps
-  >({
+  const [{ isOver, canDrop }, drop] = useDrop<DragDataProps, {}, CollectedProps>({
     accept: [ItemTypes.DIV],
     drop: (item, monitor) => {
       if (monitor.didDrop()) return;
@@ -167,10 +151,7 @@ const NestedDraggable: FC<DragDataProps> = ({
 
   const $attr = {
     ...props?.attribute,
-    className: `${mergeClassName(
-      props?.attribute?.className || "",
-      `cursor-grab ${insideClassName}`
-    )}`,
+    className: `${mergeClassName(props?.attribute?.className || "", `cursor-grab ${insideClassName}`)}`,
     style: props?.attribute?.style || {}
   };
 
@@ -193,17 +174,8 @@ const NestedDraggable: FC<DragDataProps> = ({
   };
 
   return (
-    <div
-      ref={dragRef}
-      className={`relative ${isInlineTags(type) ? "inline-block" : ""}`}
-      onClick={onItemClick}
-      onContextMenu={onItemContextMenu}
-    >
-      <div
-        className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${
-          isUpOutside ? "h-2" : "h-0"
-        }`}
-      />
+    <div ref={dragRef} className={`relative ${isInlineTags(type) ? "inline-block" : ""}`} onClick={onItemClick} onContextMenu={onItemContextMenu}>
+      <div className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${isUpOutside ? "h-2" : "h-0"}`} />
 
       {/* style={{ ...style, opacity }} */}
       <div
@@ -212,21 +184,12 @@ const NestedDraggable: FC<DragDataProps> = ({
       >
         <CurrentTag id={props.id} {...$attr}>
           {props?.children?.map(item => (
-            <NestedDraggable
-              {...item}
-              key={item.id}
-              onContextMenu={onContextMenu ?? null}
-              onSelected={onSelected ?? null}
-            />
+            <NestedDraggable {...item} key={item.id} onContextMenu={onContextMenu ?? null} onSelected={onSelected ?? null} />
           ))}
         </CurrentTag>
       </div>
 
-      <div
-        className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${
-          isDownOutside ? "h-2" : "h-0"
-        }`}
-      />
+      <div className={`rounded-sm bg-sky-100 transition-all duration-200 ease-linear ${isDownOutside ? "h-2" : "h-0"}`} />
     </div>
   );
 };

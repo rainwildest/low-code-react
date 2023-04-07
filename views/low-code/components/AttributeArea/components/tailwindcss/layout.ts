@@ -336,8 +336,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-0.5",
-          label:
-            "top: 0.125rem; \nright: 0.125rem; \nbottom: 0.125rem; \nleft: 0.125rem;"
+          label: "top: 0.125rem; \nright: 0.125rem; \nbottom: 0.125rem; \nleft: 0.125rem;"
         },
         { value: "inset-x-0.5", label: "left: 0.125rem; \nright: 0.125rem;" },
         { value: "inset-y-0.5", label: "top: 0.125rem; \nbottom: 0.125rem;" },
@@ -352,8 +351,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-1",
-          label:
-            "top: 0.25rem; \nright: 0.25rem; \nbottom: 0.25rem; \nleft: 0.25rem;"
+          label: "top: 0.25rem; \nright: 0.25rem; \nbottom: 0.25rem; \nleft: 0.25rem;"
         },
         { value: "inset-x-1", label: "left: 0.25rem; \nright: 0.25rem;" },
         { value: "inset-y-1", label: "top: 0.25rem; \nbottom: 0.25rem;" },
@@ -368,8 +366,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-1.5",
-          label:
-            "top: 0.375rem; \nright: 0.375rem; \nbottom: 0.375rem; \nleft: 0.375rem;"
+          label: "top: 0.375rem; \nright: 0.375rem; \nbottom: 0.375rem; \nleft: 0.375rem;"
         },
         { value: "inset-x-1.5", label: "left: 0.375rem; \nright: 0.375rem;" },
         { value: "inset-y-1.5", label: "top: 0.375rem; \nbottom: 0.375rem;" },
@@ -384,8 +381,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-2",
-          label:
-            "top: 0.5rem; \nright: 0.5rem; \nbottom: 0.5rem; \nleft: 0.5rem;"
+          label: "top: 0.5rem; \nright: 0.5rem; \nbottom: 0.5rem; \nleft: 0.5rem;"
         },
         { value: "inset-x-2", label: "left: 0.5rem; \nright: 0.5rem;" },
         { value: "inset-y-2", label: "top: 0.5rem; \nbottom: 0.5rem;" },
@@ -400,8 +396,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-2.5",
-          label:
-            "top: 0.625rem; \nright: 0.625rem; \nbottom: 0.625rem; \nleft: 0.625rem;"
+          label: "top: 0.625rem; \nright: 0.625rem; \nbottom: 0.625rem; \nleft: 0.625rem;"
         },
         { value: "inset-x-2.5", label: "left: 0.625rem; \nright: 0.625rem;" },
         { value: "inset-y-2.5", label: "top: 0.625rem; \nbottom: 0.625rem;" },
@@ -416,8 +411,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-3",
-          label:
-            "top: 0.75rem; \nright: 0.75rem; \nbottom: 0.75rem; \nleft: 0.75rem;"
+          label: "top: 0.75rem; \nright: 0.75rem; \nbottom: 0.75rem; \nleft: 0.75rem;"
         },
         { value: "inset-x-3", label: "left: 0.75rem; \nright: 0.75rem;" },
         { value: "inset-y-3", label: "top: 0.75rem; \nbottom: 0.75rem;" },
@@ -432,8 +426,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-3.5",
-          label:
-            "top: 0.875rem; \nright: 0.875rem; \nbottom: 0.875rem; \nleft: 0.875rem;"
+          label: "top: 0.875rem; \nright: 0.875rem; \nbottom: 0.875rem; \nleft: 0.875rem;"
         },
         { value: "inset-x-3.5", label: "left: 0.875rem; \nright: 0.875rem;" },
         { value: "inset-y-3.5", label: "top: 0.875rem; \nbottom: 0.875rem;" },
@@ -463,8 +456,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-5",
-          label:
-            "top: 1.25rem; \nright: 1.25rem; \nbottom: 1.25rem; \nleft: 1.25rem;"
+          label: "top: 1.25rem; \nright: 1.25rem; \nbottom: 1.25rem; \nleft: 1.25rem;"
         },
         { value: "inset-x-5", label: "left: 1.25rem; \nright: 1.25rem;" },
         { value: "inset-y-5", label: "top: 1.25rem; \nbottom: 1.25rem;" },
@@ -479,8 +471,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-6",
-          label:
-            "top: 1.5rem; \nright: 1.5rem; \nbottom: 1.5rem; \nleft: 1.5rem;"
+          label: "top: 1.5rem; \nright: 1.5rem; \nbottom: 1.5rem; \nleft: 1.5rem;"
         },
         { value: "inset-x-6", label: "left: 1.5rem; \nright: 1.5rem;" },
         { value: "inset-y-6", label: "top: 1.5rem; \nbottom: 1.5rem;" },
@@ -495,8 +486,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-7",
-          label:
-            "top: 1.75rem; \nright: 1.75rem; \nbottom: 1.75rem; \nleft: 1.75rem;"
+          label: "top: 1.75rem; \nright: 1.75rem; \nbottom: 1.75rem; \nleft: 1.75rem;"
         },
         { value: "inset-x-7", label: "left: 1.75rem; \nright: 1.75rem;" },
         { value: "inset-y-7", label: "top: 1.75rem; \nbottom: 1.75rem;" },
@@ -526,8 +516,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-9",
-          label:
-            "top: 2.25rem; \nright: 2.25rem; \nbottom: 2.25rem; \nleft: 2.25rem;"
+          label: "top: 2.25rem; \nright: 2.25rem; \nbottom: 2.25rem; \nleft: 2.25rem;"
         },
         { value: "inset-x-9", label: "left: 2.25rem; \nright: 2.25rem;" },
         { value: "inset-y-9", label: "top: 2.25rem; \nbottom: 2.25rem;" },
@@ -542,8 +531,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-10",
-          label:
-            "top: 2.5rem; \nright: 2.5rem; \nbottom: 2.5rem; \nleft: 2.5rem;"
+          label: "top: 2.5rem; \nright: 2.5rem; \nbottom: 2.5rem; \nleft: 2.5rem;"
         },
         { value: "inset-x-10", label: "left: 2.5rem; \nright: 2.5rem;" },
         { value: "inset-y-10", label: "top: 2.5rem; \nbottom: 2.5rem;" },
@@ -558,8 +546,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-11",
-          label:
-            "top: 2.75rem; \nright: 2.75rem; \nbottom: 2.75rem; \nleft: 2.75rem;"
+          label: "top: 2.75rem; \nright: 2.75rem; \nbottom: 2.75rem; \nleft: 2.75rem;"
         },
         { value: "inset-x-11", label: "left: 2.75rem; \nright: 2.75rem;" },
         { value: "inset-y-11", label: "top: 2.75rem; \nbottom: 2.75rem;" },
@@ -589,8 +576,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-14",
-          label:
-            "top: 3.5rem; \nright: 3.5rem; \nbottom: 3.5rem; \nleft: 3.5rem;"
+          label: "top: 3.5rem; \nright: 3.5rem; \nbottom: 3.5rem; \nleft: 3.5rem;"
         },
         { value: "inset-x-14", label: "left: 3.5rem; \nright: 3.5rem;" },
         { value: "inset-y-14", label: "top: 3.5rem; \nbottom: 3.5rem;" },
@@ -875,8 +861,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-1/3",
-          label:
-            "top: 33.333333%; \nright: 33.333333%; \nbottom: 33.333333%; \nleft: 33.333333%;"
+          label: "top: 33.333333%; \nright: 33.333333%; \nbottom: 33.333333%; \nleft: 33.333333%;"
         },
         {
           value: "inset-x-1/3",
@@ -897,8 +882,7 @@ export const Inset: AttributeProps = {
       options: [
         {
           value: "inset-2/3",
-          label:
-            "top: 66.666667%; \nright: 66.666667%; \nbottom: 66.666667%; \nleft: 66.666667%;"
+          label: "top: 66.666667%; \nright: 66.666667%; \nbottom: 66.666667%; \nleft: 66.666667%;"
         },
         {
           value: "inset-x-2/3",

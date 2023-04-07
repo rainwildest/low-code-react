@@ -83,24 +83,12 @@ const DesignArea: FC<DesignAreaProps> = ({
   };
 
   return (
-    <div
-      ref={drop}
-      style={style}
-      className={`overflow-auto ${className}`}
-      onClick={onClickDesignArea}
-    >
+    <div ref={drop} style={style} className={`overflow-auto ${className}`} onClick={onClickDesignArea}>
       {schema.map((card: any) => (
-        <NestedDraggable
-          key={card.id}
-          {...card}
-          onContextMenu={onItemContextMenu}
-          onSelected={onItemClick}
-        />
+        <NestedDraggable key={card.id} {...card} onContextMenu={onItemContextMenu} onSelected={onItemClick} />
       ))}
 
-      {isOver && canDrop ? (
-        <div className="border border-solid border-indigo-600"></div>
-      ) : null}
+      {isOver && canDrop ? <div className="border border-solid border-indigo-600"></div> : null}
     </div>
   );
 };

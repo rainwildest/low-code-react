@@ -18,19 +18,7 @@ type WidthAttributeProps = {
 };
 
 const Attribute: FC<WidthAttributeProps> = forwardRef(
-  (
-    {
-      type,
-      title,
-      attrs,
-      options,
-      hasCustom = false,
-      inputPlaceholder = "",
-      selectPlaceholder = "",
-      callback
-    },
-    nodeRef: ForwardedRef<HTMLDivElement>
-  ) => {
+  ({ type, title, attrs, options, hasCustom = false, inputPlaceholder = "", selectPlaceholder = "", callback }, nodeRef: ForwardedRef<HTMLDivElement>) => {
     // const [test, setTest] = useState("");
     const onSelectedChange = (val: string) => {
       if (!attrs?.attribute) return;
@@ -68,9 +56,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
     return (
       <div ref={nodeRef}>
         <div className={hasCustom ? "pb-5" : ""}>
-          <span className="pointer-events-none inline-block max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-            {title}
-          </span>
+          <span className="pointer-events-none inline-block max-w-full truncate pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">{title}</span>
           <Select
             showSearch
             allowClear
@@ -87,11 +73,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
                 return (
                   <OptGroup label={option.label} key={option.label}>
                     {option.options.map(option => (
-                      <Option
-                        value={option.value}
-                        key={option.value}
-                        title={option.label}
-                      >
+                      <Option value={option.value} key={option.value} title={option.label}>
                         {option.value}
                       </Option>
                     ))}
@@ -100,11 +82,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
               }
 
               return (
-                <Option
-                  value={option.value}
-                  key={option.value}
-                  title={option.label}
-                >
+                <Option value={option.value} key={option.value} title={option.label}>
                   {option.value}
                 </Option>
               );
@@ -114,9 +92,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
 
         {hasCustom && (
           <div className="">
-            <span className="pointer-events-none block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-              自定义 {onFormatType(type)}：
-            </span>
+            <span className="pointer-events-none block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">自定义 {onFormatType(type)}：</span>
             <Input
               allowClear
               placeholder={inputPlaceholder}

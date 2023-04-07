@@ -90,26 +90,17 @@ const LowCode = observer(() => {
   };
 
   const onInitDraggableContainer = (width: number, height: number) => {
-    const { offsetWidth: controlWidth, offsetHeight: controlHeight } =
-      controlRef.current;
-    const { offsetWidth: attributeWidth, offsetHeight: attributeHeight } =
-      attributeRef.current;
+    const { offsetWidth: controlWidth, offsetHeight: controlHeight } = controlRef.current;
+    const { offsetWidth: attributeWidth, offsetHeight: attributeHeight } = attributeRef.current;
 
-    const { offsetWidth: draggableWidth, offsetHeight: draggableHeight } =
-      draggableRef.current;
+    const { offsetWidth: draggableWidth, offsetHeight: draggableHeight } = draggableRef.current;
 
     let value = "0";
 
     if (draggableWidth < width) {
-      value = (
-        (draggableWidth - (controlWidth + attributeWidth) - 100) /
-        width
-      ).toFixed(2);
+      value = ((draggableWidth - (controlWidth + attributeWidth) - 100) / width).toFixed(2);
     } else if (draggableHeight < height) {
-      value = (
-        (controlHeight + attributeHeight - draggableHeight - 100) /
-        height
-      ).toFixed(2);
+      value = ((controlHeight + attributeHeight - draggableHeight - 100) / height).toFixed(2);
     } else {
       value = "1";
     }
@@ -129,9 +120,7 @@ const LowCode = observer(() => {
     setCurrentAttribute(selectors.current);
 
     if (selectors.prev) {
-      document
-        .querySelector(`.target-${selectors.prev.id}`)
-        .classList.remove("before:!border-purple-600");
+      document.querySelector(`.target-${selectors.prev.id}`).classList.remove("before:!border-purple-600");
 
       if (isClear) {
         selectors.current = selectors.prev = null;
@@ -143,9 +132,7 @@ const LowCode = observer(() => {
 
     if (!selectors.current) return;
 
-    document
-      .querySelector(`.target-${selectors.current.id}`)
-      .classList.add("before:!border-purple-600");
+    document.querySelector(`.target-${selectors.current.id}`).classList.add("before:!border-purple-600");
 
     selectors.prev = selectors.current;
   };
@@ -278,18 +265,10 @@ const LowCode = observer(() => {
 
         <section className="relative flex h-full overflow-hidden">
           {/* 控件区 */}
-          <ControlArea
-            ref={controlRef}
-            className="bg-gray-1000 pr-5 shadow-lg dark:bg-purple-1000"
-          />
+          <ControlArea ref={controlRef} className="bg-gray-1000 pr-5 shadow-lg dark:bg-purple-1000" />
 
           {/* 拖拽区 */}
-          <div
-            ref={draggableRef}
-            className="bg-container relative w-full"
-            onWheel={onWheel}
-            onClick={onClearSelected}
-          >
+          <div ref={draggableRef} className="bg-container relative w-full" onWheel={onWheel} onClick={onClearSelected}>
             <DesignArea
               schema={schema}
               style={{
@@ -318,13 +297,8 @@ const LowCode = observer(() => {
                   className="flex h-10 cursor-pointer items-center bg-gray-1000 px-3 transition ease-linear hover:bg-red-50 dark:bg-purple-1000 dark:hover:bg-purple-1300"
                   onClick={onMenuDelete}
                 >
-                  <Icon
-                    name="trash"
-                    className="h-5 w-5 text-gray-1200 dark:text-purple-1200"
-                  />
-                  <span className="inline-block w-full rounded px-2 py-1 text-sm font-semibold tracking-widest text-red-600 dark:text-purple-1200">
-                    删除
-                  </span>
+                  <Icon name="trash" className="h-5 w-5 text-gray-1200 dark:text-purple-1200" />
+                  <span className="inline-block w-full rounded px-2 py-1 text-sm font-semibold tracking-widest text-red-600 dark:text-purple-1200">删除</span>
                 </div>
                 {/* <div className="cursor-pointer flex items-center px-4 h-10 bg-gray-1000">
                 <span className="text-red-600  text-sm font-semibold tracking-widest">
@@ -335,12 +309,7 @@ const LowCode = observer(() => {
             )}
           </div>
 
-          <AttributeArea
-            ref={attributeRef}
-            attrs={currentAttribute}
-            callback={onAttrChange}
-            className="bg-gray-1000 shadow-lg dark:bg-purple-1000"
-          />
+          <AttributeArea ref={attributeRef} attrs={currentAttribute} callback={onAttrChange} className="bg-gray-1000 shadow-lg dark:bg-purple-1000" />
         </section>
       </DndProvider>
     </Layout>

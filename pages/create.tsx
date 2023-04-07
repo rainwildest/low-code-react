@@ -5,11 +5,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
 const CreateDraftMutation = gql`
-  mutation CreateDraftMutation(
-    $title: String!
-    $content: String
-    $authorEmail: String!
-  ) {
+  mutation CreateDraftMutation($title: String!, $content: String, $authorEmail: String!) {
     createDraft(title: $title, content: $content, authorEmail: $authorEmail) {
       id
       title
@@ -28,8 +24,7 @@ function Draft(props) {
   const [content, setContent] = useState("");
   const [authorEmail, setAuthorEmail] = useState("");
 
-  const [createDraft, { loading, error, data }] =
-    useMutation(CreateDraftMutation);
+  const [createDraft, { loading, error, data }] = useMutation(CreateDraftMutation);
 
   return (
     <Layout>
@@ -49,31 +44,10 @@ function Draft(props) {
           }}
         >
           <h1>Create Draft</h1>
-          <input
-            autoFocus
-            onChange={e => setTitle(e.target.value)}
-            placeholder="Title"
-            type="text"
-            value={title}
-          />
-          <input
-            onChange={e => setAuthorEmail(e.target.value)}
-            placeholder="Author (email adress)"
-            type="text"
-            value={authorEmail}
-          />
-          <textarea
-            cols={50}
-            onChange={e => setContent(e.target.value)}
-            placeholder="Content"
-            rows={8}
-            value={content}
-          />
-          <input
-            disabled={!content || !title || !authorEmail}
-            type="submit"
-            value="Create"
-          />
+          <input autoFocus onChange={e => setTitle(e.target.value)} placeholder="Title" type="text" value={title} />
+          <input onChange={e => setAuthorEmail(e.target.value)} placeholder="Author (email adress)" type="text" value={authorEmail} />
+          <textarea cols={50} onChange={e => setContent(e.target.value)} placeholder="Content" rows={8} value={content} />
+          <input disabled={!content || !title || !authorEmail} type="submit" value="Create" />
           <a className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
           </a>

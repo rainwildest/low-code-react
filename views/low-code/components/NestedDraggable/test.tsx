@@ -9,12 +9,8 @@ const tags = {
   [tagsName.FOOTER]: (props: AnyProps) => <footer {...props} />,
   [tagsName.SECTION]: (props: AnyProps) => <section {...props} />,
 
-  [tagsName.A]: ({ content = "链接内容", ...props }) => (
-    <a {...props}>{content}</a>
-  ),
-  [tagsName.SPAN]: ({ content = "文本内容", ...props }) => (
-    <span {...props}>{content}</span>
-  ),
+  [tagsName.A]: ({ content = "链接内容", ...props }) => <a {...props}>{content}</a>,
+  [tagsName.SPAN]: ({ content = "文本内容", ...props }) => <span {...props}>{content}</span>,
   [tagsName.AUDIO]: (props: AnyProps) => <audio {...props} />,
   [tagsName.VIDEO]: (props: AnyProps) => <video {...props} />,
   [tagsName.IMG]: (props: any) => <img {...props} alt=""></img>,
