@@ -1,6 +1,7 @@
 import type { CSSProperties, FC } from "react";
 import storage from "./storage";
 import { EventEmitter } from "events";
+import _ from "lodash";
 
 export const UUID =
   (prefix = 0, i = 0) =>
@@ -12,7 +13,7 @@ export const UUID =
   };
 
 /**
- * @description 数据类型判断
+ * @brief 数据类型判断
  * @param {unknown} value
  * @returns string
  */
@@ -30,7 +31,7 @@ export const typeOf = (value: unknown): string => {
 };
 
 /**
- * 合并 className
+ * @brief 合并 className
  * @param {string} defaultClassName
  * @param {string} className
  * @returns string
@@ -46,14 +47,18 @@ export const mergeClassName = (className: string, defaultClassName = ""): string
 };
 
 /**
- * 插入一段 style 样式
+ * @brief 插入一段 style 样式
  * @param {string} innerText 样式
  * @param {string} attribute 传入 id (#id) 或 class (.class) 属性
  * @returns void
  */
-export const createStyleElement = (innerText: string, attribute?: string) => {
+export const createStyleElement = (innerText: string, attribute?: AnyProps) => {
   const style = document.createElement("style");
   style.setAttribute("type", "text/css");
+
+  _.keys(attribute).forEach(key => {
+    style.setAttribute(key, attribute[key]);
+  });
 
   style.innerText = innerText;
   // style.appendChild(

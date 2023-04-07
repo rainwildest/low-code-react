@@ -1,18 +1,21 @@
 import { useState, useRef, useEffect, useMemo, memo, WheelEvent } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { emitter } from "lib/utils";
+
+import { MonacoEditor } from "components";
 
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
 import AttributeArea from "./components/AttributeArea";
 import Layout from "./components/Layout";
 
-import { emitinfo } from "config/emitter";
 import { Icon } from "components";
 import DragData from "./components/utils";
 
 import { observer } from "mobx-react";
+
+import { emitter } from "lib/utils";
+import { emitinfo } from "config/emitter";
 
 const LowCode = observer(() => {
   const dragData = new DragData();
@@ -33,6 +36,7 @@ const LowCode = observer(() => {
   const [visible, setVisible] = useState(false);
   const [zoom, setZoom] = useState(0);
   const [position, setPosition] = useState({ left: 0, top: 0 });
+  const [htmlText, setHtmlText] = useState("");
 
   const onWheel = (event: WheelEvent<HTMLDivElement>) => {
     /**
@@ -209,6 +213,7 @@ const LowCode = observer(() => {
   };
 
   useEffect(() => {
+    console.log("first");
     onInitDraggableContainer(960, 800);
 
     const events = [
@@ -252,6 +257,11 @@ const LowCode = observer(() => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("second", draggableRef.current.outerHTML);
+    setHtmlText(draggableRef.current.outerHTML);
+  }, [schema]);
+
   return (
     <Layout>
       <DndProvider backend={HTML5Backend}>
@@ -262,7 +272,9 @@ const LowCode = observer(() => {
                 Default Button
               </Button>
             </div> */}
-
+        <div className="fixed -right-full h-full w-full">
+          <MonacoEditor insertStyleLabel htmlText={htmlText} />
+        </div>
         <section className="relative flex h-full overflow-hidden">
           {/* 控件区 */}
           <ControlArea ref={controlRef} className="bg-gray-1000 pr-5 shadow-lg dark:bg-purple-1000" />

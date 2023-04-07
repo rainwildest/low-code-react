@@ -1,9 +1,20 @@
+import type { FC } from "react";
 import { useEffect, useRef } from "react";
 import { configureMonacoTailwindcss, tailwindcssData } from "monaco-tailwindcss";
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
+import { loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
 
-const MonacoEditor = () => {
+import { createStyleElement } from "lib/utils";
+
+export type MonacoEditorProps = {
+  htmlText?: string;
+  insertStyleLabel?: boolean;
+  onChangeStyle?: (style: string) => void;
+};
+
+type IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor;
+
+const TailwindcssMonacoEditor: FC<MonacoEditorProps> = ({ htmlText, insertStyleLabel, onChangeStyle }) => {
   const tailwindConfig = {
     theme: {
       extend: {}
@@ -12,9 +23,14 @@ const MonacoEditor = () => {
 
   const init = useRef(false);
   const eidtor = useRef(null);
+  const taildindMonaco = useRef<IStandaloneCodeEditor | null>(null);
 
   useEffect(() => {
-    if (init.current) return;
+    if (init.current) {
+      console.log("kkk", taildindMonaco.current.setValue);
+      taildindMonaco.current && taildindMonaco.current.setValue(htmlText || "");
+      return;
+    }
     init.current = true;
 
     loader.config({ monaco });
@@ -42,7 +58,7 @@ const MonacoEditor = () => {
               // We are using a custom worker instead of the default
               // 'monaco-tailwindcss/tailwindcss.worker.js'
               // This way we can enable custom plugins
-              return new Worker(new URL("tailwindcssplugin.worker?.worker", import.meta.url));
+              return new Worker(new URL("tailwindcss.worker?.worker", import.meta.url));
           }
         }
       };
@@ -54,9 +70,9 @@ const MonacoEditor = () => {
       // );
 
       // @tailwind base;
-      const cssModel = monaco.editor.createModel(`@tailwind base; @tailwind components; @tailwind utilities;`, "css");
+      const cssModel = monaco.editor.createModel(`@tailwind components; @tailwind utilities;`, "css");
 
-      const htmlModel = monaco.editor.createModel("", "html");
+      const htmlModel = monaco.editor.createModel(htmlText || "", "html");
 
       async function generateOutput() {
         const content = await monacoTailwindcss.generateStylesFromContent(cssModel.getValue(), [
@@ -66,10 +82,14 @@ const MonacoEditor = () => {
           }
         ]);
 
-        // console.log("style", content);
+        onChangeStyle && onChangeStyle(content);
 
-        // outputPane.textContent = content;
-        // monaco.editor.colorizeElement(outputPane, { mimeType: 'css', theme: 'vs-dark' });
+        if (insertStyleLabel) {
+          const styleId = "tailwindcss-style";
+          const hasInstance = document.getElementById(styleId);
+
+          hasInstance ? (hasInstance.innerText = content) : createStyleElement(content, { id: styleId });
+        }
       }
 
       generateOutput();
@@ -87,15 +107,11 @@ const MonacoEditor = () => {
       };
 
       // const editor =
-      monaco.editor.create(eidtor.current, properties);
+      taildindMonaco.current = monaco.editor.create(eidtor.current, properties);
     });
-  }, []);
+  }, [htmlText]);
 
-  return (
-    <div style={{ height: "400px", width: "100%", border: "1px solid red" }}>
-      <div ref={eidtor} style={{ width: "100%", height: "100%" }}></div>
-    </div>
-  );
+  return <div ref={eidtor} className="h-full w-full" />;
 };
 
-export default MonacoEditor;
+export default TailwindcssMonacoEditor;

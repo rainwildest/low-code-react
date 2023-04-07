@@ -1,5 +1,5 @@
 import Icon from "./Icon";
-
+import MonacoEditor from "./MonacoEditor";
 // import "./index.scss";
 
-export { Icon };
+export { Icon, MonacoEditor };
