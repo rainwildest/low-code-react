@@ -23,7 +23,7 @@ const LowCode = observer(() => {
   const contextmenuRef = useRef<HTMLDivElement>(null);
   const selectorsRef = useRef({ current: null, prev: null });
 
-  const [schema, setSchema] = useState<any[]>([]);
+  const [schema, setSchema] = useState<AnyProps[]>([]);
 
   const [canvasLeft, setCanvasLeft] = useState(50);
   const [canvasTop, setCanvasTop] = useState(50);
@@ -135,6 +135,7 @@ const LowCode = observer(() => {
 
       if (isClear) {
         selectors.current = selectors.prev = null;
+        setCurrentAttribute({});
 
         return;
       }
@@ -174,18 +175,13 @@ const LowCode = observer(() => {
     });
   };
 
-  const onIsClear = () => {
-    const selectors = selectorsRef.current;
-
-    selectors.current = selectors.prev = null;
-  };
-
   /**
    * @brief 设置选中的拖动控件
    * @param {AnyProps} data
    */
   const onSelected = (data: AnyProps) => {
-    selectorsRef.current.current = data;
+    const selectort = selectorsRef.current;
+    selectort.current = data;
 
     onClassNameOperation();
 
@@ -193,15 +189,20 @@ const LowCode = observer(() => {
   };
 
   const onKeyDown = (value: KeyboardEvent) => {
-    if (value.code === "Delete") {
+    if (value.code === "Delete" || value.code === "Backspace") {
       onMenuDelete();
     }
   };
 
   const onMenuDelete = () => {
+    const selectors = selectorsRef.current;
+
     setSchema(schema => {
-      return dragData.remove(selectorsRef.current.current, schema);
+      return dragData.remove(selectors.current, schema);
     });
+
+    selectors.current = selectors.prev = null;
+    setCurrentAttribute({});
   };
 
   const onClearSelected = () => {
@@ -212,10 +213,7 @@ const LowCode = observer(() => {
     return (val: AnyProps) => {
       setCurrentAttribute(val);
 
-      setSchema(schema => {
-        console.log("design area", dragData.modify(val, schema));
-        return dragData.modify(val, schema);
-      });
+      setSchema(schema => dragData.modify(val, schema));
     };
   }, []);
 
@@ -238,11 +236,7 @@ const LowCode = observer(() => {
       /**
        * @brief 禁止右键菜单
        */
-      {
-        name: "contextmenu",
-        function: onDisabledContextmenu,
-        options: false
-      },
+      { name: "contextmenu", function: onDisabledContextmenu, options: false },
       /**
        * @brief 监听删除按钮
        */
@@ -316,7 +310,7 @@ const LowCode = observer(() => {
             {visible && (
               <section
                 ref={contextmenuRef}
-                className="fixed w-36 overflow-hidden rounded-md shadow-md"
+                className="fixed z-50 w-36 overflow-hidden rounded-md shadow-md"
                 style={{ left: `${position.left}px`, top: `${position.top}px` }}
               >
                 {/* <Menu className="w-32" selectable={false} items={items} /> */}

@@ -3,7 +3,7 @@ import { memo, forwardRef, Fragment } from "react";
 import { Input, Select } from "antd";
 import _ from "lodash";
 
-const { Option } = Select;
+const { Option, OptGroup } = Select;
 type WidthAttributeProps = {
   ref?: LegacyRef<HTMLElement>;
 
@@ -55,8 +55,15 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
           attribute: { className: $className.trim() }
         });
     };
-    console.log("attr", attrs.tailwindcss?.[type]);
+    console.log("attr", attrs?.tailwindcss?.[type]);
     // console.log(type);
+    const onFormatType = (title: string) => {
+      const index = title.indexOf("(");
+
+      return ~index ? title.substring(index + 1, title.length - 1) : title;
+    };
+
+    // const te: AnyProps = {};
 
     return (
       <div ref={nodeRef}>
@@ -67,20 +74,48 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
           <Select
             showSearch
             allowClear
-            value={attrs.tailwindcss?.[type]}
+            value={attrs?.tailwindcss?.[type]}
             className="block"
-            optionLabelProp="value"
-            optionFilterProp="label"
+            // optionLabelProp="value"
+            // optionFilterProp="label"
             placeholder={selectPlaceholder}
             onChange={onSelectedChange}
-            options={options}
-          />
+            // options={options}
+          >
+            {options.map(option => {
+              if (option?.options) {
+                return (
+                  <OptGroup label={option.label} key={option.label}>
+                    {option.options.map(option => (
+                      <Option
+                        value={option.value}
+                        key={option.value}
+                        title={option.label}
+                      >
+                        {option.value}
+                      </Option>
+                    ))}
+                  </OptGroup>
+                );
+              }
+
+              return (
+                <Option
+                  value={option.value}
+                  key={option.value}
+                  title={option.label}
+                >
+                  {option.value}
+                </Option>
+              );
+            })}
+          </Select>
         </div>
 
         {hasCustom && (
           <div className="">
             <span className="pointer-events-none block pb-1.5 text-sm text-gray-1200 dark:text-purple-1200">
-              自定义 {type}：
+              自定义 {onFormatType(type)}：
             </span>
             <Input
               allowClear

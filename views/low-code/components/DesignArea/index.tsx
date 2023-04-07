@@ -81,7 +81,6 @@ const DesignArea: FC<DesignAreaProps> = ({
 
     // e.stopPropagation();
   };
-  console.log("kkk");
 
   return (
     <div
