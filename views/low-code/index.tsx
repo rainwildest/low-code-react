@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useMemo, memo, WheelEvent } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import { MonacoEditor } from "components";
+import { MonacoEditorAsync } from "components";
 
 import ControlArea from "./components/ControlArea";
 import DesignArea from "./components/DesignArea";
@@ -213,7 +213,6 @@ const LowCode = observer(() => {
   };
 
   useEffect(() => {
-    console.log("first");
     onInitDraggableContainer(960, 800);
 
     const events = [
@@ -258,12 +257,15 @@ const LowCode = observer(() => {
   }, []);
 
   useEffect(() => {
-    console.log("second", draggableRef.current.outerHTML);
+    // console.log("second", draggableRef.current.outerHTML);
     setHtmlText(draggableRef.current.outerHTML);
   }, [schema]);
 
   return (
     <Layout>
+      <div className="fixed -right-full">
+        <MonacoEditorAsync insertStyleLabel htmlText={htmlText} />
+      </div>
       <DndProvider backend={HTML5Backend}>
         {/* <Container /> */}
         {/* <div className="h-20 relative z-10">
@@ -272,9 +274,7 @@ const LowCode = observer(() => {
                 Default Button
               </Button>
             </div> */}
-        <div className="fixed -right-full h-full w-full">
-          <MonacoEditor insertStyleLabel htmlText={htmlText} />
-        </div>
+
         <section className="relative flex h-full overflow-hidden">
           {/* 控件区 */}
           <ControlArea ref={controlRef} className="bg-gray-1000 pr-5 shadow-lg dark:bg-purple-1000" />

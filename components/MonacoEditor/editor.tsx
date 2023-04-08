@@ -27,7 +27,6 @@ const TailwindcssMonacoEditor: FC<MonacoEditorProps> = ({ htmlText, insertStyleL
 
   useEffect(() => {
     if (init.current) {
-      console.log("kkk", taildindMonaco.current.setValue);
       taildindMonaco.current && taildindMonaco.current.setValue(htmlText || "");
       return;
     }
@@ -44,7 +43,6 @@ const TailwindcssMonacoEditor: FC<MonacoEditorProps> = ({ htmlText, insertStyleL
 
       window.MonacoEnvironment = {
         getWorker(_, label) {
-          console.log(label);
           switch (label) {
             case "editorWorkerService":
               return new Worker(new URL("monaco-editor/esm/vs/editor/editor.worker?worker", import.meta.url));
@@ -93,7 +91,7 @@ const TailwindcssMonacoEditor: FC<MonacoEditorProps> = ({ htmlText, insertStyleL
       }
 
       generateOutput();
-      cssModel.onDidChangeContent(generateOutput);
+      // cssModel.onDidChangeContent(generateOutput);
       htmlModel.onDidChangeContent(generateOutput);
 
       const properties = {

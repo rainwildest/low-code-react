@@ -566,7 +566,7 @@ export const TextDecorationColor: AttributeProps = {
     },
     { value: "decoration-black", label: "text-decoration-color: #000;" },
     { value: "decoration-white", label: "text-decoration-color: #fff;" },
-    { value: "decoration-slate-50", label: "text-decoration-color: #f8fafc;" },
+    { value: "decoration-slate-50", label: "text-decoration-color:  #f8fafc;" },
     { value: "decoration-slate-100", label: "text-decoration-color: #f1f5f9;" },
     { value: "decoration-slate-200", label: "text-decoration-color: #e2e8f0;" },
     { value: "decoration-slate-300", label: "text-decoration-color: #cbd5e1;" },
@@ -576,7 +576,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-slate-700", label: "text-decoration-color: #334155;" },
     { value: "decoration-slate-800", label: "text-decoration-color: #1e293b;" },
     { value: "decoration-slate-900", label: "text-decoration-color: #0f172a;" },
-    { value: "decoration-gray-50", label: "text-decoration-color: #f9fafb;" },
+
+    { value: "decoration-gray-50", label: "text-decoration-color:  #f9fafb;" },
     { value: "decoration-gray-100", label: "text-decoration-color: #f3f4f6;" },
     { value: "decoration-gray-200", label: "text-decoration-color: #e5e7eb;" },
     { value: "decoration-gray-300", label: "text-decoration-color: #d1d5db;" },
@@ -586,7 +587,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-gray-700", label: "text-decoration-color: #374151;" },
     { value: "decoration-gray-800", label: "text-decoration-color: #1f2937;" },
     { value: "decoration-gray-900", label: "text-decoration-color: #111827;" },
-    { value: "decoration-zinc-50", label: "text-decoration-color: #fafafa;" },
+
+    { value: "decoration-zinc-50", label: "text-decoration-color:  #fafafa;" },
     { value: "decoration-zinc-100", label: "text-decoration-color: #f4f4f5;" },
     { value: "decoration-zinc-200", label: "text-decoration-color: #e4e4e7;" },
     { value: "decoration-zinc-300", label: "text-decoration-color: #d4d4d8;" },
@@ -596,47 +598,19 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-zinc-700", label: "text-decoration-color: #3f3f46;" },
     { value: "decoration-zinc-800", label: "text-decoration-color: #27272a;" },
     { value: "decoration-zinc-900", label: "text-decoration-color: #18181b;" },
-    {
-      value: "decoration-neutral-50",
-      label: "text-decoration-color: #fafafa;"
-    },
-    {
-      value: "decoration-neutral-100",
-      label: "text-decoration-color: #f5f5f5;"
-    },
-    {
-      value: "decoration-neutral-200",
-      label: "text-decoration-color: #e5e5e5;"
-    },
-    {
-      value: "decoration-neutral-300",
-      label: "text-decoration-color: #d4d4d4;"
-    },
-    {
-      value: "decoration-neutral-400",
-      label: "text-decoration-color: #a3a3a3;"
-    },
-    {
-      value: "decoration-neutral-500",
-      label: "text-decoration-color: #737373;"
-    },
-    {
-      value: "decoration-neutral-600",
-      label: "text-decoration-color: #525252;"
-    },
-    {
-      value: "decoration-neutral-700",
-      label: "text-decoration-color: #404040;"
-    },
-    {
-      value: "decoration-neutral-800",
-      label: "text-decoration-color: #262626;"
-    },
-    {
-      value: "decoration-neutral-900",
-      label: "text-decoration-color: #171717;"
-    },
-    { value: "decoration-stone-50", label: "text-decoration-color: #fafaf9;" },
+
+    { value: "decoration-neutral-50", label: "text-decoration-color:  #fafafa;" },
+    { value: "decoration-neutral-100", label: "text-decoration-color: #f5f5f5;" },
+    { value: "decoration-neutral-200", label: "text-decoration-color: #e5e5e5;" },
+    { value: "decoration-neutral-300", label: "text-decoration-color: #d4d4d4;" },
+    { value: "decoration-neutral-400", label: "text-decoration-color: #a3a3a3;" },
+    { value: "decoration-neutral-500", label: "text-decoration-color: #737373;" },
+    { value: "decoration-neutral-600", label: "text-decoration-color: #525252;" },
+    { value: "decoration-neutral-700", label: "text-decoration-color: #404040;" },
+    { value: "decoration-neutral-800", label: "text-decoration-color: #262626;" },
+    { value: "decoration-neutral-900", label: "text-decoration-color: #171717;" },
+
+    { value: "decoration-stone-50", label: "text-decoration-color:  #fafaf9;" },
     { value: "decoration-stone-100", label: "text-decoration-color: #f5f5f4;" },
     { value: "decoration-stone-200", label: "text-decoration-color: #e7e5e4;" },
     { value: "decoration-stone-300", label: "text-decoration-color: #d6d3d1;" },
@@ -646,7 +620,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-stone-700", label: "text-decoration-color: #44403c;" },
     { value: "decoration-stone-800", label: "text-decoration-color: #292524;" },
     { value: "decoration-stone-900", label: "text-decoration-color: #1c1917;" },
-    { value: "decoration-red-50", label: "text-decoration-color: #fef2f2;" },
+
+    { value: "decoration-red-50", label: "text-decoration-color:  #fef2f2;" },
     { value: "decoration-red-100", label: "text-decoration-color: #fee2e2;" },
     { value: "decoration-red-200", label: "text-decoration-color: #fecaca;" },
     { value: "decoration-red-300", label: "text-decoration-color: #fca5a5;" },
@@ -656,44 +631,19 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-red-700", label: "text-decoration-color: #b91c1c;" },
     { value: "decoration-red-800", label: "text-decoration-color: #991b1b;" },
     { value: "decoration-red-900", label: "text-decoration-color: #7f1d1d;" },
-    { value: "decoration-orange-50", label: "text-decoration-color: #fff7ed;" },
-    {
-      value: "decoration-orange-100",
-      label: "text-decoration-color: #ffedd5;"
-    },
-    {
-      value: "decoration-orange-200",
-      label: "text-decoration-color: #fed7aa;"
-    },
-    {
-      value: "decoration-orange-300",
-      label: "text-decoration-color: #fdba74;"
-    },
-    {
-      value: "decoration-orange-400",
-      label: "text-decoration-color: #fb923c;"
-    },
-    {
-      value: "decoration-orange-500",
-      label: "text-decoration-color: #f97316;"
-    },
-    {
-      value: "decoration-orange-600",
-      label: "text-decoration-color: #ea580c;"
-    },
-    {
-      value: "decoration-orange-700",
-      label: "text-decoration-color: #c2410c;"
-    },
-    {
-      value: "decoration-orange-800",
-      label: "text-decoration-color: #9a3412;"
-    },
-    {
-      value: "decoration-orange-900",
-      label: "text-decoration-color: #7c2d12;"
-    },
-    { value: "decoration-amber-50", label: "text-decoration-color: #fffbeb;" },
+
+    { value: "decoration-orange-50", label: "text-decoration-color:    #fff7ed;" },
+    { value: "decoration-orange-100", label: "text-decoration-color: #ffedd5;" },
+    { value: "decoration-orange-200", label: "text-decoration-color: #fed7aa;" },
+    { value: "decoration-orange-300", label: "text-decoration-color: #fdba74;" },
+    { value: "decoration-orange-400", label: "text-decoration-color: #fb923c;" },
+    { value: "decoration-orange-500", label: "text-decoration-color: #f97316;" },
+    { value: "decoration-orange-600", label: "text-decoration-color: #ea580c;" },
+    { value: "decoration-orange-700", label: "text-decoration-color: #c2410c;" },
+    { value: "decoration-orange-800", label: "text-decoration-color: #9a3412;" },
+    { value: "decoration-orange-900", label: "text-decoration-color: #7c2d12;" },
+
+    { value: "decoration-amber-50", label: "text-decoration-color:  #fffbeb;" },
     { value: "decoration-amber-100", label: "text-decoration-color: #fef3c7;" },
     { value: "decoration-amber-200", label: "text-decoration-color: #fde68a;" },
     { value: "decoration-amber-300", label: "text-decoration-color: #fcd34d;" },
@@ -703,44 +653,19 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-amber-700", label: "text-decoration-color: #b45309;" },
     { value: "decoration-amber-800", label: "text-decoration-color: #92400e;" },
     { value: "decoration-amber-900", label: "text-decoration-color: #78350f;" },
-    { value: "decoration-yellow-50", label: "text-decoration-color: #fefce8;" },
-    {
-      value: "decoration-yellow-100",
-      label: "text-decoration-color: #fef9c3;"
-    },
-    {
-      value: "decoration-yellow-200",
-      label: "text-decoration-color: #fef08a;"
-    },
-    {
-      value: "decoration-yellow-300",
-      label: "text-decoration-color: #fde047;"
-    },
-    {
-      value: "decoration-yellow-400",
-      label: "text-decoration-color: #facc15;"
-    },
-    {
-      value: "decoration-yellow-500",
-      label: "text-decoration-color: #eab308;"
-    },
-    {
-      value: "decoration-yellow-600",
-      label: "text-decoration-color: #ca8a04;"
-    },
-    {
-      value: "decoration-yellow-700",
-      label: "text-decoration-color: #a16207;"
-    },
-    {
-      value: "decoration-yellow-800",
-      label: "text-decoration-color: #854d0e;"
-    },
-    {
-      value: "decoration-yellow-900",
-      label: "text-decoration-color: #713f12;"
-    },
-    { value: "decoration-lime-50", label: "text-decoration-color: #f7fee7;" },
+
+    { value: "decoration-yellow-50", label: "text-decoration-color:    #fefce8;" },
+    { value: "decoration-yellow-100", label: "text-decoration-color: #fef9c3;" },
+    { value: "decoration-yellow-200", label: "text-decoration-color: #fef08a;" },
+    { value: "decoration-yellow-300", label: "text-decoration-color: #fde047;" },
+    { value: "decoration-yellow-400", label: "text-decoration-color: #facc15;" },
+    { value: "decoration-yellow-500", label: "text-decoration-color: #eab308;" },
+    { value: "decoration-yellow-600", label: "text-decoration-color: #ca8a04;" },
+    { value: "decoration-yellow-700", label: "text-decoration-color: #a16207;" },
+    { value: "decoration-yellow-800", label: "text-decoration-color: #854d0e;" },
+    { value: "decoration-yellow-900", label: "text-decoration-color: #713f12;" },
+
+    { value: "decoration-lime-50", label: "text-decoration-color:  #f7fee7;" },
     { value: "decoration-lime-100", label: "text-decoration-color: #ecfccb;" },
     { value: "decoration-lime-200", label: "text-decoration-color: #d9f99d;" },
     { value: "decoration-lime-300", label: "text-decoration-color: #bef264;" },
@@ -750,7 +675,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-lime-700", label: "text-decoration-color: #4d7c0f;" },
     { value: "decoration-lime-800", label: "text-decoration-color: #3f6212;" },
     { value: "decoration-lime-900", label: "text-decoration-color: #365314;" },
-    { value: "decoration-green-50", label: "text-decoration-color: #f0fdf4;" },
+
+    { value: "decoration-green-50", label: "text-decoration-color:  #f0fdf4;" },
     { value: "decoration-green-100", label: "text-decoration-color: #dcfce7;" },
     { value: "decoration-green-200", label: "text-decoration-color: #bbf7d0;" },
     { value: "decoration-green-300", label: "text-decoration-color: #86efac;" },
@@ -760,47 +686,19 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-green-700", label: "text-decoration-color: #15803d;" },
     { value: "decoration-green-800", label: "text-decoration-color: #166534;" },
     { value: "decoration-green-900", label: "text-decoration-color: #14532d;" },
-    {
-      value: "decoration-emerald-50",
-      label: "text-decoration-color: #ecfdf5;"
-    },
-    {
-      value: "decoration-emerald-100",
-      label: "text-decoration-color: #d1fae5;"
-    },
-    {
-      value: "decoration-emerald-200",
-      label: "text-decoration-color: #a7f3d0;"
-    },
-    {
-      value: "decoration-emerald-300",
-      label: "text-decoration-color: #6ee7b7;"
-    },
-    {
-      value: "decoration-emerald-400",
-      label: "text-decoration-color: #34d399;"
-    },
-    {
-      value: "decoration-emerald-500",
-      label: "text-decoration-color: #10b981;"
-    },
-    {
-      value: "decoration-emerald-600",
-      label: "text-decoration-color: #059669;"
-    },
-    {
-      value: "decoration-emerald-700",
-      label: "text-decoration-color: #047857;"
-    },
-    {
-      value: "decoration-emerald-800",
-      label: "text-decoration-color: #065f46;"
-    },
-    {
-      value: "decoration-emerald-900",
-      label: "text-decoration-color: #064e3b;"
-    },
-    { value: "decoration-teal-50", label: "text-decoration-color: #f0fdfa;" },
+
+    { value: "decoration-emerald-50", label: "text-decoration-color:  #ecfdf5;" },
+    { value: "decoration-emerald-100", label: "text-decoration-color: #d1fae5;" },
+    { value: "decoration-emerald-200", label: "text-decoration-color: #a7f3d0;" },
+    { value: "decoration-emerald-300", label: "text-decoration-color: #6ee7b7;" },
+    { value: "decoration-emerald-400", label: "text-decoration-color: #34d399;" },
+    { value: "decoration-emerald-500", label: "text-decoration-color: #10b981;" },
+    { value: "decoration-emerald-600", label: "text-decoration-color: #059669;" },
+    { value: "decoration-emerald-700", label: "text-decoration-color: #047857;" },
+    { value: "decoration-emerald-800", label: "text-decoration-color: #065f46;" },
+    { value: "decoration-emerald-900", label: "text-decoration-color: #064e3b;" },
+
+    { value: "decoration-teal-50", label: "text-decoration-color:  #f0fdfa;" },
     { value: "decoration-teal-100", label: "text-decoration-color: #ccfbf1;" },
     { value: "decoration-teal-200", label: "text-decoration-color: #99f6e4;" },
     { value: "decoration-teal-300", label: "text-decoration-color: #5eead4;" },
@@ -810,7 +708,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-teal-700", label: "text-decoration-color: #0f766e;" },
     { value: "decoration-teal-800", label: "text-decoration-color: #115e59;" },
     { value: "decoration-teal-900", label: "text-decoration-color: #134e4a;" },
-    { value: "decoration-cyan-50", label: "text-decoration-color: #ecfeff;" },
+
+    { value: "decoration-cyan-50", label: "text-decoration-color:  #ecfeff;" },
     { value: "decoration-cyan-100", label: "text-decoration-color: #cffafe;" },
     { value: "decoration-cyan-200", label: "text-decoration-color: #a5f3fc;" },
     { value: "decoration-cyan-300", label: "text-decoration-color: #67e8f9;" },
@@ -820,7 +719,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-cyan-700", label: "text-decoration-color: #0e7490;" },
     { value: "decoration-cyan-800", label: "text-decoration-color: #155e75;" },
     { value: "decoration-cyan-900", label: "text-decoration-color: #164e63;" },
-    { value: "decoration-sky-50", label: "text-decoration-color: #f0f9ff;" },
+
+    { value: "decoration-sky-50", label: "text-decoration-color:  #f0f9ff;" },
     { value: "decoration-sky-100", label: "text-decoration-color: #e0f2fe;" },
     { value: "decoration-sky-200", label: "text-decoration-color: #bae6fd;" },
     { value: "decoration-sky-300", label: "text-decoration-color: #7dd3fc;" },
@@ -830,7 +730,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-sky-700", label: "text-decoration-color: #0369a1;" },
     { value: "decoration-sky-800", label: "text-decoration-color: #075985;" },
     { value: "decoration-sky-900", label: "text-decoration-color: #0c4a6e;" },
-    { value: "decoration-blue-50", label: "text-decoration-color: #eff6ff;" },
+
+    { value: "decoration-blue-50", label: "text-decoration-color:  #eff6ff;" },
     { value: "decoration-blue-100", label: "text-decoration-color: #dbeafe;" },
     { value: "decoration-blue-200", label: "text-decoration-color: #bfdbfe;" },
     { value: "decoration-blue-300", label: "text-decoration-color: #93c5fd;" },
@@ -840,158 +741,52 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-blue-700", label: "text-decoration-color: #1d4ed8;" },
     { value: "decoration-blue-800", label: "text-decoration-color: #1e40af;" },
     { value: "decoration-blue-900", label: "text-decoration-color: #1e3a8a;" },
-    { value: "decoration-indigo-50", label: "text-decoration-color: #eef2ff;" },
-    {
-      value: "decoration-indigo-100",
-      label: "text-decoration-color: #e0e7ff;"
-    },
-    {
-      value: "decoration-indigo-200",
-      label: "text-decoration-color: #c7d2fe;"
-    },
-    {
-      value: "decoration-indigo-300",
-      label: "text-decoration-color: #a5b4fc;"
-    },
-    {
-      value: "decoration-indigo-400",
-      label: "text-decoration-color: #818cf8;"
-    },
-    {
-      value: "decoration-indigo-500",
-      label: "text-decoration-color: #6366f1;"
-    },
-    {
-      value: "decoration-indigo-600",
-      label: "text-decoration-color: #4f46e5;"
-    },
-    {
-      value: "decoration-indigo-700",
-      label: "text-decoration-color: #4338ca;"
-    },
-    {
-      value: "decoration-indigo-800",
-      label: "text-decoration-color: #3730a3;"
-    },
-    {
-      value: "decoration-indigo-900",
-      label: "text-decoration-color: #312e81;"
-    },
-    { value: "decoration-violet-50", label: "text-decoration-color: #f5f3ff;" },
-    {
-      value: "decoration-violet-100",
-      label: "text-decoration-color: #ede9fe;"
-    },
-    {
-      value: "decoration-violet-200",
-      label: "text-decoration-color: #ddd6fe;"
-    },
-    {
-      value: "decoration-violet-300",
-      label: "text-decoration-color: #c4b5fd;"
-    },
-    {
-      value: "decoration-violet-400",
-      label: "text-decoration-color: #a78bfa;"
-    },
-    {
-      value: "decoration-violet-500",
-      label: "text-decoration-color: #8b5cf6;"
-    },
-    {
-      value: "decoration-violet-600",
-      label: "text-decoration-color: #7c3aed;"
-    },
-    {
-      value: "decoration-violet-700",
-      label: "text-decoration-color: #6d28d9;"
-    },
-    {
-      value: "decoration-violet-800",
-      label: "text-decoration-color: #5b21b6;"
-    },
-    {
-      value: "decoration-violet-900",
-      label: "text-decoration-color: #4c1d95;"
-    },
-    { value: "decoration-purple-50", label: "text-decoration-color: #faf5ff;" },
-    {
-      value: "decoration-purple-100",
-      label: "text-decoration-color: #f3e8ff;"
-    },
-    {
-      value: "decoration-purple-200",
-      label: "text-decoration-color: #e9d5ff;"
-    },
-    {
-      value: "decoration-purple-300",
-      label: "text-decoration-color: #d8b4fe;"
-    },
-    {
-      value: "decoration-purple-400",
-      label: "text-decoration-color: #c084fc;"
-    },
-    {
-      value: "decoration-purple-500",
-      label: "text-decoration-color: #a855f7;"
-    },
-    {
-      value: "decoration-purple-600",
-      label: "text-decoration-color: #9333ea;"
-    },
-    {
-      value: "decoration-purple-700",
-      label: "text-decoration-color: #7e22ce;"
-    },
-    {
-      value: "decoration-purple-800",
-      label: "text-decoration-color: #6b21a8;"
-    },
-    {
-      value: "decoration-purple-900",
-      label: "text-decoration-color: #581c87;"
-    },
-    {
-      value: "decoration-fuchsia-50",
-      label: "text-decoration-color: #fdf4ff;"
-    },
-    {
-      value: "decoration-fuchsia-100",
-      label: "text-decoration-color: #fae8ff;"
-    },
-    {
-      value: "decoration-fuchsia-200",
-      label: "text-decoration-color: #f5d0fe;"
-    },
-    {
-      value: "decoration-fuchsia-300",
-      label: "text-decoration-color: #f0abfc;"
-    },
-    {
-      value: "decoration-fuchsia-400",
-      label: "text-decoration-color: #e879f9;"
-    },
-    {
-      value: "decoration-fuchsia-500",
-      label: "text-decoration-color: #d946ef;"
-    },
-    {
-      value: "decoration-fuchsia-600",
-      label: "text-decoration-color: #c026d3;"
-    },
-    {
-      value: "decoration-fuchsia-700",
-      label: "text-decoration-color: #a21caf;"
-    },
-    {
-      value: "decoration-fuchsia-800",
-      label: "text-decoration-color: #86198f;"
-    },
-    {
-      value: "decoration-fuchsia-900",
-      label: "text-decoration-color: #701a75;"
-    },
-    { value: "decoration-pink-50", label: "text-decoration-color: #fdf2f8;" },
+
+    { value: "decoration-indigo-50", label: "text-decoration-color:    #eef2ff;" },
+    { value: "decoration-indigo-100", label: "text-decoration-color: #e0e7ff;" },
+    { value: "decoration-indigo-200", label: "text-decoration-color: #c7d2fe;" },
+    { value: "decoration-indigo-300", label: "text-decoration-color: #a5b4fc;" },
+    { value: "decoration-indigo-400", label: "text-decoration-color: #818cf8;" },
+    { value: "decoration-indigo-500", label: "text-decoration-color: #6366f1;" },
+    { value: "decoration-indigo-600", label: "text-decoration-color: #4f46e5;" },
+    { value: "decoration-indigo-700", label: "text-decoration-color: #4338ca;" },
+    { value: "decoration-indigo-800", label: "text-decoration-color: #3730a3;" },
+    { value: "decoration-indigo-900", label: "text-decoration-color: #312e81;" },
+
+    { value: "decoration-violet-50", label: "text-decoration-color:    #f5f3ff;" },
+    { value: "decoration-violet-100", label: "text-decoration-color: #ede9fe;" },
+    { value: "decoration-violet-200", label: "text-decoration-color: #ddd6fe;" },
+    { value: "decoration-violet-300", label: "text-decoration-color: #c4b5fd;" },
+    { value: "decoration-violet-400", label: "text-decoration-color: #a78bfa;" },
+    { value: "decoration-violet-500", label: "text-decoration-color: #8b5cf6;" },
+    { value: "decoration-violet-600", label: "text-decoration-color: #7c3aed;" },
+    { value: "decoration-violet-700", label: "text-decoration-color: #6d28d9;" },
+    { value: "decoration-violet-800", label: "text-decoration-color: #5b21b6;" },
+    { value: "decoration-violet-900", label: "text-decoration-color: #4c1d95;" },
+
+    { value: "decoration-purple-50", label: "text-decoration-color:    #faf5ff;" },
+    { value: "decoration-purple-100", label: "text-decoration-color: #f3e8ff;" },
+    { value: "decoration-purple-200", label: "text-decoration-color: #e9d5ff;" },
+    { value: "decoration-purple-300", label: "text-decoration-color: #d8b4fe;" },
+    { value: "decoration-purple-400", label: "text-decoration-color: #c084fc;" },
+    { value: "decoration-purple-500", label: "text-decoration-color: #a855f7;" },
+    { value: "decoration-purple-600", label: "text-decoration-color: #9333ea;" },
+    { value: "decoration-purple-700", label: "text-decoration-color: #7e22ce;" },
+    { value: "decoration-purple-800", label: "text-decoration-color: #6b21a8;" },
+    { value: "decoration-purple-900", label: "text-decoration-color: #581c87;" },
+
+    { value: "decoration-fuchsia-50", label: "text-decoration-color:  #fdf4ff;" },
+    { value: "decoration-fuchsia-100", label: "text-decoration-color: #fae8ff;" },
+    { value: "decoration-fuchsia-200", label: "text-decoration-color: #f5d0fe;" },
+    { value: "decoration-fuchsia-300", label: "text-decoration-color: #f0abfc;" },
+    { value: "decoration-fuchsia-400", label: "text-decoration-color: #e879f9;" },
+    { value: "decoration-fuchsia-500", label: "text-decoration-color: #d946ef;" },
+    { value: "decoration-fuchsia-600", label: "text-decoration-color: #c026d3;" },
+    { value: "decoration-fuchsia-700", label: "text-decoration-color: #a21caf;" },
+    { value: "decoration-fuchsia-800", label: "text-decoration-color: #86198f;" },
+    { value: "decoration-fuchsia-900", label: "text-decoration-color: #701a75;" },
+
+    { value: "decoration-pink-50", label: "text-decoration-color:  #fdf2f8;" },
     { value: "decoration-pink-100", label: "text-decoration-color: #fce7f3;" },
     { value: "decoration-pink-200", label: "text-decoration-color: #fbcfe8;" },
     { value: "decoration-pink-300", label: "text-decoration-color: #f9a8d4;" },
@@ -1001,7 +796,8 @@ export const TextDecorationColor: AttributeProps = {
     { value: "decoration-pink-700", label: "text-decoration-color: #be185d;" },
     { value: "decoration-pink-800", label: "text-decoration-color: #9d174d;" },
     { value: "decoration-pink-900", label: "text-decoration-color: #831843;" },
-    { value: "decoration-rose-50", label: "text-decoration-color: #fff1f2;" },
+
+    { value: "decoration-rose-50", label: "text-decoration-color:  #fff1f2;" },
     { value: "decoration-rose-100", label: "text-decoration-color: #ffe4e6;" },
     { value: "decoration-rose-200", label: "text-decoration-color: #fecdd3;" },
     { value: "decoration-rose-300", label: "text-decoration-color: #fda4af;" },
