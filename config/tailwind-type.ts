@@ -61,6 +61,7 @@ export const FontWeightType = Symbol("font-weight");
 export const FontVariantNumericType = Symbol("font-variant-numeric");
 export const LetterSpacingType = Symbol("letter-spacing");
 export const LineHeightType = Symbol("line-height");
+export const LineClampType = Symbol("line-clamp");
 export const ListStyleTypeType = Symbol("list-style-type");
 export const ListStylePositionType = Symbol("list-style-position");
 export const TextAlignType = Symbol("text-align");
@@ -76,3 +77,6 @@ export const TextIndentType = Symbol("text-indent");
 export const VerticalAlignType = Symbol("vertical-align");
 export const WhitespaceType = Symbol("white-space");
 export const WordBreakType = Symbol("word-break");
+export const HyphensType = Symbol("hyphens");
+
+export const BackgroundAttachmentType = Symbol("background-attachment");

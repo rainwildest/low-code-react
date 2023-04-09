@@ -5,7 +5,7 @@ import FlexboxGrid from "./tailwindcss/flexbox-grid";
 import Sizing from "./tailwindcss/sizing";
 import Spacing from "./tailwindcss/spacing";
 import Typography from "./tailwindcss/typography";
-
+import Backgrounds from "./tailwindcss/backgrounds";
 export { Attribute };
 
 export const attributeItems: Array<AttributeProps> = [
@@ -13,7 +13,8 @@ export const attributeItems: Array<AttributeProps> = [
   ...FlexboxGrid,
   ...Sizing,
   ...Spacing,
-  ...Typography
+  ...Typography,
+  ...Backgrounds
   // {
   //   type: "",
   //   header: " 属性",

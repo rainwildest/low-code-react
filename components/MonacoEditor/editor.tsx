@@ -16,9 +16,11 @@ type IStandaloneCodeEditor = monaco.editor.IStandaloneCodeEditor;
 
 const TailwindcssMonacoEditor: FC<MonacoEditorProps> = ({ htmlText, insertStyleLabel, onChangeStyle }) => {
   const tailwindConfig = {
+    content: [],
     theme: {
       extend: {}
     }
+    // plugins: []
   };
 
   const init = useRef(false);

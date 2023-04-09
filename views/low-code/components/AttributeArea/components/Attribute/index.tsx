@@ -74,7 +74,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
                   <OptGroup label={option.label} key={option.label}>
                     {option.options.map(option => (
                       <Option value={option.value} key={option.value} title={option.label}>
-                        {option.value}
+                        <span className="tracking-wider">{option.value}</span>
                       </Option>
                     ))}
                   </OptGroup>
@@ -83,7 +83,7 @@ const Attribute: FC<WidthAttributeProps> = forwardRef(
 
               return (
                 <Option value={option.value} key={option.value} title={option.label}>
-                  {option.value}
+                  <span className="tracking-wider">{option.value}</span>
                 </Option>
               );
             })}

@@ -24,6 +24,30 @@ const AttributeArea: FC<AttributeProps> = forwardRef(({ className, attrs, callba
     <section className={`absolute right-0 top-0 flex h-full w-80 flex-col overflow-auto  p-2.5 ${className}`} ref={nodeRef}>
       {attrs?.id && (
         <Fragment>
+          <div className="mb-2 rounded-lg bg-gray-1100 px-2 pb-2 dark:bg-purple-1100">
+            <div className="flex items-center py-3">
+              <Icon name="tailwindcss" className="h-6 w-6 text-sky-400" />
+              <span className="pl-2.5 text-lg font-semibold text-gray-1200 dark:text-purple-1200">Class Names</span>
+            </div>
+          </div>
+
+          <div className="mb-2 rounded-lg bg-gray-1100 px-2 py-2 dark:bg-purple-1100">
+            {/* <div className="flex items-center py-3">
+              <Icon name="tailwindcss" className="h-6 w-6 text-sky-400" />
+              <span className="pl-2.5 text-lg font-semibold text-gray-1200 dark:text-purple-1200">Class Names</span>
+            </div> */}
+            <Collapse
+              bordered={false}
+              defaultActiveKey="Layout"
+              expandIcon={({ isActive }) => <CaretRightOutlined className="text-gray-1200 dark:text-purple-1200" rotate={isActive ? 90 : 0} />}
+              className="site-collapse-custom-collapse"
+            >
+              <Panel key="Layout" header="Layout" className="site-collapse-custom-panel truncate">
+                <section></section>
+              </Panel>
+            </Collapse>
+          </div>
+
           <div className="rounded-lg bg-gray-1100 px-2 pb-2 dark:bg-purple-1100">
             <div className="flex items-center py-3">
               <Icon name="tailwindcss" className="h-6 w-6 text-sky-400" />

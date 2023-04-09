@@ -1,3 +1,6 @@
+import _ from "lodash";
+import { typeOf } from "lib/utils";
+
 export const sizePixel = [
   { name: "0", pixel: "0px;" },
   { name: "px", pixel: "1px;" },
@@ -36,14 +39,26 @@ export const sizePixel = [
   { name: "96", pixel: "24rem; /* 384px */" }
 ];
 
+export const formatColor = (type: string, attribute: string, colors: AnyProps) => {
+  return _.keys(colors).map(key => {
+    if (typeOf(colors[key]) === "string") return { value: `${type}-${key}`, label: `${attribute}: ${colors[key]};` };
+
+    return {
+      label: key,
+      options: _.keys(colors[key]).map(name => ({
+        value: `${type}-${key}-${name}`,
+        label: `${attribute}: ${colors[key][name]};`
+      }))
+    };
+  });
+};
+
 export const colors = {
-  other: {
-    inherit: "inherit",
-    current: "currentColor",
-    transparent: "transparent",
-    black: "#000000",
-    white: "#ffffff"
-  },
+  inherit: "inherit",
+  current: "currentColor",
+  transparent: "transparent",
+  black: "#000000",
+  white: "#ffffff",
 
   slate: {
     50: "#f8fafc",
